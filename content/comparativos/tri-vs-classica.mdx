@@ -1,0 +1,157 @@
+---
+title: "TRI × pontuação clássica — qual usar e por quê"
+description: "Comparativo entre Teoria de Resposta ao Item (TRI) e pontuação clássica (acertos × peso fixo): vantagens, limitações e por que o ENAMED, ENEM e ENADE usam TRI."
+entityA: "TRI"
+entityB: "Pontuação clássica"
+shortAnswer: "TRI calcula proficiência considerando dificuldade, discriminação e acerto ao acaso de cada item, permitindo comparação entre edições e reduzindo ganho de chute. Pontuação clássica conta acertos x peso fixo — mais simples mas com limitações estatísticas."
+updatedAt: "2026-05-28"
+heroEyebrow: "Comparativo · TRI × Clássica"
+---
+
+A **Teoria de Resposta ao Item (TRI)** e a **pontuação clássica** são dois métodos de calcular notas em provas. ENAMED, ENEM e ENADE usam TRI. Concursos públicos tradicionais e a maioria dos simulados usam pontuação clássica.
+
+Entender as diferenças ajuda você a interpretar sua nota corretamente — especialmente quando treina com simulados de pontuação clássica e depois faz uma prova oficial TRI.
+
+## Tabela comparativa
+
+| Dimensão | TRI | Pontuação clássica |
+|---|---|---|
+| **Como calcula** | Considera dificuldade, discriminação e acerto ao acaso de cada item | Acertos × peso fixo |
+| **Comparação entre edições** | Possível (escala equivalente) | Difícil (depende da prova específica) |
+| **Penaliza chute** | Sim, padrão de respostas atípico baixa nota | Não, ou pouco |
+| **Diferencia padrões de acerto** | Sim — quem acerta difíceis tem nota maior | Não — soma acertos sem distinção |
+| **Simplicidade de cálculo** | Complexa (modelo estatístico) | Simples (aritmética) |
+| **Calibração necessária** | Sim (pré-teste, painel) | Não ou mínima |
+| **Custo de implementação** | Alto | Baixo |
+| **Onde usa** | ENAMED, ENEM, ENADE, PISA | Maioria dos concursos, simulados clássicos |
+| **Apresentação ao candidato** | Nota TRI + banda | Nota numérica direta (% ou X/Y) |
+
+## TRI explicada
+
+A TRI modela cada item da prova com **três parâmetros**:
+
+- **Dificuldade (b)** — nível de proficiência necessário para 50% de chance de acerto
+- **Discriminação (a)** — sensibilidade do item à variação de proficiência
+- **Acerto ao acaso (c)** — probabilidade de chutar e acertar
+
+A nota final do candidato (θ, theta) é calculada considerando **qual padrão de respostas** ele teve em relação aos parâmetros de cada item.
+
+Consequência crítica: **dois candidatos com mesma quantidade de acertos podem ter notas diferentes**, dependendo de *quais* itens cada um acertou.
+
+Aprofundamento: [Como a TRI calcula sua nota no ENAMED](/blog/como-tri-calcula-nota-enamed).
+
+## Pontuação clássica explicada
+
+A pontuação clássica é direta:
+
+```
+Nota = (Acertos × Peso por item) — opcionalmente: penalidade por erro
+```
+
+Cada item tem o mesmo peso (ou pesos pré-definidos por banca), e a nota é proporcional aos acertos.
+
+Variações comuns:
+
+- **Sem penalidade**: nota = acertos
+- **Com penalidade por erro**: nota = acertos − (erros × 0.25), por exemplo
+- **Múltiplos pesos**: itens de diferentes áreas têm pesos diferentes
+
+## As vantagens da TRI
+
+### 1. Comparação entre edições
+
+Provas TRI permitem que a nota de 2024 seja **comparada à de 2025** mesmo com itens diferentes. A escala é equivalente porque a calibração faz a "tradução".
+
+Isso é crítico para avaliações nacionais que precisam medir tendências ao longo do tempo (o ENAMED mede a formação médica brasileira ano a ano).
+
+### 2. Reduz ganho de chute
+
+Em prova clássica, chutar todas as alternativas em 100 questões com 5 alternativas dá expectativa de 20 acertos. Em prova TRI, chutar sistematicamente leva a um **padrão de respostas atípico** que a TRI penaliza.
+
+Não elimina chute completamente, mas reduz substancialmente o "ganho aleatório".
+
+### 3. Diferencia padrões de acerto
+
+Considere dois candidatos com 60 acertos em 100 questões:
+
+- **Candidato A** — acertou 50 questões difíceis e 10 fáceis
+- **Candidato B** — acertou 10 difíceis e 50 fáceis
+
+Em pontuação clássica: **mesma nota** (60% de acertos).
+
+Em TRI: **A tem nota maior**, porque o padrão dele indica proficiência mais alta.
+
+### 4. Discriminação fina entre níveis
+
+A TRI captura **nuances** entre candidatos próximos. Pontuação clássica empata mais facilmente.
+
+## As limitações da TRI
+
+### 1. Complexidade
+
+Estudantes têm **dificuldade de entender** como a nota é calculada. Não é intuitivo. Gera dúvida e desconfiança.
+
+### 2. Dependência de calibração
+
+A TRI exige **pré-teste** dos itens em grupos amostrais antes da prova oficial. Sem calibração, não funciona. Itens mal calibrados levam a erros sistemáticos.
+
+### 3. Custo
+
+Implementar TRI corretamente é caro:
+
+- Pré-testes
+- Painel Angoff
+- Software estatístico especializado
+- Equipe técnica qualificada
+
+Por isso, concursos públicos médios continuam usando pontuação clássica.
+
+### 4. Não captura tudo
+
+A TRI mede competência objetiva em formato múltipla escolha. **Não captura** habilidades práticas (que pedem OSCE), comunicação clínica, tomada de decisão em equipe.
+
+Por isso o ENAMED, mesmo com TRI, é parte de um sistema mais amplo de avaliação.
+
+## Por que ENAMED usa TRI
+
+Resumo das vantagens combinadas:
+
+1. **Comparabilidade entre edições** — essencial para tendências nacionais
+2. **Robustez contra chute** — desincentiva comportamento que distorce avaliação
+3. **Discriminação fina** — permite diferenciar candidatos próximos
+4. **Padrão internacional** — alinha com PISA, NBME, outros sistemas modernos
+5. **Coerência metodológica** — INEP já tem expertise (ENEM, ENADE)
+
+## Implicações para o estudante
+
+### Treinar com TRI quando possível
+
+Simulados que **reproduzem TRI** dão sinal mais fiel da sua nota real. Simulados de pontuação clássica podem gerar **sinal enganoso** — você pode achar que está bem (alta proporção de acertos) e levar nota inferior no ENAMED.
+
+### Não chutar sistematicamente
+
+Como a TRI penaliza chute, **deixar em branco** itens que você realmente não sabe pode ser melhor que chutar (depende das regras específicas do edital — verificar).
+
+### Focar em consolidar domínio
+
+A TRI recompensa **domínio profundo** mais que cobertura larga superficial. Cinco horas estudando profundamente um tópico difícil rende mais que cinco horas folheando dez tópicos superficiais.
+
+## Implicações para coordenadores
+
+IES que aplicam **simulados internos calibrados** (TRI ou aproximação) dão sinal mais fiel aos estudantes. Simulados clássicos podem **subestimar ou superestimar** a posição real.
+
+## Termos relacionados
+
+- [TRI](/glossario/tri) — verbete do glossário
+- [Como a TRI calcula sua nota](/blog/como-tri-calcula-nota-enamed) — aprofundamento técnico
+- [Método Angoff](/blog/metodo-angoff-enamed) — complemento ao TRI
+
+## Fontes
+
+- Lord, F. M. (1980). *Applications of Item Response Theory to Practical Testing Problems*.
+- Reckase, M. D. (2009). *Multidimensional Item Response Theory*. Springer.
+- INEP — Notas técnicas ENAMED e ENEM
+
+---
+
+**Atualizado em 28 de maio de 2026.**
