@@ -31,23 +31,23 @@ Cronograma editorial inicial do `/blog`. Cada post combina **demanda de busca re
 | 01 | Edital ENAMED 2026 — datas, mudanças e o que esperar | `edital-enamed-2026-mudancas` | 📋 Edital | "edital enamed 2026" | ✅ seed escrito |
 | 02 | Como a Teoria de Resposta ao Item (TRI) calcula sua nota no ENAMED | `como-tri-calcula-nota-enamed` | 🔬 Análise | "como tri calcula nota enamed" | ✅ seed escrito |
 | 03 | ENAMED e residência médica — o que muda na sua trajetória | `enamed-e-residencia-medica` | 🩺 Carreira | "enamed conta para residência" | ✅ seed escrito |
-| 04 | Análise da prova ENAMED 2025 — temas, surpresas e padrões | `analise-prova-enamed-2025` | 🔬 Análise | "análise prova enamed 2025" | 🔴 a escrever |
-| 05 | Como o ENAMED impacta o CPC da sua faculdade no MEC | `enamed-cpc-mec-faculdade` | 🏛 IES | "como enamed afeta nota mec" | 🔴 a escrever |
-| 06 | Cronograma de estudos para o ENAMED — modelos e adaptações | `cronograma-estudo-enamed` | 🧠 Preparação | "cronograma estudos enamed" | 🔴 a escrever |
-| 07 | Ansiedade pré-prova — estratégias baseadas em evidência | `ansiedade-pre-prova-medicina` | 🧠 Saúde mental | "ansiedade enamed como controlar" | 🔴 a escrever |
-| 08 | Método Angoff — por que ele existe na avaliação do ENAMED | `metodo-angoff-enamed` | 🔬 Análise | "método angoff enamed" | 🔴 a escrever |
-| 09 | Áreas mais cobradas no ENAMED — distribuição histórica | `areas-mais-cobradas-enamed` | 🔬 Análise | "áreas mais cobradas enamed" | 🔴 a escrever |
-| 10 | ENAMED 2024 — o que aprendemos da primeira edição | `enamed-2024-licoes` | 📰 Notícias | "enamed 2024 resultados" | 🔴 a escrever |
-| 11 | A última semana antes da prova — checklist baseado em evidência | `ultima-semana-antes-enamed` | 🧠 Preparação | "última semana antes do enamed" | 🔴 a escrever |
-| 12 | ENAMED para coordenadores — como ler o relatório institucional | `enamed-coordenadores-relatorio` | 🏛 IES | "relatório institucional enamed mec" | 🔴 a escrever |
-| 13 | R1 e R+ — quando o ENAMED pesa em cada processo seletivo | `r1-r-plus-enamed-peso` | 🩺 Carreira | "diferença r1 e r+" | 🔴 a escrever |
-| 14 | Diretrizes Curriculares Nacionais e o ENAMED — a conexão | `dcn-medicina-enamed` | 🏛 IES | "dcn medicina enamed" | 🔴 a escrever |
-| 15 | Anulação de questão no ENAMED — quando acontece e como afeta sua nota | `anulacao-questao-enamed` | 🔬 Análise | "anulação questão enamed" | 🔴 a escrever |
-| 16 | Como o ENAMED entra no seu currículo Lattes | `enamed-no-lattes` | 🩺 Carreira | "enamed no lattes" | 🔴 a escrever |
-| 17 | Saúde mental do estudante de medicina — burnout no ciclo do internato | `burnout-internato-medicina` | 🧠 Saúde mental | "burnout estudante medicina" | 🔴 a escrever |
-| 18 | Reforma curricular nas escolas médicas — impacto no ENAMED | `reforma-curricular-medicina-enamed` | 🏛 IES | "reforma curricular medicina" | 🔴 a escrever |
-| 19 | Bandas de desempenho no ENAMED — o que cada faixa significa | `bandas-desempenho-enamed` | 🔬 Análise | "bandas desempenho enamed" | 🔴 a escrever |
-| 20 | Casos clínicos no ENAMED — anatomia da questão típica | `caso-clinico-enamed-anatomia-questao` | 🔬 Análise | "caso clínico enamed exemplo" | 🔴 a escrever |
+| 04 | Análise da prova ENAMED 2025 — temas, surpresas e padrões | `analise-prova-enamed-2025` | 🔬 Análise | "análise prova enamed 2025" | ✅ seed escrito |
+| 05 | Como o ENAMED impacta o CPC da sua faculdade no MEC | `enamed-cpc-mec-faculdade` | 🏛 IES | "como enamed afeta nota mec" | ✅ seed escrito |
+| 06 | Cronograma de estudos para o ENAMED — modelos e adaptações | `cronograma-estudo-enamed` | 🧠 Preparação | "cronograma estudos enamed" | ✅ seed escrito |
+| 07 | Ansiedade pré-prova — estratégias baseadas em evidência | `ansiedade-pre-prova-medicina` | 🧠 Saúde mental | "ansiedade enamed como controlar" | ✅ seed escrito |
+| 08 | Método Angoff — por que ele existe na avaliação do ENAMED | `metodo-angoff-enamed` | 🔬 Análise | "método angoff enamed" | ✅ seed escrito |
+| 09 | Áreas mais cobradas no ENAMED — distribuição histórica | `areas-mais-cobradas-enamed` | 🔬 Análise | "áreas mais cobradas enamed" | ✅ seed escrito |
+| 10 | ENAMED 2024 — o que aprendemos da primeira edição | `enamed-2024-licoes` | 📰 Notícias | "enamed 2024 resultados" | ✅ seed escrito |
+| 11 | A última semana antes da prova — checklist baseado em evidência | `ultima-semana-antes-enamed` | 🧠 Preparação | "última semana antes do enamed" | ✅ seed escrito |
+| 12 | ENAMED para coordenadores — como ler o relatório institucional | `enamed-coordenadores-relatorio` | 🏛 IES | "relatório institucional enamed mec" | ✅ seed escrito |
+| 13 | R1 e R+ — quando o ENAMED pesa em cada processo seletivo | `r1-r-plus-enamed-peso` | 🩺 Carreira | "diferença r1 e r+" | ✅ seed escrito |
+| 14 | Diretrizes Curriculares Nacionais e o ENAMED — a conexão | `dcn-medicina-enamed` | 🏛 IES | "dcn medicina enamed" | ✅ seed escrito |
+| 15 | Anulação de questão no ENAMED — quando acontece e como afeta sua nota | `anulacao-questao-enamed` | 🔬 Análise | "anulação questão enamed" | ✅ seed escrito |
+| 16 | Como o ENAMED entra no seu currículo Lattes | `enamed-no-lattes` | 🩺 Carreira | "enamed no lattes" | ✅ seed escrito |
+| 17 | Saúde mental do estudante de medicina — burnout no ciclo do internato | `burnout-internato-medicina` | 🧠 Saúde mental | "burnout estudante medicina" | ✅ seed escrito |
+| 18 | Reforma curricular nas escolas médicas — impacto no ENAMED | `reforma-curricular-medicina-enamed` | 🏛 IES | "reforma curricular medicina" | ✅ seed escrito |
+| 19 | Bandas de desempenho no ENAMED — o que cada faixa significa | `bandas-desempenho-enamed` | 🔬 Análise | "bandas desempenho enamed" | ✅ seed escrito |
+| 20 | Casos clínicos no ENAMED — anatomia da questão típica | `caso-clinico-enamed-anatomia-questao` | 🔬 Análise | "caso clínico enamed exemplo" | ✅ seed escrito |
 
 ---
 
