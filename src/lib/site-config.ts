@@ -82,6 +82,7 @@ export const sitemapRoutes: { path: string; changeFrequency: "daily" | "weekly" 
   { path: "/ies/avaliacao-mec-cpc", changeFrequency: "monthly", priority: 0.7 },
   { path: "/ies/sancoes-mec", changeFrequency: "monthly", priority: 0.7 },
   { path: "/ies/melhoria-de-nota", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/calculadora-tri", changeFrequency: "monthly", priority: 0.8 },
   { path: "/blog", changeFrequency: "daily", priority: 0.8 },
   { path: "/faq", changeFrequency: "monthly", priority: 0.7 },
   { path: "/glossario", changeFrequency: "monthly", priority: 0.7 },
