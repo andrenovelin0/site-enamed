@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
-import { BreadcrumbJsonLd } from "@/components/structured-data";
+import { BreadcrumbJsonLd, CollectionPageJsonLd } from "@/components/structured-data";
 import { getAllComparativos } from "@/lib/comparativos";
 
 const PATH = "/comparativos";
@@ -23,6 +23,12 @@ export default async function ComparativosPage() {
   return (
     <>
       <BreadcrumbJsonLd trail={CRUMBS} />
+      <CollectionPageJsonLd
+        name="Comparativos do ENAMED"
+        description="Comparativos detalhados entre o ENAMED e outras avaliações que cruzam a trajetória médica."
+        path="/comparativos"
+        numberOfItems={items.length}
+      />
 
       <PageHero
         eyebrow="Comparativos"

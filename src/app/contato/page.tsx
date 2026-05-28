@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/page-hero";
-import { BreadcrumbJsonLd } from "@/components/structured-data";
+import { BreadcrumbJsonLd, ContactPageJsonLd } from "@/components/structured-data";
 
 const PATH = "/contato";
 const CRUMBS = [
@@ -19,6 +19,11 @@ export default function ContatoPage() {
   return (
     <>
       <BreadcrumbJsonLd trail={CRUMBS} />
+      <ContactPageJsonLd
+        name="Contato — Portal ENAMED"
+        description="Canais de contato editorial do Portal ENAMED."
+        path={PATH}
+      />
 
       <PageHero
         eyebrow="Contato"

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
-import { BreadcrumbJsonLd } from "@/components/structured-data";
+import { BreadcrumbJsonLd, CollectionPageJsonLd } from "@/components/structured-data";
 import { getAllBlogPosts, formatBlogDate } from "@/lib/blog";
 
 const PATH = "/blog";
@@ -24,6 +24,12 @@ export default async function BlogPage() {
   return (
     <>
       <BreadcrumbJsonLd trail={CRUMBS} />
+      <CollectionPageJsonLd
+        name="Blog do Portal ENAMED"
+        description="Análises da prova ENAMED, novidades de edital, carreira médica, residência, IES e MEC."
+        path="/blog"
+        numberOfItems={posts.length}
+      />
 
       <PageHero
         eyebrow="Editorial"

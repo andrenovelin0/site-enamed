@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
 import {
   BreadcrumbJsonLd,
+  CollectionPageJsonLd,
   FAQPageJsonLd,
 } from "@/components/structured-data";
 import { faqCategories, getAllFaqItems } from "@/lib/faq";
@@ -26,6 +27,12 @@ export default function FaqPage() {
   return (
     <>
       <BreadcrumbJsonLd trail={CRUMBS} />
+      <CollectionPageJsonLd
+        name="Perguntas frequentes sobre o ENAMED"
+        description="Respostas diretas, factuais e citáveis para as principais dúvidas sobre o exame."
+        path="/faq"
+        numberOfItems={allItems.length}
+      />
       <FAQPageJsonLd
         items={allItems.map((item) => ({
           question: item.question,

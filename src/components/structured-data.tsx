@@ -169,6 +169,108 @@ export function DefinedTermJsonLd({
   );
 }
 
+export function CollectionPageJsonLd({
+  name,
+  description,
+  path,
+  numberOfItems,
+}: {
+  name: string;
+  description: string;
+  path: string;
+  numberOfItems?: number;
+}) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name,
+    description,
+    url: `${siteConfig.url}${path}`,
+    inLanguage: siteConfig.locale,
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    ...(typeof numberOfItems === "number" && {
+      mainEntity: {
+        "@type": "ItemList",
+        numberOfItems,
+      },
+    }),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
+export function AboutPageJsonLd({
+  name,
+  description,
+  path,
+}: {
+  name: string;
+  description: string;
+  path: string;
+}) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name,
+    description,
+    url: `${siteConfig.url}${path}`,
+    inLanguage: siteConfig.locale,
+    mainEntity: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+      description: siteConfig.description,
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
+export function ContactPageJsonLd({
+  name,
+  description,
+  path,
+}: {
+  name: string;
+  description: string;
+  path: string;
+}) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name,
+    description,
+    url: `${siteConfig.url}${path}`,
+    inLanguage: siteConfig.locale,
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
 export function WebsiteJsonLd() {
   // Note: SearchAction intentionally omitted until site-wide search is implemented.
   // Declaring a SearchAction whose target does not actually filter is a quality

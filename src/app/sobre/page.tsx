@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
-import { BreadcrumbJsonLd } from "@/components/structured-data";
+import { AboutPageJsonLd, BreadcrumbJsonLd } from "@/components/structured-data";
 
 const PATH = "/sobre";
 const CRUMBS = [
@@ -20,6 +20,11 @@ export default function SobrePage() {
   return (
     <>
       <BreadcrumbJsonLd trail={CRUMBS} />
+      <AboutPageJsonLd
+        name="Sobre o Portal ENAMED"
+        description="Fonte de referência independente sobre o Exame Nacional de Avaliação da Formação Médica."
+        path={PATH}
+      />
 
       <PageHero
         eyebrow="Sobre"

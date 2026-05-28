@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
-import { BreadcrumbJsonLd } from "@/components/structured-data";
+import { BreadcrumbJsonLd, CollectionPageJsonLd } from "@/components/structured-data";
 import { getAllGlossarioTerms } from "@/lib/glossario";
 
 const PATH = "/glossario";
@@ -35,6 +35,12 @@ export default async function GlossarioPage() {
   return (
     <>
       <BreadcrumbJsonLd trail={CRUMBS} />
+      <CollectionPageJsonLd
+        name="Glossário do ENAMED"
+        description="Definições objetivas dos principais termos, acrônimos e conceitos relacionados ao Exame Nacional de Avaliação da Formação Médica."
+        path="/glossario"
+        numberOfItems={terms.length}
+      />
 
       <PageHero
         eyebrow="Glossário"
