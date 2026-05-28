@@ -69,10 +69,23 @@ export default function FaqPage() {
                 {cat.items.map((item) => (
                   <div key={item.slug} className="py-6">
                     <dt className="font-display text-lg md:text-xl font-semibold text-neutral-900 mb-2">
-                      {item.question}
+                      <Link
+                        href={`/faq/${item.slug}`}
+                        className="hover:text-brand-800 transition-colors"
+                      >
+                        {item.question}
+                      </Link>
                     </dt>
                     <dd className="font-body text-base text-neutral-700 leading-relaxed">
                       {item.answer}
+                      <div className="mt-3">
+                        <Link
+                          href={`/faq/${item.slug}`}
+                          className="text-sm font-medium text-brand-700 hover:text-brand-800 inline-flex items-center gap-1"
+                        >
+                          Página da pergunta →
+                        </Link>
+                      </div>
                     </dd>
                   </div>
                 ))}

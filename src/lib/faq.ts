@@ -166,3 +166,28 @@ export const faqCategories: FaqCategory[] = [
 export function getAllFaqItems(): FaqItem[] {
   return faqCategories.flatMap((cat) => cat.items);
 }
+
+export function getFaqItemBySlug(slug: string): { item: FaqItem; category: FaqCategory } | null {
+  for (const category of faqCategories) {
+    const item = category.items.find((i) => i.slug === slug);
+    if (item) return { item, category };
+  }
+  return null;
+}
+
+export function getAllFaqSlugs(): string[] {
+  return getAllFaqItems().map((i) => i.slug);
+}
+
+export function getAdjacentFaqItems(slug: string): {
+  previous: FaqItem | null;
+  next: FaqItem | null;
+} {
+  const all = getAllFaqItems();
+  const idx = all.findIndex((i) => i.slug === slug);
+  if (idx === -1) return { previous: null, next: null };
+  return {
+    previous: idx > 0 ? all[idx - 1] : null,
+    next: idx < all.length - 1 ? all[idx + 1] : null,
+  };
+}

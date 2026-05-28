@@ -3,6 +3,7 @@ import { siteConfig, sitemapRoutes } from "@/lib/site-config";
 import { getAllBlogPosts } from "@/lib/blog";
 import { getAllGlossarioTerms } from "@/lib/glossario";
 import { getAllComparativos } from "@/lib/comparativos";
+import { getAllFaqItems } from "@/lib/faq";
 
 type SitemapEntry = MetadataRoute.Sitemap[number];
 
@@ -49,11 +50,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
+  const faqEntries: SitemapEntry[] = getAllFaqItems().map((item) => ({
+    url: toAbsolute(`/faq/${item.slug}`),
+    lastModified: now,
+    changeFrequency: "yearly",
+    priority: 0.5,
+  }));
+
   // 3. Merge with dedupe (static wins — keeps configured priority/freq)
   const seen = new Set(staticEntries.map((e) => e.url));
-  const dynamicEntries = [...blogEntries, ...glossarioEntries, ...comparativoEntries].filter(
-    (e) => !seen.has(e.url),
-  );
+  const dynamicEntries = [
+    ...blogEntries,
+    ...glossarioEntries,
+    ...comparativoEntries,
+    ...faqEntries,
+  ].filter((e) => !seen.has(e.url));
 
   return [...staticEntries, ...dynamicEntries];
 }
