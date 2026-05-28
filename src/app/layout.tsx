@@ -71,10 +71,18 @@ export default function RootLayout({
       className={`${poppins.variable} ${raleway.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[1000] focus:rounded-md focus:bg-brand-700 focus:text-white focus:px-4 focus:py-2 focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-400"
+        >
+          Pular para o conteúdo
+        </a>
         <OrganizationJsonLd />
         <WebsiteJsonLd />
         <SiteHeader />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" tabIndex={-1} className="flex-1">
+          {children}
+        </main>
         <SiteFooter />
         <CookieBanner />
       </body>

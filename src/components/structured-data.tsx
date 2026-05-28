@@ -170,16 +170,19 @@ export function DefinedTermJsonLd({
 }
 
 export function WebsiteJsonLd() {
+  // Note: SearchAction intentionally omitted until site-wide search is implemented.
+  // Declaring a SearchAction whose target does not actually filter is a quality
+  // signal hit with Google. Re-add when /busca?q= (or similar) lands.
   const data = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: siteConfig.name,
     url: siteConfig.url,
     inLanguage: siteConfig.locale,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${siteConfig.url}/blog?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
     },
   };
 
