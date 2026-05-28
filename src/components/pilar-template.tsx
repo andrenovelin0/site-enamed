@@ -5,8 +5,8 @@ import { Button } from "@/components/ui";
 import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/structured-data";
 
 export type PilarFrontmatter = {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   eyebrow?: string;
   heroTitle?: string;
   heroDescription?: string;
@@ -43,8 +43,8 @@ export function PilarTemplate({
   return (
     <>
       <ArticleJsonLd
-        title={frontmatter.title}
-        description={frontmatter.description}
+        title={frontmatter.title ?? ""}
+        description={frontmatter.description ?? ""}
         path={path}
         datePublished={frontmatter.updatedAt}
         dateModified={frontmatter.updatedAt}
@@ -53,7 +53,7 @@ export function PilarTemplate({
 
       <PageHero
         eyebrow={frontmatter.eyebrow}
-        title={frontmatter.heroTitle ?? frontmatter.title}
+        title={frontmatter.heroTitle ?? frontmatter.title ?? ""}
         description={frontmatter.heroDescription ?? frontmatter.description}
         crumbs={crumbs}
       />

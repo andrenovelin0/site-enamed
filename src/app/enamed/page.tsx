@@ -13,12 +13,12 @@ const CRUMBS = [
 ];
 
 export const metadata: Metadata = {
-  title: frontmatter.title,
-  description: frontmatter.description,
+  title: frontmatter.title ?? "O ENAMED",
+  description: frontmatter.description ?? "",
   alternates: { canonical: PATH },
   openGraph: {
-    title: frontmatter.title,
-    description: frontmatter.description,
+    title: frontmatter.title ?? "O ENAMED",
+    description: frontmatter.description ?? "",
     type: "article",
     url: PATH,
   },
@@ -28,8 +28,8 @@ export default function EnamedHubPage() {
   return (
     <>
       <ArticleJsonLd
-        title={frontmatter.title}
-        description={frontmatter.description}
+        title={frontmatter.title ?? ""}
+        description={frontmatter.description ?? ""}
         path={PATH}
         datePublished={frontmatter.updatedAt}
         dateModified={frontmatter.updatedAt}
@@ -38,7 +38,7 @@ export default function EnamedHubPage() {
 
       <PageHero
         eyebrow={frontmatter.eyebrow}
-        title={frontmatter.heroTitle ?? frontmatter.title}
+        title={frontmatter.heroTitle ?? frontmatter.title ?? "O ENAMED"}
         description={frontmatter.heroDescription ?? frontmatter.description}
         crumbs={CRUMBS}
       />
