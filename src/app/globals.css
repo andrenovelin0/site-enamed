@@ -1,26 +1,486 @@
 @import "tailwindcss";
 
+/* ============================================================
+   Design Tokens — Eu Médico Residente (MIV 2025)
+   Fonte: docs/design-system/brand-tokens.md
+   Cor-âncora: #004F36 (brand-800)
+   ============================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* --- Aliases de superfície --- */
+  --background: 0 0% 100%;
+  --foreground: 0 2% 9%;
+
+  /* ------------------------------------------------------------
+     Brand — Verde EMR (cor-âncora #004F36)
+     Os marcadores ★ identificam os hexes oficiais do manual.
+     ------------------------------------------------------------ */
+  --brand-25:  209 100% 98%;   /* ★ #F2FAFF — backdrop hero leve */
+  --brand-50:  152 100% 96%;
+  --brand-100: 152 100% 91%;
+  --brand-200: 152 100% 83%;
+  --brand-300: 152 100% 71%;   /* ★ #6CFFBB */
+  --brand-400: 152 97% 60%;
+  --brand-500: 152 97% 50%;    /* ★ #05FC89 */
+  --brand-600: 148 56% 47%;    /* ★ #35BD78 */
+  --brand-700: 151 100% 18%;   /* ★ #005C31 */
+  --brand-800: 159 100% 15%;   /* ★ #004F36 — ÂNCORA */
+  --brand-900: 165 100% 10%;
+  --brand-950: 170 100% 6%;    /* ★ #001D19 */
+
+  /* --- Verdes secundários (complementares ao brand) --- */
+  --verde-100: 108 100% 80%;   /* ★ #B5FF9A */
+  --verde-300: 104 49% 65%;    /* ★ #93D07D */
+
+  /* ------------------------------------------------------------
+     Accent — Amarelo destaque oficial #EAB904
+     ------------------------------------------------------------ */
+  --accent-50:  60 100% 90%;   /* ★ #FFFFCC */
+  --accent-100: 49 100% 81%;   /* ★ #FFEA9C */
+  --accent-200: 49 100% 70%;
+  --accent-300: 49 100% 60%;
+  --accent-400: 49 97% 53%;
+  --accent-500: 47 97% 47%;    /* ★ #EAB904 — destaque oficial */
+  --accent-600: 45 97% 42%;
+  --accent-700: 43 97% 37%;
+  --accent-800: 41 97% 32%;
+  --accent-900: 39 97% 27%;
+
+  /* ------------------------------------------------------------
+     Secundárias — Púrpura, Azul, Coral
+     ------------------------------------------------------------ */
+  --purple-100: 300 33% 89%;   /* ★ #EEDAEE */
+  --purple-300: 300 38% 73%;   /* ★ #D19BD0 */
+  --purple-500: 301 68% 31%;   /* ★ #841A81 */
+
+  --blue-100:   210 58% 92%;   /* ★ #DDEAF6 */
+  --blue-300:   211 65% 79%;   /* ★ #A6CAEC */
+  --blue-500:   215 47% 37%;   /* ★ #32578A */
+
+  --coral-100:  24 82% 91%;    /* ★ #FBE5D6 */
+  --coral-300:  12 84% 74%;    /* ★ #F49E86 */
+  --coral-500:  0 76% 58%;     /* ★ #E64444 — APENAS urgência */
+
+  /* ------------------------------------------------------------
+     Neutros — calibrados para o preto da marca #181717
+     ------------------------------------------------------------ */
+  --neutral-50:  152 30% 97%;
+  --neutral-100: 152 18% 94%;
+  --neutral-200: 150 12% 88%;
+  --neutral-300: 0 0% 72%;     /* ★ #B8B8B8 — cinza oficial */
+  --neutral-400: 0 0% 55%;
+  --neutral-500: 0 0% 42%;
+  --neutral-600: 0 2% 30%;
+  --neutral-700: 0 2% 22%;
+  --neutral-800: 0 2% 14%;
+  --neutral-900: 0 2% 9%;      /* ★ #181717 — preto da marca */
+  --neutral-950: 170 100% 6%;
+
+  /* --- Aliases semânticos --- */
+  --border:            150 12% 88%;
+  --muted:             152 30% 97%;
+  --muted-foreground:  0 0% 42%;
+  --success:           151 100% 18%;   /* brand-700 */
+  --warning:           47 97% 47%;     /* accent-500 */
+  --info:              215 47% 37%;    /* blue-500 */
+  --urgency:           0 76% 58%;      /* coral-500 */
+  --error:             0 76% 58%;      /* coral-500 (alias) */
+
+  /* ------------------------------------------------------------
+     Tipografia — escala fluida
+     Famílias carregadas em layout.tsx via next/font/google
+     ------------------------------------------------------------ */
+  --text-xs:      0.75rem;     /* 12 */
+  --text-sm:      0.875rem;    /* 14 */
+  --text-base:    1rem;        /* 16 */
+  --text-lg:      1.125rem;    /* 18 */
+  --text-xl:      1.25rem;     /* 20 */
+  --text-2xl:     1.5rem;      /* 24 */
+  --text-3xl:     1.875rem;    /* 30 */
+  --text-4xl:     2.25rem;     /* 36 */
+  --text-5xl:     clamp(2.5rem, 4vw, 3.5rem);
+  --text-6xl:     clamp(3rem, 5vw, 4.5rem);
+  --text-display: clamp(3.5rem, 6vw, 6rem);
+
+  /* ------------------------------------------------------------
+     Radius
+     ------------------------------------------------------------ */
+  --radius-sm:   0.375rem;
+  --radius:      0.5rem;
+  --radius-md:   0.5rem;
+  --radius-lg:   0.75rem;
+  --radius-xl:   1rem;
+  --radius-2xl:  1.5rem;
+  --radius-pill: 9999px;       /* CTA "MATRICULE-SE JÁ!" */
+
+  /* ------------------------------------------------------------
+     Sombras / Elevação
+     ------------------------------------------------------------ */
+  --shadow-soft:    0 1px 2px rgb(0 0 0 / 0.05);
+  --shadow-card:    0 4px 12px hsl(170 100% 6% / 0.08);
+  --shadow-popover: 0 12px 32px hsl(170 100% 6% / 0.15);
+  --shadow-cta:     0 8px 24px hsl(159 100% 15% / 0.25);
+  --shadow-focus:   0 0 0 3px hsl(152 97% 50% / 0.4);
+
+  /* ------------------------------------------------------------
+     Espaçamento semântico (escala base do Tailwind preservada)
+     ------------------------------------------------------------ */
+  --space-xs:      0.5rem;
+  --space-sm:      1rem;
+  --space-md:      1.5rem;
+  --space-lg:      2.5rem;
+  --space-xl:      4.5rem;
+  --space-2xl:     6rem;
+  --space-section: clamp(3rem, 6vw, 6rem);
+
+  /* Borda mínima do grid do manual (p44) — aplicada em ≥1440px */
+  --grid-edge: 4.375rem;       /* 70px */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* ---- Superfícies ---- */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  /* ---- Brand verde ---- */
+  --color-brand-25:  hsl(var(--brand-25));
+  --color-brand-50:  hsl(var(--brand-50));
+  --color-brand-100: hsl(var(--brand-100));
+  --color-brand-200: hsl(var(--brand-200));
+  --color-brand-300: hsl(var(--brand-300));
+  --color-brand-400: hsl(var(--brand-400));
+  --color-brand-500: hsl(var(--brand-500));
+  --color-brand-600: hsl(var(--brand-600));
+  --color-brand-700: hsl(var(--brand-700));
+  --color-brand-800: hsl(var(--brand-800));
+  --color-brand-900: hsl(var(--brand-900));
+  --color-brand-950: hsl(var(--brand-950));
+
+  --color-verde-100: hsl(var(--verde-100));
+  --color-verde-300: hsl(var(--verde-300));
+
+  /* ---- Accent amarelo ---- */
+  --color-accent-50:  hsl(var(--accent-50));
+  --color-accent-100: hsl(var(--accent-100));
+  --color-accent-200: hsl(var(--accent-200));
+  --color-accent-300: hsl(var(--accent-300));
+  --color-accent-400: hsl(var(--accent-400));
+  --color-accent-500: hsl(var(--accent-500));
+  --color-accent-600: hsl(var(--accent-600));
+  --color-accent-700: hsl(var(--accent-700));
+  --color-accent-800: hsl(var(--accent-800));
+  --color-accent-900: hsl(var(--accent-900));
+
+  /* ---- Secundárias ---- */
+  --color-purple-100: hsl(var(--purple-100));
+  --color-purple-300: hsl(var(--purple-300));
+  --color-purple-500: hsl(var(--purple-500));
+  --color-blue-100:   hsl(var(--blue-100));
+  --color-blue-300:   hsl(var(--blue-300));
+  --color-blue-500:   hsl(var(--blue-500));
+  --color-coral-100:  hsl(var(--coral-100));
+  --color-coral-300:  hsl(var(--coral-300));
+  --color-coral-500:  hsl(var(--coral-500));
+
+  /* ---- Neutros ---- */
+  --color-neutral-50:  hsl(var(--neutral-50));
+  --color-neutral-100: hsl(var(--neutral-100));
+  --color-neutral-200: hsl(var(--neutral-200));
+  --color-neutral-300: hsl(var(--neutral-300));
+  --color-neutral-400: hsl(var(--neutral-400));
+  --color-neutral-500: hsl(var(--neutral-500));
+  --color-neutral-600: hsl(var(--neutral-600));
+  --color-neutral-700: hsl(var(--neutral-700));
+  --color-neutral-800: hsl(var(--neutral-800));
+  --color-neutral-900: hsl(var(--neutral-900));
+  --color-neutral-950: hsl(var(--neutral-950));
+
+  /* ---- Aliases semânticos ---- */
+  --color-success: hsl(var(--success));
+  --color-warning: hsl(var(--warning));
+  --color-info:    hsl(var(--info));
+  --color-urgency: hsl(var(--urgency));
+  --color-error:   hsl(var(--error));
+
+  /* ---- Tipografia ---- */
+  --font-sans:    var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-body:    var(--font-raleway), ui-sans-serif, system-ui, sans-serif;
+
+  /* ---- Radius ---- */
+  --radius-sm:   var(--radius-sm);
+  --radius-md:   var(--radius);
+  --radius-lg:   var(--radius-lg);
+  --radius-xl:   var(--radius-xl);
+  --radius-2xl:  var(--radius-2xl);
+  --radius-pill: var(--radius-pill);
+
+  /* ---- Sombras ---- */
+  --shadow-soft:    var(--shadow-soft);
+  --shadow-card:    var(--shadow-card);
+  --shadow-popover: var(--shadow-popover);
+  --shadow-cta:     var(--shadow-cta);
+  --shadow-focus:   var(--shadow-focus);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: hsl(var(--neutral-900));
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    line-height: 1.15;
+  }
+  h1 { font-size: var(--text-6xl); line-height: 1.05; letter-spacing: -0.025em; }
+  h2 { font-size: var(--text-5xl); line-height: 1.1;  letter-spacing: -0.02em;  }
+  h3 { font-size: var(--text-4xl); line-height: 1.2;                            }
+  h4 { font-size: var(--text-3xl); line-height: 1.25;                           }
+  h5 { font-size: var(--text-2xl); line-height: 1.3;                            }
+  h6 { font-size: var(--text-xl);  line-height: 1.4;                            }
+
+  :focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-focus);
+    border-radius: var(--radius-sm);
+  }
+
+  ::selection {
+    background: hsl(var(--brand-500) / 0.4);
+    color: hsl(var(--brand-950));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* ============================================================
+     Container — segue grid-edge do manual (70px em ≥1440px)
+     ============================================================ */
+  .container-page {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 1rem;
+    max-width: 80rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-page { padding-inline: 1.5rem; }
+  }
+
+  @media (min-width: 1024px) {
+    .container-page { padding-inline: 2rem; }
+  }
+
+  @media (min-width: 1440px) {
+    .container-page { padding-inline: var(--grid-edge); }
+  }
+
+  .section-padding {
+    padding-block: var(--space-section);
+  }
+
+  /* ============================================================
+     Botões — variantes oficiais
+     ============================================================ */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-lg);
+    background-color: hsl(var(--brand-800));
+    color: white;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    font-family: var(--font-display);
+    transition: background-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+    box-shadow: 0 1px 0 hsl(var(--brand-950) / 0.2);
+  }
+
+  .btn-primary:hover {
+    background-color: hsl(var(--brand-700));
+    box-shadow: var(--shadow-cta);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:active {
+    transform: translateY(1px);
+  }
+
+  .btn-accent {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-lg);
+    background-color: hsl(var(--brand-500));
+    color: hsl(var(--brand-950));
+    font-weight: 700;
+    font-size: 0.9375rem;
+    font-family: var(--font-display);
+    transition: background-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+  }
+
+  .btn-accent:hover {
+    background-color: hsl(var(--brand-400));
+    box-shadow: var(--shadow-cta);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-lg);
+    background-color: white;
+    color: hsl(var(--brand-800));
+    font-weight: 600;
+    font-size: 0.9375rem;
+    font-family: var(--font-display);
+    border: 1.5px solid hsl(var(--brand-800));
+    transition: background-color 150ms ease;
+  }
+
+  .btn-secondary:hover {
+    background-color: hsl(var(--brand-50));
+  }
+
+  /* Pill — referência "MATRICULE-SE JÁ!" (manual p29) */
+  .btn-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: var(--radius-pill);
+    background-color: hsl(var(--brand-800));
+    color: white;
+    font-weight: 700;
+    font-size: 0.875rem;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    transition: background-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+  }
+
+  .btn-pill:hover {
+    background-color: hsl(var(--brand-700));
+    box-shadow: var(--shadow-cta);
+    transform: translateY(-1px);
+  }
+
+  /* Variante de urgência — APENAS para campanhas de últimos dias (manual p29) */
+  .btn-urgency {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: var(--radius-pill);
+    background-color: hsl(var(--urgency));
+    color: white;
+    font-weight: 700;
+    font-size: 0.875rem;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    transition: background-color 150ms ease, transform 150ms ease;
+  }
+
+  .btn-urgency:hover {
+    background-color: hsl(0 76% 50%);
+    transform: translateY(-1px);
+  }
+
+  /* ============================================================
+     Gradientes
+     ============================================================ */
+  .gradient-brand {
+    background-image: linear-gradient(135deg, hsl(var(--brand-800)) 0%, hsl(var(--brand-600)) 100%);
+  }
+
+  .gradient-bright {
+    background-image: linear-gradient(135deg, hsl(var(--brand-500)) 0%, hsl(var(--brand-300)) 100%);
+  }
+
+  .gradient-dark {
+    background-image: linear-gradient(160deg, hsl(var(--brand-950)) 0%, hsl(var(--brand-800)) 100%);
+  }
+
+  /* ============================================================
+     Cards
+     ============================================================ */
+  .card {
+    background: white;
+    border-radius: var(--radius-lg);
+    border: 1px solid hsl(var(--border));
+    padding: 1.5rem;
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+
+  .card-elevated {
+    box-shadow: var(--shadow-card);
+    border-color: transparent;
+  }
+
+  .card-elevated:hover {
+    box-shadow: var(--shadow-popover);
+    transform: translateY(-2px);
+  }
+
+  /* ============================================================
+     Tags
+     ============================================================ */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.625rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+  }
+
+  .tag-brand   { background: hsl(var(--brand-50));   color: hsl(var(--brand-800));  }
+  .tag-warn    { background: hsl(var(--accent-100)); color: hsl(var(--accent-800)); }
+  .tag-info    { background: hsl(var(--blue-100));   color: hsl(var(--blue-500));   }
+  .tag-purple  { background: hsl(var(--purple-100)); color: hsl(var(--purple-500)); }
+  .tag-urgency { background: hsl(var(--coral-100));  color: hsl(var(--coral-500));  }
+  .tag-neutral { background: hsl(var(--neutral-100));color: hsl(var(--neutral-700));}
 }

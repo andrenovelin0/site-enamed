@@ -3,7 +3,29 @@
     "allow": [
       "Bash(pip3 install *)",
       "Bash(python3)",
-      "Bash(npx --yes create-next-app@latest . --typescript --tailwind --app --eslint --src-dir --import-alias \"@/*\" --use-npm --no-turbopack --yes)"
+      "Bash(npx --yes create-next-app@latest . --typescript --tailwind --app --eslint --src-dir --import-alias \"@/*\" --use-npm --no-turbopack --yes)",
+      "Bash(npm run *)",
+      "Bash(curl -sf -o /dev/null -w \"/  -> %{http_code}\\\\n\" http://localhost:3000/)",
+      "Bash(curl -sf -o /dev/null -w \"/enamed -> %{http_code}\\\\n\" http://localhost:3000/enamed)",
+      "Bash(curl -sf -o /dev/null -w \"/prova-enamed -> %{http_code}\\\\n\" http://localhost:3000/prova-enamed)",
+      "Bash(curl -sf -o /dev/null -w \"/simulados-enamed -> %{http_code}\\\\n\" http://localhost:3000/simulados-enamed)",
+      "Bash(curl -sf -o /dev/null -w \"/cursos -> %{http_code}\\\\n\" http://localhost:3000/cursos)",
+      "Bash(curl -s http://localhost:3000/robots.txt)",
+      "Bash(curl -s http://localhost:3000/sitemap.xml)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(brew list *)",
+      "Bash(brew install *)",
+      "Bash(which pdftotext *)",
+      "Read(//opt/**)",
+      "Read(//usr/local/**)",
+      "Bash(python3 -c \"import sys; print\\(sys.version\\)\")",
+      "Bash(python3 -c \"import pypdf\")",
+      "Bash(python3 -c \"import PyPDF2\")",
+      "Bash(python3 -c \"import pdfplumber\")",
+      "Bash(python3 -c \"import fitz\")",
+      "Bash(python3 -c \"import pypdf; print\\(pypdf.__version__\\)\")",
+      "Bash(python3 *)",
+      "Bash(git add *)"
     ]
   }
 }
