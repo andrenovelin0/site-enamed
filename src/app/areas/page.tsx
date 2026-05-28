@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { PilarTemplate } from "@/components/pilar-template";
-import Content, { metadata as frontmatter } from "@/content/pilares/simulados-enamed.mdx";
+import Content, { metadata as frontmatter } from "@/content/pilares/areas.mdx";
 
-const PATH = "/simulados-enamed";
+const PATH = "/areas";
 const CRUMBS = [
   { label: "Início", href: "/" },
-  { label: "Simulados" },
+  { label: "Áreas Médicas" },
 ];
 
 export const metadata: Metadata = {
@@ -20,17 +20,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function SimuladosEnamedPage() {
+export default function AreasPage() {
   return (
     <PilarTemplate
       path={PATH}
       crumbs={CRUMBS}
       frontmatter={frontmatter}
       Content={Content}
-      ctaSectionTitle="Da prática para a estratégia"
-      ctaSectionDescription="Entenda como organizar sua preparação completa ou aprofunde nas áreas avaliadas."
-      ctaPrimary={{ label: "Como se preparar", href: "/preparacao", variant: "accent" }}
-      ctaSecondary={{ label: "Ver áreas avaliadas", href: "/areas", variant: "outline" }}
+      ctaSectionTitle="Próximo passo na sua preparação"
+      ctaSectionDescription="Veja como funciona a prova ou como organizar seu estudo distribuído por essas áreas."
+      ctaPrimary={{ label: "Estrutura da prova", href: "/prova-enamed", variant: "accent" }}
+      ctaSecondary={{ label: "Como se preparar", href: "/preparacao", variant: "outline" }}
     />
   );
 }
