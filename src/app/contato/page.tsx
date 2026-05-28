@@ -1,94 +1,99 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/page-hero";
+import { BreadcrumbJsonLd } from "@/components/structured-data";
+
+const PATH = "/contato";
+const CRUMBS = [
+  { label: "Início", href: "/" },
+  { label: "Contato" },
+];
 
 export const metadata: Metadata = {
-  title: "Contato",
+  title: "Contato — Portal ENAMED",
   description:
-    "Fale com a equipe do portal ENAMED. Tire dúvidas, faça parcerias e solicite informações sobre cursos preparatórios e soluções para IES.",
-  alternates: { canonical: "/contato" },
+    "Fale com a redação do Portal ENAMED. Sugestões editoriais, correções factuais, parcerias institucionais e dúvidas gerais.",
+  alternates: { canonical: PATH },
 };
 
 export default function ContatoPage() {
   return (
     <>
+      <BreadcrumbJsonLd trail={CRUMBS} />
+
       <PageHero
-        title="Fale conosco"
-        description="Estamos disponíveis para tirar dúvidas, atender estudantes, parceiros e Instituições de Ensino Superior."
-        crumbs={[
-          { label: "Início", href: "/" },
-          { label: "Contato" },
-        ]}
+        eyebrow="Contato"
+        title="Fale com a redação"
+        description="Sugestões editoriais, correções factuais, parcerias institucionais ou dúvidas sobre o portal. Atendemos em até 5 dias úteis."
+        crumbs={CRUMBS}
       />
 
       <section className="container-page py-12 md:py-16">
-        <div className="grid md:grid-cols-2 gap-10 max-w-5xl">
-          <div>
-            <h2 className="text-xl font-semibold text-neutral-900 mb-4">Envie uma mensagem</h2>
-            <form className="space-y-4">
-              <div>
-                <label htmlFor="nome" className="block text-sm font-medium text-neutral-700 mb-1">
-                  Nome
-                </label>
-                <input
-                  id="nome"
-                  name="nome"
-                  type="text"
-                  className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-200"
-                  placeholder="Seu nome completo"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-1">
-                  E-mail
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-200"
-                  placeholder="voce@exemplo.com"
-                />
-              </div>
-              <div>
-                <label htmlFor="mensagem" className="block text-sm font-medium text-neutral-700 mb-1">
-                  Mensagem
-                </label>
-                <textarea
-                  id="mensagem"
-                  name="mensagem"
-                  rows={5}
-                  className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-200"
-                  placeholder="Como podemos ajudar?"
-                />
-              </div>
-              <button type="submit" className="btn-primary">
-                Enviar mensagem
-              </button>
-              <p className="text-xs text-neutral-500">
-                Formulário ilustrativo. Integração com backend a definir.
-              </p>
-            </form>
+        <div className="mx-auto max-w-3xl">
+          <div className="rounded-2xl bg-brand-25 border border-brand-100 p-6 md:p-8 mb-10">
+            <p className="text-xs font-semibold uppercase tracking-wider text-brand-700 mb-2">
+              Formulário em integração
+            </p>
+            <p className="font-body text-base text-neutral-700 leading-relaxed">
+              Estamos integrando nosso formulário via RD Station Forms.
+              Enquanto isso, fale conosco diretamente pelo e-mail abaixo —
+              respondemos em até 5 dias úteis.
+            </p>
           </div>
 
-          <div className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-sm font-semibold text-neutral-900 uppercase tracking-wide mb-2">
-                E-mail
-              </h3>
-              <p className="text-neutral-600">contato@exemplo.com</p>
+              <h2 className="font-display text-xl font-bold text-neutral-900 mt-0 mb-3">
+                E-mail da redação
+              </h2>
+              <p className="font-body text-base text-neutral-700 leading-relaxed mb-2">
+                Sugestões editoriais, correções factuais, dúvidas gerais.
+              </p>
+              <a
+                href="mailto:contato@provaenamed.com.br"
+                className="font-display text-lg font-semibold text-brand-700 underline underline-offset-4 hover:text-brand-800"
+              >
+                contato@provaenamed.com.br
+              </a>
             </div>
+
             <div>
-              <h3 className="text-sm font-semibold text-neutral-900 uppercase tracking-wide mb-2">
-                Atendimento a IES
-              </h3>
-              <p className="text-neutral-600">ies@exemplo.com</p>
+              <h2 className="font-display text-xl font-bold text-neutral-900 mt-0 mb-3">
+                Para Instituições
+              </h2>
+              <p className="font-body text-base text-neutral-700 leading-relaxed mb-2">
+                Coordenações de Medicina e gestores acadêmicos — discussão
+                sobre desempenho institucional e impacto MEC.
+              </p>
+              <a
+                href="mailto:ies@provaenamed.com.br"
+                className="font-display text-lg font-semibold text-brand-700 underline underline-offset-4 hover:text-brand-800"
+              >
+                ies@provaenamed.com.br
+              </a>
             </div>
-            <div>
-              <h3 className="text-sm font-semibold text-neutral-900 uppercase tracking-wide mb-2">
-                Horário
-              </h3>
-              <p className="text-neutral-600">Seg. a Sex., 9h às 18h (BRT)</p>
-            </div>
+          </div>
+
+          <div className="mt-10 pt-8 border-t border-neutral-200">
+            <h2 className="font-display text-xl font-bold text-neutral-900 mt-0 mb-3">
+              Tipos de mensagem que respondemos
+            </h2>
+            <ul className="my-5 space-y-2 pl-6 list-disc marker:text-brand-600">
+              <li className="font-body text-base text-neutral-700 leading-relaxed pl-1">
+                <strong>Correção factual</strong> — identificou erro em algum artigo? Aponte a página e o trecho específico.
+              </li>
+              <li className="font-body text-base text-neutral-700 leading-relaxed pl-1">
+                <strong>Sugestão de pauta</strong> — pergunta frequente que ainda não cobrimos? Conta pra gente.
+              </li>
+              <li className="font-body text-base text-neutral-700 leading-relaxed pl-1">
+                <strong>Parceria institucional</strong> — IES, sociedades médicas, periódicos.
+              </li>
+              <li className="font-body text-base text-neutral-700 leading-relaxed pl-1">
+                <strong>Imprensa</strong> — apuração jornalística sobre o ENAMED.
+              </li>
+            </ul>
+            <p className="font-body text-sm text-neutral-500 italic mt-6">
+              Não atendemos solicitações comerciais (venda de cursos, propaganda) — somos portal editorial neutro.
+            </p>
           </div>
         </div>
       </section>

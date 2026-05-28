@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Portal ENAMED",
-  url: "https://site-prova-enamed.example",
+  url: "https://provaenamed.com.br",
   description:
     "Portal de referência sobre o Exame Nacional de Avaliação da Formação Médica (ENAMED). Conteúdo factual, citável e atualizado para estudantes, médicos, IES e pesquisadores.",
   locale: "pt-BR",

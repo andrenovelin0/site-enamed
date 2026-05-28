@@ -234,6 +234,22 @@ Mantidos da v1.0 ([ver versão anterior](#)) com adições:
 
 ---
 
+## 13.1 Decisões operacionais (2026-05-28)
+
+Confirmadas pelo owner após análise de status do roadmap:
+
+| Item | Decisão | Status |
+|---|---|---|
+| **Backend de `/contato`** | RD Station Forms (integração posterior) | P1 — não bloqueia lançamento; placeholder atual aponta para e-mail direto |
+| **Hospedagem** | Vercel | Default; @devops prepara deploy |
+| **Domínio** | **provaenamed.com.br** | Aplicado em `site-config.ts`. DNS a configurar pelo @devops |
+| **Revisor de conteúdo** | C-Level EMR | Validação após produção; não bloqueia execução |
+| **Logo** | Manter wordmark atual ("Portal **ENAMED**") | OK; brief alternativo arquivado em `docs/design-system/logo-brief.md` |
+
+**E-mails padrão (placeholders no domínio):**
+- `contato@provaenamed.com.br` — redação
+- `ies@provaenamed.com.br` — institucional
+
 ## 13. Decisões V2.0 (atualizadas em 2026-05-27)
 
 | Tema | Decisão |
