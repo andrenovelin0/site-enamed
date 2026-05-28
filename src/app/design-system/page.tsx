@@ -141,17 +141,17 @@ export default function DesignSystemPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
           <Cell label="primary asChild">
             <Button asChild variant="primary">
-              <a href="/cursos">Ver cursos →</a>
+              <a href="/preparacao">Ver preparação →</a>
             </Button>
           </Cell>
           <Cell label="pill asChild">
             <Button asChild variant="pill">
-              <a href="/cursos">Matricule-se já!</a>
+              <a href="/blog">Leia o blog</a>
             </Button>
           </Cell>
           <Cell label="urgency asChild">
             <Button asChild variant="urgency">
-              <a href="/cursos">Últimos dias →</a>
+              <a href="/faq">Tire dúvidas →</a>
             </Button>
           </Cell>
         </div>
