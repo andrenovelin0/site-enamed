@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { footerSections } from "@/lib/navigation";
 import { BrandMark } from "@/components/brand-mark";
+import { ManageCookiesButton } from "@/components/manage-cookies-button";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -35,6 +36,11 @@ export function SiteFooter() {
                     </Link>
                   </li>
                 ))}
+                {section.title === "Institucional" ? (
+                  <li>
+                    <ManageCookiesButton />
+                  </li>
+                ) : null}
               </ul>
             </div>
           ))}

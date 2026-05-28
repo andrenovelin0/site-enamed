@@ -3,6 +3,7 @@ import { Poppins, Raleway } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { CookieBanner } from "@/components/cookie-banner";
 import { OrganizationJsonLd, WebsiteJsonLd } from "@/components/structured-data";
 import { siteConfig } from "@/lib/site-config";
 
@@ -75,6 +76,7 @@ export default function RootLayout({
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
+        <CookieBanner />
       </body>
     </html>
   );
