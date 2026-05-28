@@ -1,53 +1,80 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
-import { PlaceholderSection } from "@/components/placeholder-section";
+import { Button } from "@/components/ui";
+import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/structured-data";
+import Content, { metadata as frontmatter } from "@/content/pilares/enamed.mdx";
+
+const PATH = "/enamed";
+
+const CRUMBS = [
+  { label: "Início", href: "/" },
+  { label: "O ENAMED" },
+];
 
 export const metadata: Metadata = {
-  title: "O que é o ENAMED — Definição, História e Função",
-  description:
-    "Guia enciclopédico sobre o Exame Nacional de Avaliação da Formação Médica: definição, objetivos, elegibilidade, contexto histórico e diferenças entre ENAMED, Revalida e exames de residência.",
-  alternates: { canonical: "/enamed" },
+  title: frontmatter.title,
+  description: frontmatter.description,
+  alternates: { canonical: PATH },
+  openGraph: {
+    title: frontmatter.title,
+    description: frontmatter.description,
+    type: "article",
+    url: PATH,
+  },
 };
 
 export default function EnamedHubPage() {
   return (
     <>
+      <ArticleJsonLd
+        title={frontmatter.title}
+        description={frontmatter.description}
+        path={PATH}
+        datePublished={frontmatter.updatedAt}
+        dateModified={frontmatter.updatedAt}
+      />
+      <BreadcrumbJsonLd trail={CRUMBS} />
+
       <PageHero
-        eyebrow="Cluster Institucional e Informativo"
-        title="O Exame Nacional de Avaliação da Formação Médica"
-        description="Página pilar do conteúdo institucional. Aqui consolidamos definição, objetivos, elegibilidade, contexto histórico e diferenciação em relação a outros exames."
-        crumbs={[
-          { label: "Início", href: "/" },
-          { label: "O ENAMED" },
-        ]}
+        eyebrow={frontmatter.eyebrow}
+        title={frontmatter.heroTitle ?? frontmatter.title}
+        description={frontmatter.heroDescription ?? frontmatter.description}
+        crumbs={CRUMBS}
       />
 
-      <PlaceholderSection
-        title="Conteúdos de suporte do cluster"
-        items={[
-          {
-            title: "Definição e Objetivos",
-            description:
-              "Competências avaliadas e finalidade do ENAMED para o sistema de saúde brasileiro.",
-          },
-          {
-            title: "Elegibilidade",
-            description:
-              "Critérios de participação e obrigatoriedade para estudantes de medicina.",
-          },
-          {
-            title: "Contexto Histórico",
-            description:
-              "Evolução da avaliação da formação médica no Brasil e a criação do ENAMED.",
-          },
-          {
-            title: "Diferenciação de Exames",
-            description:
-              "Comparativo técnico entre ENAMED, Revalida e exames de residência médica.",
-          },
-        ]}
-        note="Foco em tráfego de topo de funil — termos como “o que é o ENAMED”, “para que serve”, “quem deve fazer”."
-      />
+      <article className="container-page py-12 md:py-16">
+        <div className="mx-auto max-w-3xl">
+          <Content />
+
+          <hr className="my-12 border-t border-neutral-200" />
+
+          <section className="rounded-2xl gradient-brand text-white p-8 md:p-10">
+            <p className="text-xs font-semibold uppercase tracking-wider text-brand-300 mb-2">
+              Continue na jornada
+            </p>
+            <h2 className="font-display text-2xl md:text-3xl font-bold mb-3 mt-0">
+              Pronto para entender a prova por dentro?
+            </h2>
+            <p className="text-brand-100/90 leading-relaxed mb-6 max-w-2xl">
+              Agora que você sabe o que é o ENAMED, vá para o detalhamento técnico — TRI,
+              método Angoff, estrutura por áreas e como interpretar sua nota.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Button asChild variant="accent">
+                <Link href="/prova-enamed">Entender a prova</Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                className="border-white/30 text-white hover:bg-white/10 hover:border-white"
+              >
+                <Link href="/simulados-enamed">Ir direto pro simulado</Link>
+              </Button>
+            </div>
+          </section>
+        </div>
+      </article>
     </>
   );
 }

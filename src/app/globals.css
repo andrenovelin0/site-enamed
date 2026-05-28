@@ -233,7 +233,7 @@
     border-color: hsl(var(--border));
   }
 
-  html {
+  html[data-scroll-behavior="smooth"] {
     scroll-behavior: smooth;
   }
 
