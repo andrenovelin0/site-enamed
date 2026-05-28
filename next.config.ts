@@ -15,6 +15,16 @@ const nextConfig: NextConfig = {
         destination: "/preparacao",
         permanent: true,
       },
+      {
+        source: "/depoimentos",
+        destination: "/sobre",
+        permanent: true,
+      },
+      {
+        source: "/suporte",
+        destination: "/contato",
+        permanent: true,
+      },
     ];
   },
 };
