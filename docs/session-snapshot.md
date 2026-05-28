@@ -1,181 +1,229 @@
-# Snapshot do Portal ENAMED — 28 de maio de 2026
+# Snapshot do Portal ENAMED — 28 de maio de 2026 (v2 pós-delegação massiva)
 
-Estado atual do projeto após sessão autônoma de execução do roadmap. Use este documento como referência rápida para retomar trabalho.
-
----
-
-## Estado das páginas (build atual)
-
-### Páginas estáticas com conteúdo MDX (53 arquivos)
-
-| Cluster | Quantidade | Status |
-|---|---|---|
-| **Pilares** (`content/pilares/`) | 7 | ✅ todos com MDX seed (`enamed`, `prova-enamed`, `simulados-enamed`, `preparacao`, `ies`, `areas`, `carreira`) |
-| **Blog** (`content/blog/`) | 20 | ✅ roadmap completo (5 categorias editoriais) |
-| **Glossário** (`content/glossario/`) | 21 | ✅ cobertura A-T (faltam ~9 verbetes para 30 do sitemap) |
-| **Comparativos** (`content/comparativos/`) | 5 | ✅ completo (5/5 do sitemap) |
-
-### Rotas estáticas (sem MDX)
-
-| Rota | Status |
-|---|---|
-| `/` (Home) | ✅ White-label, 7 cards, sem CTAs comerciais |
-| `/faq` | ✅ 18 Q&A em 6 categorias com FAQ Page schema |
-| `/sobre` | ✅ Inclui menção EMR breve (única no front) |
-| `/contato` | 🟡 Existe (do scaffold) — sem formulário funcional, precisa decisão de backend |
-| `/politica-de-privacidade` | ✅ LGPD-compliant (rascunho) |
-| `/politica-de-cookies` | ✅ LGPD-compliant (rascunho) |
-| `/termos-de-uso` | ✅ Rascunho institucional |
-| `/design-system` | ✅ Galeria interna noindex |
-| `/sitemap.xml`, `/robots.txt`, `/404` | ✅ |
-
-### Removidas (v2.0)
-
-| Rota antiga | Destino atual |
-|---|---|
-| `/cursos` | → `/preparacao` (301) |
-| `/cursos/[slug]` | → `/preparacao` (301) |
-| `/depoimentos` | → `/sobre` (301) |
-| `/suporte` | → `/contato` (301) |
+Estado atual após sessão longa com ondas de delegação de subagentes. Use este documento como referência rápida para retomar trabalho em nova sessão.
 
 ---
 
-## 21 commits da sessão (cronologia)
+## Como retomar em nova sessão
+
+**Prompt sugerido para começar:**
 
 ```
-6dfef48  content: páginas legais LGPD-compliant
-346c7a7  chore: redirects 301 (follow-up cleanup)
-deeb5dd  chore: remove /depoimentos e /suporte
-6ce9eba  content: +13 verbetes glossário (8 → 21)
-21ed9ed  feat: cluster /comparativos (5 SSG)
-37d47e6  docs: marca todos os 20 posts no roadmap
-3d6ce77  content: +10 blog posts (roadmap completo)
-b74253d  content: +6 blog posts (Wave 6)
-861ce5f  content: +2 verbetes + 1 blog post
-4d67cd4  feat: /sobre + /faq + /glossario
-19547c7  feat: GEO infrastructure (schemas + components)
-9939abf  feat: 6 pilares MDX + PilarTemplate
-3e784b4  feat: blog dynamic routes
-6108829  feat: complete white-label pivot (follow-up)
-35be4cf  feat: header/footer white-label + branding
-508bead  feat: Home refactor — white-label pivot
-385ff36  docs: pivot to white-label v2.0
-785dcca  feat: MDX pipeline + /enamed pilot
-f88b616  feat: implement Button atom
-f9c676e  feat: kickoff site ENAMED
-402ff48  Initial commit from Create Next App  (pré-sessão)
+Olá. Estou retomando trabalho no Portal ENAMED (Next.js 16 + Tailwind v4 + MDX, 
+white-label informacional). Por favor leia os seguintes docs para se atualizar:
+
+1. docs/session-snapshot.md (este arquivo — estado atual)
+2. docs/prd.md (PRD v2.0)
+3. docs/audit-report-static.md (findings com P0, P1, P2)
+4. docs/stories/README.md (12 epics + status)
+
+Depois me diga: (a) onde estamos, (b) qual o próximo passo recomendado.
 ```
 
-**Status remoto:** nenhum commit foi pushed. Tudo local, esperando autorização do owner para `@devops` executar `git push`.
+A memory MEMORY.md já carrega automaticamente — não precisa Read manual.
 
 ---
 
-## Estatísticas finais
+## Estado de páginas (build atual)
 
 | Métrica | Valor |
 |---|---|
-| **Arquivos MDX** | 53 |
-| **Linhas de código produzidas (estimativa)** | ~10.000+ |
-| **Palavras editoriais** | ~30.000-35.000 |
-| **Páginas indexáveis** | ~75 |
-| **Commits da sessão** | 20 (sem contar o initial create-next-app) |
-| **Schemas implementados** | Article, BreadcrumbList, FAQPage, QAPage, DefinedTerm, Organization, WebSite |
-| **Componentes MDX** | `<Callout>`, `<CTA>`, `<AnswerBox>`, `<Definition>`, `<Citation>` |
+| **Páginas estáticas no build** | **115** |
+| **Páginas indexáveis** | ~70 (excluindo `/design-system` noindex) |
+| **Rotas no sitemap.ts** | 67 |
+| **Total arquivos MDX** | 89 |
+
+### MDX por cluster
+
+| Cluster | Arquivos MDX |
+|---|---|
+| `content/pilares/` | 7 (todos polidos ao padrão Wave 2 com `<AnswerBox>`, `<Citation>`, `<Definition>`) |
+| `content/blog/` | 20 (roadmap completo) |
+| `content/glossario/` | 21 (faltam ~9 letras para 30 target) |
+| `content/comparativos/` | 5 (5/5 do sitemap) |
+| `content/enamed/` (subpáginas) | 5 |
+| `content/prova-enamed/` (subpáginas) | 5 |
+| `content/simulados-enamed/` (subpáginas) | 6 |
+| `content/areas/` (mini-hubs + subtemas) | 17 (6 mini-hubs + 11 subtemas) |
+| `content/preparacao/` (subpáginas) | 4 |
+| `content/ies/` (subpáginas) | 3 |
+| `content/carreira/` (subpáginas) | 3 |
+| **Total** | **89** |
+
+### Rotas em src/app/
+
+- Home `/`
+- 7 pilares principais
+- ~50 subpáginas dos pilares
+- Blog: listing + 20 posts SSG
+- Glossário: listing + 21 verbetes SSG
+- Comparativos: listing + 5 SSG
+- FAQ single page
+- Institucional: `/sobre`, `/contato`
+- Legais: 3 páginas LGPD-compliant
+- Internal noindex: `/design-system`
 
 ---
 
-## ⚠️ TODO crítico antes de produção
+## Commits da sessão (cronologia desde início do projeto)
 
-### Editorial (urgência ALTA)
+```
+763479e chore: sitemap consolidado — +22 rotas (areas wave 3, simulados, comparativos)
+c8d71c2 docs: audit estático (+ areas wave 3 oportunisticamente)
+0478723 content: 6 subpáginas /simulados-enamed/* (+ polish pilares oportunisticamente)
+ca15f1a chore: site-config — +20 rotas areas/preparacao/ies/carreira
+e1de8d3 content: 10 subpáginas /preparacao + /ies + /carreira [wave 2B]
+d044b3f content: 10 subpáginas /areas/* (6 mini-hubs + 4 subtemas) [wave 2A]
+519cd29 content: polish /enamed.mdx para padrão Wave 2
+2124bf9 content: 10 subpáginas seed (/enamed/* + /prova-enamed/*) [wave 1]
+59c9d89 feat: LGPD cookie consent banner + GA4 integration
+c22ad4c chore: aplicar decisões operacionais — domínio + RD Forms
+a201eff docs: snapshot do estado atual (v1, anterior)
+6dfef48 content: páginas legais LGPD-compliant
+346c7a7 chore: redirects 301 (follow-up)
+deeb5dd chore: remove /depoimentos e /suporte (v2.0)
+6ce9eba content: +13 verbetes glossário (8 → 21)
+21ed9ed feat: cluster /comparativos (5 SSG)
+37d47e6 docs: marca todos os 20 posts no roadmap
+3d6ce77 content: +10 blog posts (roadmap completo)
+b74253d content: +6 blog posts (Wave 6)
+861ce5f content: +2 verbetes + 1 blog post
+4d67cd4 feat: /sobre + /faq + /glossario
+19547c7 feat: GEO infrastructure
+9939abf feat: 6 pilares MDX + PilarTemplate
+3e784b4 feat: blog dynamic routes
+6108829 feat: complete white-label pivot
+35be4cf feat: header/footer white-label + Portal ENAMED branding
+508bead feat: Home refactor — white-label pivot
+385ff36 docs: pivot to white-label v2.0
+785dcca feat: MDX pipeline + /enamed pilot
+f88b616 feat: implement Button atom
+f9c676e feat: kickoff site ENAMED
+402ff48 Initial commit from Create Next App
+```
 
-- [ ] **Revisão factual de TODO conteúdo seed** — números (pesos por área, datas, estatísticas), referências bibliográficas
-- [ ] Verificar afirmações sobre **regulamentação** (Portaria MEC nº 2.435/2024, Edital ENAMED 2026 — alguns dados são placeholder demonstrativo)
-- [ ] **Revisão por médico EMR** para garantir precisão clínica
-- [ ] **Revisão jurídica** das 3 páginas legais
-
-### Identidade visual
-
-- [ ] **Logo neutro definitivo** — brief detalhado em `docs/design-system/logo-brief.md` com 4 direções para Uma
-- [ ] **Favicon** e **OG image** alinhados ao logo final
-- [ ] Substituir wordmark provisório atual ("Portal ENAMED" tipográfico)
-
-### Funcionalidades pendentes
-
-- [ ] **Formulário de contato funcional** — `/contato` existe mas sem backend (decidir: server action local? Formspree? HubSpot?)
-- [ ] **Banner LGPD de consentimento** — pendente (Epic 009.2 do v1, ainda não retomado em v2)
-- [ ] **GA4/GTM** — env vars já planejadas, integração não feita ainda
-- [ ] **TOC sticky** nos pilares — `<Toc>` foi spec'ado em `components-spec.md` mas não implementado
-
-### Subpáginas dos pilares (Epic 005 — não iniciado)
-
-Cada pilar tem links para subpáginas que **ainda não existem**:
-- `/enamed/historia`, `/enamed/elegibilidade`, etc. (~11 subpáginas)
-- `/prova-enamed/teoria-resposta-item`, `/prova-enamed/metodo-angoff`, etc. (~14)
-- `/areas/clinica-medica/*` (~8 subtemas) + outras áreas (~35 total)
-- `/simulados-enamed/por-area/[area]` (~6)
-- `/preparacao/*` (~10)
-- `/ies/*` (~10)
-- `/carreira/*` (~10)
-
-**Total estimado: ~80-100 subpáginas pendentes** — escopo grande, distribuir em ondas futuras.
-
-### Lançamento (Epic 012)
-
-- [ ] Deploy decision (Vercel? alternativa?)
-- [ ] Domínio + cert
-- [ ] Submissão sitemap ao GSC + Bing
-- [ ] Lighthouse audit final
-- [ ] axe audit final
+**Status remoto:** nenhum push. Tudo local, esperando autorização do owner para @devops.
 
 ---
 
-## Estrutura do código (referência rápida)
+## Decisões operacionais firmadas (2026-05-28)
+
+| Item | Decisão |
+|---|---|
+| **Domínio** | `provaenamed.com.br` (aplicado em `site-config.ts`) |
+| **Hospedagem** | Vercel |
+| **Backend `/contato`** | RD Station Forms (integração posterior; P1) |
+| **Revisor de conteúdo** | C-Level EMR (após produção) |
+| **Logo** | Wordmark atual ("Portal **ENAMED**") OK |
+| **E-mails placeholders** | `contato@provaenamed.com.br`, `ies@provaenamed.com.br` |
+
+---
+
+## Status dos 12 epics (PRD v2.0)
+
+| # | Epic | Status |
+|---|---|---|
+| 001 | Fundação técnica & DS | ✅ 100% (logo neutro definitivo seria nice-to-have) |
+| 002 | Pivô white-label | ✅ 100% |
+| 003 | MDX pipeline | ✅ 100% |
+| 004 | Pilares informacionais (7) | ✅ 100% (incluindo polish Wave 2 em todos) |
+| 005 | Subpáginas dos pilares | ⚠️ ~40% (37 de ~80-100 estimadas) |
+| 006 | Blog dinâmico | ✅ 100% (20 posts seed) |
+| 007 | FAQ dual-mode | ⚠️ 50% (single page ok, `/faq/[slug]` pendente — P0 audit) |
+| 008 | Glossário | ⚠️ ~70% (21/30 verbetes) |
+| 009 | Ferramentas | ⚠️ 50% (5 comparativos ok, calculadoras pendentes) |
+| 010 | Institucional + legal | ✅ ~95% (audit, sobre, contato, 3 legais) |
+| 011 | GEO/Schema avançado | ✅ 100% (todos schemas + AnswerBox/Definition/Citation) |
+| 012 | Analytics & lançamento | ⚠️ ~80% (banner LGPD + GA4 prontos; falta deploy) |
+
+---
+
+## ⚠️ TODO crítico (do audit estático)
+
+### P0 — bloqueiam lançamento
+
+1. **`/faq/[slug]` dual-mode** — helper `QAPageJsonLd` já existe em `structured-data.tsx` mas não está sendo consumido. Criar rota dinâmica.
+2. **Sitemap perde URLs dinâmicas** — `src/app/sitemap.ts` lê só `sitemapRoutes` do `site-config.ts`, ignorando blog posts, verbetes e comparativos individuais (~46 URLs). Refatorar pra ler também `getBlogSlugs`, `getGlossarioSlugs`, `getComparativosSlugs`.
+3. **`WebsiteJsonLd` SearchAction** aponta `/blog?q=` sem implementação. Ou implementa busca, ou remove SearchAction.
+
+### P1 — pré-lançamento
+
+4. Skip-link "Pular para o conteúdo" no layout
+5. CollectionPage/AboutPage/ContactPage schemas para listings/legais
+6. Calculadoras (Epic 009) — pendentes
+7. RD Forms integração em `/contato`
+
+### P2 — pós-lançamento ou nice-to-have
+
+8. Mais verbetes glossário (~9 faltando: A, B, F, N, P, Q, U)
+9. Subpáginas restantes (~40-60 dos pilares — wave 4+)
+10. Logo definitivo (story 002.5)
+11. Subpáginas de `/blog` (Epic 005.x adicionais)
+
+### Externos ao código
+
+- Revisão factual completa (médico EMR / C-Level)
+- Revisão jurídica das 3 páginas legais
+- Deploy Vercel + DNS apontando `provaenamed.com.br` (@devops)
+- Submissão sitemap ao GSC + Bing
+
+---
+
+## Estrutura de código (referência)
 
 ```
 src/
 ├── app/
-│   ├── (home/pilares/blog/glossario/comparativos/faq/sobre/legals)
-│   └── design-system/  (galeria interna noindex)
+│   ├── (75+ rotas estáticas/SSG)
+│   ├── layout.tsx              (Header + Footer + CookieBanner + Org/Website JSON-LD)
+│   ├── globals.css             (tokens DS EMR + a11y patterns)
+│   ├── sitemap.ts              (consome site-config.sitemapRoutes — refatorar para incluir dinâmicas)
+│   └── robots.ts
 ├── components/
-│   ├── ui/              (Button + barrel)
-│   ├── mdx/             (Callout, CTA, AnswerBox, Definition, Citation)
-│   ├── pilar-template.tsx
-│   ├── page-hero.tsx
-│   ├── site-header.tsx
-│   ├── site-footer.tsx
-│   ├── brand-mark.tsx
-│   └── structured-data.tsx
+│   ├── ui/button.tsx           (7 variants)
+│   ├── mdx/                    (Callout, CTA, AnswerBox, Definition, Citation)
+│   ├── pilar-template.tsx      (reusável em 50+ subpáginas)
+│   ├── cookie-banner.tsx       (LGPD + GA4 gated)
+│   ├── manage-cookies-button.tsx
+│   ├── structured-data.tsx     (Organization, WebSite, Article, FAQPage, QAPage, DefinedTerm, Breadcrumb)
+│   └── (header, footer, brand-mark, page-hero, etc.)
 ├── lib/
-│   ├── blog.ts
-│   ├── glossario.ts
-│   ├── comparativos.ts
-│   ├── faq.ts
-│   ├── navigation.ts
-│   ├── site-config.ts
+│   ├── blog.ts, glossario.ts, comparativos.ts  (filesystem loaders)
+│   ├── faq.ts                  (dados de Q&A)
+│   ├── analytics.ts            (GA4 helpers + consent)
+│   ├── navigation.ts, site-config.ts, seo.ts
 │   └── cn.ts
 ├── mdx-components.tsx
 └── types/mdx.d.ts
 
 content/
-├── pilares/      (7 arquivos)
-├── blog/         (20 arquivos)
-├── glossario/    (21 arquivos)
-└── comparativos/ (5 arquivos)
+├── pilares/                    (7 MDX)
+├── blog/                       (20 MDX)
+├── glossario/                  (21 MDX)
+├── comparativos/               (5 MDX)
+├── enamed/                     (5 subpáginas)
+├── prova-enamed/               (5 subpáginas)
+├── simulados-enamed/           (6 subpáginas)
+├── areas/                      (17: 6 mini-hubs + 11 subtemas)
+├── preparacao/                 (4)
+├── ies/                        (3)
+└── carreira/                   (3)
 
 docs/
-├── prd.md                          (v2.0)
-├── sitemap.md                      (v2.0)
-├── geo-strategy.md                 (estratégia GEO)
+├── prd.md                       (v2.0)
+├── sitemap.md                   (v2.0)
+├── geo-strategy.md
 ├── architecture.md
+├── audit-report-static.md       (achados P0/P1/P2)
+├── session-snapshot.md          (este arquivo)
+├── content/blog-seed-roadmap.md
 ├── design-system/
 │   ├── brand-tokens.md
 │   ├── usage-guide.md
 │   ├── components-spec.md
 │   └── logo-brief.md
-├── content/
-│   └── blog-seed-roadmap.md        (20/20 marcados)
 └── stories/
-    ├── README.md                    (12 epics v2.0)
+    ├── README.md                (12 epics v2.0)
     ├── 001.6a-button-atom.md
     ├── 002.1-home-refactor-white-label.md
     └── 003.1-mdx-pipeline-enamed-pilot.md
@@ -183,28 +231,46 @@ docs/
 
 ---
 
-## Recomendações para próxima sessão
+## Padrões delegação (lições aprendidas)
 
-Em ordem de impacto:
+Esta sessão delegou intensivamente para subagentes. Padrão que funcionou:
 
-1. **Revisão editorial dos 20 blog posts + 7 pilares** — usar copywriter/médico EMR pra refinar tom e factual
-2. **Decidir backend de `/contato`** — antes de banner LGPD/GA4 fazerem sentido
-3. **Story 002.5 (logo)** — Uma desenha as 4 direções
-4. **Subpáginas dos pilares por onda** — começar por `/enamed/elegibilidade` e `/prova-enamed/teoria-resposta-item` (queries-âncora mais buscadas)
-5. **Mais ~9 verbetes do glossário** — chegar a 30 conforme sitemap
-6. **FAQ artigos individuais** (`/faq/[slug]`) — para queries específicas
-7. **Calculadoras** — quando houver decisão sobre escopo interativo
-8. **Deploy** — quando conteúdo factual revisado
+1. **Briefings autocontidos** — agente NÃO vê histórico, então listar arquivos de contexto, decisões já tomadas, constraints explícitos
+2. **`run_in_background: true`** — paralelismo verdadeiro, minha janela não cresce
+3. **Constraint "não modifique site-config.ts"** quando múltiplos agentes em paralelo — eu consolido depois em commit dedicado
+4. **Agentes não conseguem `git commit`** no harness atual — todos relatam "blocked, files staged"; eu commitar daqui mesma working tree
+5. **Risco de pickup oportunista** — `git add` explícito não captura se outros agentes deixaram coisas staged; aceitar que commit ocasionalmente leva trabalho de 2 agentes (mensagem fica ligeiramente imprecisa mas conteúdo está OK)
 
 ---
 
 ## Como verificar o site
 
-- `npm run dev` em terminal local
-- Visitar [http://localhost:3000](http://localhost:3000)
-- Páginas-chave: `/`, `/enamed`, `/prova-enamed`, `/blog`, `/glossario`, `/comparativos`, `/faq`, `/sobre`
-- Galeria interna: `/design-system` (noindex)
+```bash
+npm run dev
+# abrir http://localhost:3000
+```
+
+Páginas-chave para validar:
+- `/` (Home white-label)
+- `/enamed` (pilar polido Wave 2 com AnswerBox)
+- `/areas/clinica-medica/cardiologia` (subtema profundo)
+- `/blog/como-tri-calcula-nota-enamed` (post longo)
+- `/glossario/tri` (verbete com DefinedTerm schema)
+- `/comparativos/enamed-vs-revalida` (comparativo)
+- `/faq` (18 Q&A com FAQPage schema)
+- Footer → "Gerenciar cookies" (banner LGPD reabre)
 
 ---
 
-**Snapshot gerado em 28/05/2026 ao fim de sessão autônoma de ~10h de execução do roadmap.**
+## Janela de contexto
+
+Sessão atual ficou longa por causa de:
+- Múltiplas iterações de feedback do owner
+- Telemetria de subagentes (each ~2-5k tokens)
+- Sumários intermediários
+
+**Próxima sessão começando limpa + esta snapshot doc deve reidratar 100% do contexto operacional.**
+
+---
+
+**Snapshot v2 gerado em 28/05/2026 ao fim de ~16h de sessão acumulada.**
