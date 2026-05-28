@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { primaryNav } from "@/lib/navigation";
 import { BrandMark } from "@/components/brand-mark";
+import { Button } from "@/components/ui";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -28,12 +29,12 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-2">
-          <Link href="/simulados-enamed" className="btn-secondary text-sm">
-            Simulado grátis
-          </Link>
-          <Link href="/cursos" className="btn-primary text-sm">
-            Ver cursos
-          </Link>
+          <Button asChild variant="secondary" size="sm">
+            <Link href="/simulados-enamed">Simulado grátis</Link>
+          </Button>
+          <Button asChild variant="primary" size="sm">
+            <Link href="/cursos">Ver cursos</Link>
+          </Button>
         </div>
 
         <button
@@ -72,16 +73,16 @@ export function SiteHeader() {
               </Link>
             ))}
             <div className="mt-3 flex flex-col gap-2 pt-3 border-t border-neutral-200">
-              <Link
-                href="/simulados-enamed"
-                className="btn-secondary text-sm"
-                onClick={() => setOpen(false)}
-              >
-                Simulado grátis
-              </Link>
-              <Link href="/cursos" className="btn-primary text-sm" onClick={() => setOpen(false)}>
-                Ver cursos
-              </Link>
+              <Button asChild variant="secondary" size="sm">
+                <Link href="/simulados-enamed" onClick={() => setOpen(false)}>
+                  Simulado grátis
+                </Link>
+              </Button>
+              <Button asChild variant="primary" size="sm">
+                <Link href="/cursos" onClick={() => setOpen(false)}>
+                  Ver cursos
+                </Link>
+              </Button>
             </div>
           </nav>
         </div>

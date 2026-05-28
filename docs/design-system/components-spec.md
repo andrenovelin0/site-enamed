@@ -17,7 +17,9 @@ Specs detalhados dos átomos/moléculas/organismos derivados do Manual de Identi
 
 ## ATOMS
 
-### `<Button>` ⚛️ atom · 🏗️ partial
+### `<Button>` ⚛️ atom · 🏗️ built
+
+> ✅ Implementado em `src/components/ui/button.tsx` (story 001.6a). Import: `import { Button } from "@/components/ui"`.
 
 Substituir/promover as classes utilitárias `btn-primary`/`btn-secondary`/`btn-accent`/`btn-pill`/`btn-urgency` (em `globals.css`) para um componente tipado React.
 

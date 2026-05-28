@@ -380,6 +380,46 @@
     background-color: hsl(var(--brand-50));
   }
 
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-lg);
+    background-color: transparent;
+    color: hsl(var(--brand-800));
+    font-weight: 600;
+    font-size: 0.9375rem;
+    font-family: var(--font-display);
+    border: 1.5px solid hsl(var(--brand-800) / 0.25);
+    transition: border-color 150ms ease, background-color 150ms ease;
+  }
+
+  .btn-outline:hover {
+    border-color: hsl(var(--brand-800));
+    background-color: hsl(var(--brand-50));
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-lg);
+    background-color: transparent;
+    color: hsl(var(--brand-800));
+    font-weight: 600;
+    font-size: 0.9375rem;
+    font-family: var(--font-display);
+    transition: background-color 150ms ease;
+  }
+
+  .btn-ghost:hover {
+    background-color: hsl(var(--brand-50));
+  }
+
   /* Pill — referência "MATRICULE-SE JÁ!" (manual p29) */
   .btn-pill {
     display: inline-flex;

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { Button } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "ENAMED — Portal do Exame Nacional de Avaliação da Formação Médica",
@@ -73,15 +74,12 @@ export default function HomePage() {
               — tudo organizado para você performar na avaliação que define sua formação médica.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/simulados-enamed" className="btn-accent">
-                Fazer simulado gratuito
-              </Link>
-              <Link
-                href="/cursos"
-                className="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-white/30 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors font-display"
-              >
-                Conhecer cursos
-              </Link>
+              <Button asChild variant="accent">
+                <Link href="/simulados-enamed">Fazer simulado gratuito</Link>
+              </Button>
+              <Button asChild variant="outline" className="border-white/30 text-white hover:bg-white/10 hover:border-white">
+                <Link href="/cursos">Conhecer cursos</Link>
+              </Button>
             </div>
             <dl className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl">
               <div>
@@ -174,12 +172,12 @@ export default function HomePage() {
                 eficiência.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <Link href="/simulados-enamed" className="btn-primary">
-                  Iniciar diagnóstico
-                </Link>
-                <Link href="/prova-enamed" className="btn-secondary">
-                  Entender a prova primeiro
-                </Link>
+                <Button asChild variant="primary">
+                  <Link href="/simulados-enamed">Iniciar diagnóstico</Link>
+                </Button>
+                <Button asChild variant="secondary">
+                  <Link href="/prova-enamed">Entender a prova primeiro</Link>
+                </Button>
               </div>
             </div>
             <ul className="grid gap-3">
@@ -230,9 +228,9 @@ export default function HomePage() {
                 melhoria da nota no MEC.
               </p>
             </div>
-            <Link href="/ies" className="btn-accent shrink-0">
-              Soluções para IES
-            </Link>
+            <Button asChild variant="accent" className="shrink-0">
+              <Link href="/ies">Soluções para IES</Link>
+            </Button>
           </div>
         </div>
       </section>
