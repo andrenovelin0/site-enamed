@@ -167,6 +167,34 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="container-page pb-12">
+        <div className="relative overflow-hidden rounded-3xl border border-brand-100 bg-white p-10 md:p-14">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -right-12 -bottom-12 h-72 w-72 rounded-full bg-brand-50 blur-3xl"
+          />
+          <div className="relative flex flex-col md:flex-row md:items-center gap-8 justify-between">
+            <div className="max-w-xl">
+              <p className="inline-flex items-center gap-2 rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-800 ring-1 ring-brand-200">
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-600" />
+                Ferramenta
+              </p>
+              <h2 className="mt-4 font-display text-2xl md:text-3xl font-bold text-neutral-900 mt-0">
+                Calculadora TRI ENAMED
+              </h2>
+              <p className="mt-3 text-neutral-600 leading-relaxed">
+                Estime sua banda de desempenho a partir do número de acertos.
+                Estimativa educacional — útil para orientar plano de estudo
+                após simulado calibrado.
+              </p>
+            </div>
+            <Button asChild variant="primary" className="shrink-0">
+              <Link href="/calculadora-tri">Abrir calculadora</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       <section className="container-page pb-20">
         <div className="relative overflow-hidden rounded-3xl gradient-brand text-white p-10 md:p-14">
           <div
