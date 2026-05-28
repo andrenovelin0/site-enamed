@@ -1,0 +1,118 @@
+---
+title: "Como a Teoria de Resposta ao Item (TRI) calcula sua nota no ENAMED"
+description: "Explicação acessível e tecnicamente correta de como a TRI calcula a nota do ENAMED: três parâmetros, padrão de respostas, escala comparável e por que dois candidatos com mesmos acertos podem ter notas diferentes."
+date: "2026-05-22"
+updatedAt: "2026-05-27"
+category: "Análise técnica"
+author: "Equipe Editorial Portal ENAMED"
+readingTime: 9
+heroEyebrow: "Análise técnica · TRI"
+---
+
+A **Teoria de Resposta ao Item (TRI)** calcula sua nota no ENAMED não pela quantidade de acertos, mas pelo **padrão das suas respostas em relação à dificuldade de cada questão**. Dois candidatos com 60 acertos podem ter notas diferentes — a TRI considera *quais* itens foram acertados, não só *quantos*.
+
+Esse modelo é o mesmo usado no ENEM, no ENADE e em provas internacionais como o PISA. Foi escolhido pelo INEP por permitir **comparação entre edições diferentes** do mesmo exame e por reduzir o ganho de quem chuta sistematicamente.
+
+## O problema que a TRI resolve
+
+Imagine duas provas de 100 questões. Na prova A, todas as questões são fáceis. Na prova B, todas são difíceis. Um candidato que acerta 70 em A e um candidato que acerta 70 em B têm proficiências muito diferentes — mas no modelo clássico de pontuação ("nota = acertos × peso fixo") ambos teriam a mesma nota.
+
+A TRI resolve isso modelando **três características de cada item**:
+
+- **Dificuldade (parâmetro b)** — quão difícil é o item
+- **Discriminação (parâmetro a)** — quão bem o item separa candidatos de proficiência diferente
+- **Acerto ao acaso (parâmetro c)** — probabilidade de chutar e acertar (normalmente ~0,2 para itens de 5 alternativas)
+
+Com isso, a TRI computa qual nível de proficiência (chamado **θ — theta**) é compatível com o seu padrão de respostas.
+
+## Os três parâmetros explicados
+
+### Dificuldade (b)
+
+Mede o nível de proficiência necessário para ter ~50% de chance de acertar o item. Um item com b=0 é de dificuldade média. b=1 é difícil (precisa proficiência alta). b=-1 é fácil.
+
+No ENAMED, os parâmetros de cada item vêm de **calibração prévia** em pré-testes aplicados em grupos amostrais de estudantes.
+
+### Discriminação (a)
+
+Mede o quão sensível o item é à diferença de proficiência entre candidatos. Itens com a alto separam bem; itens com a baixo são "ruidosos" — pessoas de proficiência diferente respondem de forma parecida.
+
+Itens com discriminação ruim são descartados em revisões do banco de itens.
+
+### Acerto ao acaso (c)
+
+Modela a probabilidade de acertar chutando. Em itens de múltipla escolha com 5 alternativas, c é tipicamente ~0,20. Isso significa que **se você chutar todas, sua proficiência estimada será baixa**, porque o modelo "desconta" o ganho esperado por chute.
+
+## A função logística que cola tudo
+
+Combinando os três, a TRI usa a equação logística de 3 parâmetros (3PL):
+
+```
+P(acerto | θ) = c + (1 - c) × 1 / (1 + e^(-a(θ - b)))
+```
+
+- P(acerto | θ) = probabilidade de acerto dado proficiência θ
+- e = base do log natural (≈ 2,718)
+
+Para cada item, essa curva tem uma forma específica. O algoritmo do INEP encontra o θ que **melhor explica** o conjunto de suas respostas, considerando todas essas curvas em conjunto.
+
+## Por que dois candidatos com mesmos acertos podem ter notas diferentes
+
+Aqui está o ponto central. Imagine:
+
+- **Candidato A** acertou os 60 itens mais difíceis e errou os 40 mais fáceis
+- **Candidato B** acertou os 60 mais fáceis e errou os 40 mais difíceis
+
+Ambos têm 60% de acertos. Mas:
+
+- Para A, a única explicação compatível é **proficiência altíssima** (acertar difíceis sem acertar fáceis é estatisticamente improvável — sugere domínio profundo de tópicos específicos com lacunas em básicos)
+- Para B, a explicação compatível é **proficiência mediana** (errar difíceis e acertar fáceis é o padrão esperado de quem tem domínio médio)
+
+Na prática, o ENAMED **vai dar nota maior para A** — porque o padrão de respostas dele indica proficiência mais alta.
+
+## Como o método Angoff entra
+
+A TRI dá o número (θ). O **método Angoff** define o **piso de competência esperado** — a proficiência mínima abaixo da qual se considera o egresso "insuficientemente formado".
+
+Para definir esse piso, um painel de especialistas analisa cada item e estima qual proporção de "candidatos minimamente competentes" acertaria aquele item. A soma dessas estimativas dá o ponto de corte de competência.
+
+O Angoff **não substitui a TRI** — ele complementa, definindo a **interpretação qualitativa** do número.
+
+Para mais sobre Angoff, ver [Método Angoff — por que ele existe na avaliação do ENAMED](/blog/metodo-angoff-enamed) (em breve).
+
+## Vantagens da TRI no ENAMED
+
+1. **Comparabilidade entre edições** — sua nota de 2026 pode ser comparada à de 2027 mesmo com provas diferentes
+2. **Resistência a chute** — chutar sistematicamente leva a θ baixo
+3. **Detecção de padrões anômalos** — perfis estatisticamente improváveis podem indicar problemas
+4. **Calibração contínua** — itens com comportamento estatístico ruim são removidos
+
+## Críticas e limitações
+
+Não é modelo perfeito:
+
+- **Complexidade** — estudantes não conseguem "calcular" a nota sozinhos, o que reduz transparência
+- **Dependência de calibração** — itens mal calibrados levam a erros sistemáticos
+- **Custo** — manter banco de itens calibrados é caro e demanda equipe especializada
+- **Não capta tudo** — competência clínica plena exige avaliações práticas (OSCE), não só múltipla escolha
+
+Por isso o ENAMED é uma **fotografia parcial** — uma boa fotografia, mas não a única visão da formação médica.
+
+## O que isso significa para você na hora de estudar
+
+- **Não foque em acertar muitas questões fáceis** — você ganha mais consolidando domínio em difíceis
+- **Não chute "para ver no que dá"** em massa — o algoritmo te penaliza
+- **Construa profundidade** em temas-âncora antes de varrer cauda longa
+- **Treine com simulados que usem TRI** — simulados de pontuação clássica te dão sinal enganoso
+
+Para entender o impacto da TRI no seu estudo, ver [Cronograma de estudos para o ENAMED](/blog/cronograma-estudo-enamed) (em breve).
+
+## Fontes
+
+- Reckase, M. D. (2009). *Multidimensional Item Response Theory*. Springer.
+- INEP — *Relatório Pedagógico ENAMED 2024* (acesso em 27/05/2026)
+- Lord, F. M. (1980). *Applications of Item Response Theory to Practical Testing Problems*. Routledge.
+
+---
+
+**Atualizado em 27 de maio de 2026.** Revisaremos com dados das próximas edições.

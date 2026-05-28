@@ -1,168 +1,182 @@
-# Epics & Stories — Site ENAMED
+# Epics & Stories v2.0 — Portal ENAMED
 
-Roteiro de implementação derivado de `docs/prd.md` (§9) e `docs/sitemap.md`. Cada epic é uma fatia entregável, com stories sequenciáveis dentro.
+**Atualizado:** 2026-05-27 (pivô white-label) · **Versão:** 2.0 · **Substitui v1.0**
 
-**Convenção:** stories detalhadas serão criadas por `@sm *create-story` consumindo este índice. Aqui ficam apenas os títulos, escopo de aceitação e dependências.
+Roteiro de execução pós-pivô. Cada epic é uma fatia entregável que avança a estratégia [`docs/prd.md` v2.0](../prd.md) e [`docs/geo-strategy.md`](../geo-strategy.md).
 
-**Ordem recomendada:** EPIC-001 → EPIC-003 → (002, 004, 005, 006 em paralelo) → (007, 008, 009) → EPIC-010.
-
----
-
-## EPIC-001 — Fundação técnica & Design System base · **P0**
-
-**Objetivo:** Tornar o projeto "pronto para receber conteúdo": tokens, layout shell, navegação, SEO base.
-
-**Pré-requisito:** Consultar `node_modules/next/dist/docs/` para `app/layout`, `metadata`, `font`, `image`.
-
-| ID | Story | DoD essencial |
-|---|---|---|
-| 001.1 | Tokens de design system (cores, tipografia, espaçamento, radius) via Tailwind v4 `@theme` | `globals.css` com tokens nomeados; documentação inline |
-| 001.2 | Layout shell — Header + Footer + container responsivo | `<SiteHeader>` e `<SiteFooter>` consumindo `navigation.ts`; mobile menu acessível |
-| 001.3 | Helpers SEO (`generateMetadata`, OG, canonical, hreflang=`pt-BR`) | `src/lib/seo.ts`; aplicado em `layout.tsx` raiz |
-| 001.4 | Helpers Schema.org (Organization, BreadcrumbList, WebSite) | `src/lib/schema-org.ts`; testes unitários |
-| 001.5 | `sitemap.ts` + `robots.ts` funcionais | XML válido com todas as rotas estáticas conhecidas |
-| 001.6 | Componente `<Breadcrumb>` + `<CtaBlock>` reusáveis | Storybook/exemplo em página de teste; a11y AA |
-| 001.7 | `not-found.tsx` ajustada ao novo DS | Já existe — só re-tematizar |
+> **Stories detalhadas:** serão criadas por `@sm *draft` consumindo este índice. Aqui ficam apenas títulos, escopo de aceitação e dependências.
 
 ---
 
-## EPIC-002 — Home & Pilares informacionais · **P0**
+## EPIC-001 — Fundação técnica & DS ✅ (concluído com ressalva)
 
-**Objetivo:** Entregar Home + `/enamed` + `/prova-enamed` com conteúdo real (placeholder editorial até o cliente fornecer).
+- 001.6a Button ✅
+- ⚠️ **Pendente:** Logo neutro substituindo o wordmark "ENAMED" no header → reabrir como sub-story 001.8 (@ux + @dev)
 
-| ID | Story | DoD essencial |
-|---|---|---|
-| 002.1 | Refator da Home — hero, hub de clusters (6 cards), prova social stub, CTA comercial, últimos do blog, FAQ snippet | Lighthouse SEO ≥95; LCP <2.5s |
-| 002.2 | Página `/enamed` consumindo `content/pilares/enamed.mdx` com TOC + breadcrumb + Article schema | MDX renderiza; H1 único; FAQ schema se houver bloco |
-| 002.3 | Página `/prova-enamed` consumindo `content/pilares/prova-enamed.mdx` | Mesma checklist da 002.2 |
+## EPIC-003 — MDX pipeline ✅ (concluído)
 
-**Dependências:** EPIC-001, EPIC-003 (MDX pipeline).
+- 003.1 ✅ (pipeline + /enamed piloto). Conteúdo seed precisa de **revisão editorial** pra remover qualquer tom comercial residual e adicionar `<dl>` patterns + answer-first.
 
 ---
 
-## EPIC-003 — Camada de conteúdo MDX · **P0**
+## EPIC-002 (NOVO) — **Pivô white-label · CRÍTICO P0**
 
-**Objetivo:** Pipeline para ler, validar e renderizar conteúdo MDX local.
+**Objetivo:** Eliminar qualquer rastro de venda/EMR no front. Site fica neutro, informacional.
 
-**Pré-requisito:** Consultar `node_modules/next/dist/docs/` para `mdx`, `app-router-mdx`, `dynamic-routes`, `generate-static-params`.
-
-| ID | Story | DoD essencial |
+| Story | Escopo | Dependências |
 |---|---|---|
-| 003.1 | Loader de filesystem (`src/lib/content.ts`) — lista, filtra, valida frontmatter | API tipada; cobertura unitária |
-| 003.2 | Renderer MDX + componentes mapeados (`mdx-components.tsx`) | Tags HTML básicas estilizadas; custom components disponíveis |
-| 003.3 | Componente `<Toc>` (sticky desktop, accordion mobile) gerado a partir do conteúdo | Funciona em todas as páginas-pilares |
-| 003.4 | Componentes MDX `<Callout>`, `<CTA>`, `<CompareTable>`, `<Faq>`, `<Quote>` | Documentados em `content/_examples.mdx` |
+| 002.1 | Refator da Home — remover "Fazer simulado gratuito", "Conhecer cursos", e os 2 CTAs comerciais inferiores | EPIC-001 |
+| 002.2 | Refator do Header — remover botões "Simulado grátis" + "Ver cursos"; substituir por nav neutra (talvez link "Glossário"/"FAQ" em destaque) | 002.1 |
+| 002.3 | Renomear `/cursos` → `/preparacao` (redirect 301, atualiza navigation, sitemap) | — |
+| 002.4 | Refator do Footer — adicionar linha discreta "Conteúdo desenvolvido em parceria com Eu Médico Residente"; revisar copy | — |
+| 002.5 | Logo neutro (substituir "ENAMED" no header) — @ux desenha, @dev integra | EPIC-001 |
+| 002.6 | Atualizar metadata global (title pattern: "%s · Portal ENAMED"); tagline em layout | 002.1 |
 
 ---
 
-## EPIC-004 — Blog dinâmico · **P0**
+## EPIC-004 — Pilares informacionais (7 pilares com MDX) · P0
 
-| ID | Story | DoD essencial |
-|---|---|---|
-| 004.1 | `/blog` listagem com filtro por categoria + paginação | URLs `?categoria=x&p=2` indexáveis; canonicals corretos |
-| 004.2 | `/blog/[slug]` detalhe + Article schema + author bio + related posts | LCP <2.5s; OG image custom |
-| 004.3 | 3 posts seed em `content/blog/` (edital, análise de prova, carreira) | Aprovados pelo cliente |
-| 004.4 | RSS feed `/blog/rss.xml` (opcional) | XML válido |
+Aplicar o padrão de `/enamed` aos demais. **Cada pilar:** content MDX + page.tsx + Article schema + breadcrumb + cross-CTA neutro.
 
-**Dependências:** EPIC-003.
+| Story | Pilar |
+|---|---|
+| 004.1 | `/prova-enamed` MDX |
+| 004.2 | `/simulados-enamed` MDX (informacional, sem CTA para app externo) |
+| 004.3 | `/preparacao` MDX (era /cursos) |
+| 004.4 | `/ies` MDX |
+| 004.5 | `/areas` (novo pilar) + 6 áreas pilares (clinica, cirurgia, etc.) |
+| 004.6 | `/carreira` (novo pilar) MDX |
 
----
-
-## EPIC-005 — Hub Simulados & subáreas · **P0**
-
-| ID | Story | DoD essencial |
-|---|---|---|
-| 005.1 | Refator de `/simulados-enamed` consumindo `content/pilares/simulados-enamed.mdx` + grid de subáreas | Links para cada `/simulados-enamed/[area]` |
-| 005.2 | Rota dinâmica `/simulados-enamed/[area]` com 6 MDX (clínica, cirurgia, pediatria, GO, saúde coletiva, ética) | `generateStaticParams` lê os 6 slugs; CTAs cruzados |
-| 005.3 | Componente `<AreaGrid>` reusável | Aceita lista de áreas + cor/ícone por área |
-
-**Dependências:** EPIC-003.
+Pré-requisitos por story: conteúdo seed escrito (eu @pm posso rascunhar; revisão editorial obrigatória antes de publicar).
 
 ---
 
-## EPIC-006 — Hub Cursos & páginas individuais · **P0**
+## EPIC-005 — Subpáginas dos pilares (~80 páginas) · P0
 
-| ID | Story | DoD essencial |
-|---|---|---|
-| 006.1 | `/cursos` (hub plural) com catálogo de cards + FAQ comercial | Schema FAQPage + ItemList |
-| 006.2 | `/cursos/[slug]` LP individual (Course schema + Offer + sticky CTA) | LP-grade UX; checklist de conversão |
-| 006.3 | 1 LP-seed para validação (ex: `intensivo`) | Aprovada pelo cliente |
-| 006.4 | Componente `<CourseCard>` + `<PricingTable>` | Acessíveis AA |
+Cada subpágina é um `route.tsx` simples + `content/<pilar>/<slug>.mdx`. Padrão e template já estabelecidos.
 
-**Dependências:** EPIC-003. **Bloqueio externo:** lista final de cursos do cliente.
+Stories por lote (~10 subpáginas por story):
+| Story | Lote |
+|---|---|
+| 005.1 | `/enamed/*` (11 subpáginas) |
+| 005.2 | `/prova-enamed/*` (14) |
+| 005.3 | `/simulados-enamed/*` (13) |
+| 005.4 | `/preparacao/*` (10) |
+| 005.5 | `/ies/*` (10) |
+| 005.6 | `/carreira/*` (10) |
+| 005.7 | `/areas/clinica-medica/*` (8 subtemas) |
+| 005.8 | `/areas/cirurgia/*` (6) |
+| 005.9 | `/areas/pediatria/*` (5) |
+| 005.10 | `/areas/ginecologia-obstetricia/*` (6) |
+| 005.11 | `/areas/saude-coletiva/*` (6) |
+| 005.12 | `/areas/etica-medica/*` (4) |
 
----
-
-## EPIC-007 — Hub IES · **P1**
-
-| ID | Story | DoD essencial |
-|---|---|---|
-| 007.1 | `/ies` consumindo `content/pilares/ies.mdx` (B2B, MEC, programa institucional) | Service schema + CTA contato comercial |
-| 007.2 | 2 artigos seed em `/blog` categoria "IES" | Aprovados pelo cliente |
-
-**Dependências:** EPIC-003, EPIC-004.
-
----
-
-## EPIC-008 — FAQ & páginas institucionais · **P1**
-
-| ID | Story | DoD essencial |
-|---|---|---|
-| 008.1 | `/faq` com busca client-side + accordion por categoria + FAQPage schema | Snippets validados em rich results test |
-| 008.2 | `/sobre` com missão/equipe/autoridade | AboutPage schema |
-| 008.3 | `/depoimentos` com Review/AggregateRating | Dados em `content/institucional/depoimentos.json` |
-| 008.4 | `/contato` com formulário + server action **OU** integração externa (definir) | Validação client+server; LGPD-compliant |
-| 008.5 | `/suporte` central de ajuda | Categorias + atalhos para FAQ |
-
-**Bloqueio externo:** decisão sobre destino da submissão do `/contato`.
+**Total:** 103 sub-páginas em 12 stories.
 
 ---
 
-## EPIC-009 — Conformidade legal · **P1**
+## EPIC-006 — Blog dinâmico · P0
 
-| ID | Story | DoD essencial |
-|---|---|---|
-| 009.1 | Conteúdo final de `/politica-de-privacidade`, `/politica-de-cookies`, `/termos-de-uso` | Revisão jurídica do cliente |
-| 009.2 | Banner LGPD de consentimento (cookie-banner) | Bloqueia GA/GTM até consent; preferências persistidas |
-| 009.3 | Helper `usePreferences()` para ler/escrever consent | Consumido pelo Epic 010 (analytics) |
-
----
-
-## EPIC-010 — Analytics & lançamento · **P1**
-
-| ID | Story | DoD essencial |
-|---|---|---|
-| 010.1 | Integração GA4/GTM via env, gatekeeping por consent | Sem network call antes do opt-in |
-| 010.2 | Eventos custom (`click_cta_curso`, `click_cta_simulado`, `submit_contato`) | Validados no DebugView |
-| 010.3 | Auditoria final Lighthouse + axe em todas as rotas-pilares | Relatório anexo à PR final |
-| 010.4 | Deploy (Vercel ou alternativa) + domínio + cert + redirects do site antigo (se houver) | Smoke test pós-deploy |
-| 010.5 | Submissão de `sitemap.xml` ao Google Search Console + Bing Webmaster | Indexação iniciada |
-
-**@devops exclusivo:** deploy, DNS, push final.
+| Story | Escopo |
+|---|---|
+| 006.1 | `/blog` listagem (filtro por categoria + paginação) |
+| 006.2 | `/blog/[slug]` template + Article/NewsArticle schema |
+| 006.3 | 5 posts seed em categorias diversas |
+| 006.4 | RSS feed `/blog/rss.xml` (opcional V1) |
 
 ---
 
-## Métricas por Epic
+## EPIC-007 — FAQ dual-mode · P0
 
-| Epic | Effort estimado | Bloqueios externos |
-|---|---|---|
-| 001 | M | — |
-| 002 | M | Texto editorial dos pilares |
-| 003 | M | — (técnico puro) |
-| 004 | M | 3 posts seed do cliente |
-| 005 | M | 6 textos das áreas |
-| 006 | L | Lista de cursos + LP-seed do cliente |
-| 007 | S | Texto IES + 2 artigos |
-| 008 | M | Destino do formulário + textos institucionais |
-| 009 | S | Texto jurídico revisado |
-| 010 | M | Acesso à hospedagem + domínio |
+| Story | Escopo |
+|---|---|
+| 007.1 | `/faq` single page com schema FAQPage + categorias |
+| 007.2 | `/faq/[slug]` dynamic route + schema QAPage |
+| 007.3 | 15 FAQ artigos seed (das categorias mais buscadas) |
 
-S = ≤3 dias · M = 3-7 dias · L = >7 dias (estimativas grosseiras; @sm/@dev calibram nas stories detalhadas).
+---
+
+## EPIC-008 — Glossário · P1
+
+| Story | Escopo |
+|---|---|
+| 008.1 | `/glossario` listagem A-Z + filtro |
+| 008.2 | `/glossario/[termo]` template + schema DefinedTerm |
+| 008.3 | 20 verbetes seed |
+
+---
+
+## EPIC-009 — Ferramentas (calculadoras + comparativos) · P1
+
+| Story | Escopo |
+|---|---|
+| 009.1 | `/comparativos/enamed-vs-revalida` template + conteúdo |
+| 009.2 | `/comparativos/enamed-vs-enade` |
+| 009.3 | `/comparativos/enamed-vs-residencia` |
+| 009.4 | `/calculadoras/estimador-nota-tri` (componente cliente + UX) |
+| 009.5 | `/calculadoras/distribuicao-tempo` |
+
+---
+
+## EPIC-010 — Institucional + legal · P1
+
+| Story | Escopo |
+|---|---|
+| 010.1 | `/sobre` com menção EMR + missão |
+| 010.2 | `/contato` formulário neutro |
+| 010.3 | `/politica-de-privacidade`, `/politica-de-cookies`, `/termos-de-uso` |
+| 010.4 | Banner LGPD de consentimento |
+
+---
+
+## EPIC-011 — GEO/Schema avançado · P0
+
+**Crítico** para o diferencial estratégico. Não esperar fim dos pilares pra fazer — pode ir em paralelo com EPIC-004.
+
+| Story | Escopo |
+|---|---|
+| 011.1 | Estender `structured-data.tsx` — FAQPageJsonLd, QAPageJsonLd, DefinedTermJsonLd, WebApplicationJsonLd |
+| 011.2 | Componente `<AnswerBox>` — callout especial pra resposta-direta no topo |
+| 011.3 | Componente `<Definition term="" />` — renderiza `<dl>` semântico |
+| 011.4 | Componente `<Citation>` — citação inline com `<cite>` e link |
+| 011.5 | Componente `<UpdatedAt>` — exibe `dateModified` na página |
+| 011.6 | Auditoria de schema (Rich Results Test) em todas as pilares |
+
+---
+
+## EPIC-012 — Analytics, performance, lançamento · P1
+
+| Story | Escopo |
+|---|---|
+| 012.1 | GA4 + GTM via env, gate por consent (LGPD) |
+| 012.2 | Auditoria Lighthouse + axe nos 7 pilares |
+| 012.3 | Submissão `sitemap.xml` ao GSC + Bing |
+| 012.4 | Deploy (Vercel ou alt) — @devops |
+
+---
+
+## Estimativas grosseiras
+
+| Epic | Effort total |
+|---|---|
+| 002 (pivô) | M (2-3 dias) |
+| 004 (7 pilares) | L+ (~2-3 semanas com conteúdo seed) |
+| 005 (sub-páginas) | XL (~6-8 semanas com conteúdo seed) |
+| 006 (blog) | M+ (~1 semana) |
+| 007 (FAQ) | M (~1 semana) |
+| 008 (glossário) | M (~1 semana) |
+| 009 (ferramentas) | M+ (~1-2 semanas) |
+| 010 (institucional) | S (~3-5 dias) |
+| 011 (GEO/schema) | M (~1 semana, paralelo) |
+| 012 (lançamento) | M (~1 semana) |
+
+**Crítico V1.0 (lançamento mínimo viável):** EPIC-002 + EPIC-004 + EPIC-007 + EPIC-010 + EPIC-011 + EPIC-012 = **~35 páginas em ~6-8 semanas**.
 
 ---
 
 ## Próximos passos imediatos
 
-1. **Validar este PRD + sitemap + arquitetura** com o cliente.
-2. Encaminhar dúvidas em `docs/architecture.md` §12.
-3. Após GO, `@sm *create-story 001.1` para começar a expansão da primeira story detalhada.
+1. **Aprovar este novo escopo** (PRD v2.0 + sitemap v2.0 + estratégia GEO)
+2. **`@sm *draft 002.1`** — primeira story do pivô white-label (refator Home)
+3. **Em paralelo:** revisar `/enamed.mdx` existente para alinhar com novo tom editorial (eu @pm posso rascunhar revisão)
+4. **Em paralelo:** @ux design do logo neutro (story 002.5)

@@ -1,169 +1,265 @@
-# PRD — Site ENAMED
+# PRD — Portal ENAMED (white-label EMR)
 
-**Versão:** 1.0 · **Data:** 2026-05-27 · **Owner:** @pm (Morgan) · **Autor original:** Orion (aiox-master)
+**Versão:** 2.0 · **Data:** 2026-05-27 · **Pivô estratégico registrado** · **Owner:** @pm (Morgan)
+
+> ⚠️ **Atenção — substitui PRD v1.0.** A v1.0 tratava o site como portal comercial da EMR. A v2.0 reposiciona como **portal de autoridade temática white-label**: o conteúdo constrói topical authority sobre o ENAMED para que a EMR colha valor indireto (SEO equity, geração de demanda passiva, branding setorial), **sem que o site mostre marca EMR no front nem ofereça venda direta de cursos EMR**.
+
+---
 
 ## 1. Visão de Produto
 
-Portal especializado no **Exame Nacional de Avaliação da Formação Médica (ENAMED)** desenhado sob três pilares:
+**O Portal ENAMED** é o destino orgânico de referência sobre o **Exame Nacional de Avaliação da Formação Médica** — desenhado para liderar resultados de busca tradicional (Google) e de busca generativa (ChatGPT, Perplexity, AI Overviews, Claude) em qualquer pergunta relacionada ao exame.
 
-1. **SEO Semântico** — Topic Clusters interligados estabelecendo autoridade temática.
-2. **UX informacional → comercial** — fluxo Home → Pilar → Suporte → CTA.
-3. **Conversão estruturada** — captura de tráfego informativo (topo de funil) e roteamento para cursos preparatórios (fundo de funil).
+**O que o site é:**
+- Enciclopédia online sobre o ENAMED (tom Investopedia/Healthline, não comercial)
+- Hub de calculadoras, simulados informativos, comparativos técnicos
+- Plataforma editorial de notícias, editais e análises sobre o exame
 
-Posicionamento orgânico-alvo: "Exame Nacional de Avaliação da Formação Médica", "Prova Enamed", "Preparatório Enamed", "cursos enamed", "simulados enamed" e cauda-longa institucional (IES/MEC).
+**O que o site NÃO é:**
+- Loja de cursos
+- Funil de captura agressivo para EMR
+- Página de marca da EMR
 
-## 2. Público-Alvo
+**Princípio editorial:** se o conteúdo não fizesse sentido em uma enciclopédia gratuita, ele não entra. Toda página existe pra responder uma dúvida real do público — não pra "vender".
 
-| Persona | Necessidade primária | Página de entrada esperada |
+---
+
+## 2. Modelo de Negócio
+
+| Camada | Como funciona |
+|---|---|
+| **Visível** | Site puramente informacional. Sem CTAs de venda EMR, sem captura agressiva. |
+| **Indireto** | Autoridade construída no portal alimenta indiretamente: (a) SEO equity setorial; (b) brand awareness do nicho ENAMED como categoria; (c) demanda passiva — leitores que descobrem o assunto e mais tarde procuram preparatórios; (d) dados agregados de comportamento de busca/leitura |
+| **Menções pontuais EMR** | Discretas e editoriais. Permitidas: footer "Conteúdo desenvolvido em parceria com Eu Médico Residente"; créditos em artigos ("Revisado por Dra. Fulana, mentora EMR"); página `/sobre` cita organização mantenedora. **Não permitido:** CTAs comerciais, logo EMR no header, banners "Conheça nossos cursos" |
+| **Tracking** | Analytics agregado (GA4) para entender quais conteúdos performam, sem captura PII no fluxo principal |
+
+---
+
+## 3. Público-Alvo
+
+| Persona | Necessidade primária | Resposta GEO típica que devemos liderar |
 |---|---|---|
-| Estudante de medicina (último ano) | Entender o que é, como se prepara, onde treinar | `/enamed`, `/prova-enamed`, `/simulados-enamed` |
-| Médico recém-formado | Validar obrigatoriedade, impacto na carreira | `/enamed`, `/blog` |
-| Coordenador de IES | Medir impacto institucional, MEC, plano de melhoria | `/ies` |
-| Pesquisador/imprensa | Definições, contexto histórico, comparativos | `/enamed`, `/faq` |
+| Estudante de medicina (3º-6º ano) | Entender o exame; preparar-se | "como funciona a TRI no enamed", "quantas questões tem o enamed" |
+| Médico recém-formado | Compreender impacto na carreira | "nota do enamed conta para residência?" |
+| Coordenador IES | Avaliar impacto institucional | "como o enamed afeta a nota do MEC?", "sanções do MEC por desempenho ruim" |
+| Pesquisador/imprensa | Definições, dados, histórico | "o que é o enamed", "diferença entre enamed e revalida" |
+| Familiar leigo | Entender por que filho(a) está estudando isso | "o que é o enamed em termos simples" |
 
-## 3. Escopo
+---
 
-### 3.1 In-scope (V1)
+## 4. Estratégia SEO + GEO
 
-- 14 páginas estáticas (12 já com scaffold + 2 dinâmicas):
-  - **Home** (`/`)
-  - **Pilares de cluster**: `/enamed`, `/prova-enamed`, `/simulados-enamed`, `/cursos`, `/ies`
-  - **Dinâmicos**: `/blog`, `/blog/[slug]`, `/cursos/[slug]`, `/simulados-enamed/[area]`
-  - **Suporte/FAQ**: `/faq`, `/suporte`
-  - **Institucionais**: `/sobre`, `/depoimentos`, `/contato`
-  - **Legais**: `/politica-de-privacidade`, `/politica-de-cookies`, `/termos-de-uso`
-- Conteúdo via **MDX local** versionado em `content/`
-- Design system fornecido pelo cliente (referência: Eu Médico Residente)
-- SEO técnico: `sitemap.xml`, `robots.txt`, schema.org (Organization, FAQPage, Article, Course, BreadcrumbList), Open Graph, metadata por rota
-- Acessibilidade WCAG 2.1 AA
-- Tracking básico (placeholder GA4/GTM via env)
+Ver documento dedicado: [docs/geo-strategy.md](./geo-strategy.md)
 
-### 3.2 Out-of-scope (V1)
+**Resumo de cinco linhas:**
+- **Buscas informacionais long-tail** dominam o tráfego — escopo enciclopédico com ~100-150 páginas
+- **GEO** (Generative Engine Optimization) exige: resposta direta no topo, schema.org rico, citações de fontes oficiais (INEP/MEC), estrutura de Q&A
+- **Topical authority** sobre o ENAMED como entidade — cobertura exaustiva sinaliza expertise para AI crawlers
+- **Sem competir** com sites comerciais por keywords transacionais (eles têm vantagem); **competir e dominar** as keywords informacionais
+- **Atualização editorial constante** — edital anual + análises de prova recente + glossário vivo
 
-- **Aplicativo de simulado funcional** (questões interativas, timer, dashboard) — apenas landing/SEO neste site; o app real fica em produto externo.
-- **`/conteudos-enamed`** (cluster de áreas médicas) — descartado por briefing: já coberto pelo Guia de Especialidades do Eu Médico Residente.
-- Auth de usuário, checkout, área do aluno, integração de pagamento.
-- CMS headless (decisão: MDX local; reavaliar quando volume >100 posts).
-- i18n (português apenas).
+---
 
-### 3.3 Diferido (V2+)
+## 5. Escopo (V1)
 
-- Migração de MDX para CMS headless se editorial escalar.
-- Página `/cursos/[slug]` evoluindo para LP com checkout integrado.
-- Dashboard de desempenho B2B IES (depende do app externo de simulado).
+### 5.1 In-scope
 
-## 4. Arquitetura de Topic Clusters
+**Estrutura informacional principal (~7 pilares + subpáginas):**
 
-```
-                          Home (Pilar Central)
-                                  │
-   ┌────────────┬─────────────┬───┴────┬────────────┬───────────┐
-   ▼            ▼             ▼        ▼            ▼           ▼
-/enamed   /prova-enamed  /simulados   /cursos     /ies       /blog
-  │           │              │           │           │          │
-  │           │              ├─/[area]   ├─/[slug]   │          ├─/[slug]
-  │           │              │           │           │          │
-  └───────────┴──────────────┴─────┬─────┴───────────┴──────────┘
-                                   │
-                                  /faq
-                          (long-tail, snippets)
-```
+| Pilar | Slug | Sub-rotas previstas |
+|---|---|---|
+| **O Exame** | `/enamed` | + 8-12 artigos suporte (definição, história, edital, etc.) |
+| **A Prova** | `/prova-enamed` | + 10-15 artigos (TRI, Angoff, notas, áreas, tempo, formato) |
+| **Áreas e Conteúdos** | `/areas` (NOVO) | 6 áreas pilares + 30-40 subtemas (cardio, pneumo, cirurgia, etc.) |
+| **Simulados (informacional)** | `/simulados-enamed` | + 6 sub-áreas + guia "como interpretar resultado" |
+| **Como se preparar** | `/preparacao` (era `/cursos`) | + 8-12 artigos (cronogramas, técnicas, livros, mentores, sem promover marca) |
+| **Para IES** | `/ies` | + 10-12 artigos (MEC, CPC, sanções, casos) |
+| **Carreira e Pós** | `/carreira` (NOVO) | + 10-15 artigos (residência, R+, mercado, salários, especialidades) |
 
-**Regra de interconectividade:** todo artigo técnico → linka para o simulado da respectiva área **e** para a página de curso correspondente.
+**Estrutura editorial:**
+- `/blog` — fresh content (notícias, editais, análises de provas recentes)
+- `/faq` — central de perguntas (mas cada Q também vira artigo próprio em `/faq/[slug]` para snippets)
+- `/glossario` (NOVO) — A-Z de termos do exame e da prática médica
 
-## 5. Funcionalidades Requeridas (FR)
+**Ferramentas (microferramentas SEO/GEO):**
+- `/calculadoras/nota-final` — estimador de nota TRI
+- `/calculadoras/tempo-prova` — distribuidor de tempo por área
+- `/comparativos/enamed-vs-revalida` — tabela detalhada
+- `/comparativos/enamed-vs-enade`
+- `/comparativos/enamed-vs-residencia`
+
+**Institucional/legal (minimalista):**
+- `/sobre` — sobre o portal e parceria EMR (única menção visível à EMR)
+- `/contato` — formulário neutro
+- `/politica-de-privacidade`, `/termos-de-uso`, `/politica-de-cookies`
+
+**Total estimado V1:** ~100-130 páginas estáticas + dinâmicas geradas via MDX.
+
+### 5.2 Out-of-scope (V1)
+
+- Loja/checkout/auth
+- Simulado funcional interativo (este vive em produto externo da EMR, mas ESTE site não linka pra ele — só explica)
+- CTAs comerciais
+- Newsletter agressiva (pode ter um campo discreto em `/blog`)
+- Identidade visual EMR-branded (mantém-se o **DS visual** mas SEM logo EMR)
+
+### 5.3 Diferido (V2+)
+
+- App de simulado integrado (se decidirem expor o produto EMR como branding)
+- Newsletter com curadoria semanal
+- Versão em espanhol (LatAm)
+
+---
+
+## 6. Identidade e Branding
+
+| Aspecto | Decisão |
+|---|---|
+| Nome do site (header) | **"Portal ENAMED"** — descritivo, neutro, máxima clareza de propósito |
+| Tagline | "Tudo sobre o Exame Nacional de Avaliação da Formação Médica" |
+| Identidade visual | **Mantém Design System EMR** (verde #004F36, Poppins, Raleway) — visual interno do projeto, sem alusão à marca EMR |
+| Logo | **Substituir o "ENAMED" do header por um logotipo neutro** — sugestão: monograma "PE" ou ícone abstrato + "Portal ENAMED" — designar story para Uma (ux-design-expert) |
+| Footer | Discreto + linha "Conteúdo desenvolvido em parceria com Eu Médico Residente" (única menção visível) |
+
+### 6.1 Copy proposta para `/sobre` (menção EMR breve)
+
+A página `/sobre` é o **único lugar do site** onde a EMR aparece de forma textual. Decisão de copy:
+
+> **Sobre o Portal ENAMED**
+>
+> O Portal ENAMED é uma fonte de referência independente sobre o **Exame Nacional de Avaliação da Formação Médica (ENAMED)**. Nosso compromisso editorial é entregar conteúdo factual, citável e atualizado — sem viés comercial — para estudantes de Medicina, médicos recém-formados, coordenações de IES e pesquisadores.
+>
+> Cobrimos o ENAMED em todas as suas dimensões: o que é, como funciona, como afetam estudantes e instituições, e como se preparar com base em evidência.
+>
+> **Quem está por trás**
+>
+> O Portal é mantido em parceria com a **[Eu Médico Residente](https://www.eumedicoresidente.com.br)**, organização brasileira referência em educação médica continuada. Profissionais médicos da EMR contribuem com revisão técnica e curadoria de conteúdo, garantindo precisão científica em todo o material publicado.
+>
+> Apesar dessa parceria operacional, o **conteúdo editorial é independente**: não veiculamos produtos, não fazemos propaganda comercial e não direcionamos o leitor a serviços específicos. Nossas únicas métricas de sucesso são acurácia, profundidade e utilidade para quem busca informação sobre o ENAMED.
+
+(Tom: neutro, declarado, sem propaganda. EMR aparece exatamente uma vez no corpo + uma vez no footer global.)
+
+---
+
+## 7. Funcionalidades Requeridas (FR)
 
 | ID | Funcionalidade | Prioridade |
 |---|---|---|
-| FR-01 | Home renderiza hero, hub de clusters, prova social e CTAs comerciais | P0 |
-| FR-02 | Páginas pilares servem conteúdo MDX com TOC, breadcrumb e CTAs cruzados | P0 |
-| FR-03 | Blog lista posts MDX ordenados por data + paginação + categorias | P0 |
-| FR-04 | Detalhe de post (`/blog/[slug]`) com schema.org Article, breadcrumb, related | P0 |
-| FR-05 | `/cursos/[slug]` renderiza LP individual com schema.org Course | P0 |
-| FR-06 | `/simulados-enamed/[area]` renderiza landing por especialidade médica | P0 |
-| FR-07 | `/faq` em página única com schema FAQPage para featured snippets | P0 |
-| FR-08 | `sitemap.xml` e `robots.txt` gerados automaticamente | P0 |
-| FR-09 | Metadata dinâmica por rota (title, description, OG, canonical) | P0 |
-| FR-10 | Navegação primária + footer com 4 seções (já em `src/lib/navigation.ts`) | P0 ✅ |
-| FR-11 | Componentes compartilhados: Header, Footer, Hero, CTA, BreadcrumbList | P0 ⚠️ parcial |
-| FR-12 | Página `/depoimentos` com schema Review/AggregateRating | P1 |
-| FR-13 | Formulário de contato (server action ou serviço externo — definir) | P1 |
-| FR-14 | Banner de consentimento de cookies (LGPD) | P1 |
-| FR-15 | Tracking GA4/GTM via variáveis de ambiente | P2 |
+| FR-01 | Home pivotada — hero informacional (NÃO comercial), hub de clusters, posts recentes, FAQ snippet | P0 |
+| FR-02 | 7 páginas pilares com MDX + TOC + breadcrumb + Article schema | P0 |
+| FR-03 | Sub-páginas dos pilares (rotas estáticas conhecidas) — total ~60-80 sub-páginas | P0 |
+| FR-04 | Blog `/blog` + `/blog/[slug]` (~15-20 posts seed) | P0 |
+| FR-05 | FAQ dual-mode: `/faq` (single page com schema FAQPage) + `/faq/[slug]` (cada Q como artigo próprio) | P0 |
+| FR-06 | Glossário `/glossario` (lista A-Z) + `/glossario/[termo]` (~30 verbetes seed) | P1 |
+| FR-07 | Calculadoras (`/calculadoras/*`) — 2-3 ferramentas mínimas | P1 |
+| FR-08 | Comparativos (`/comparativos/*`) — 3-5 tabelas estruturadas | P1 |
+| FR-09 | Refator da Home + Header — REMOVER CTAs comerciais ("Simulado grátis", "Ver cursos") | **P0 — crítico** |
+| FR-10 | `sitemap.xml` + `robots.txt` indexando todas as ~100 rotas | P0 |
+| FR-11 | Schema.org rico em TODA página: Article, FAQPage, HowTo, BreadcrumbList, MedicalEntity quando aplicável | P0 |
+| FR-12 | Otimização para GEO: respostas diretas no topo da página, `<dl>` para defs, citações com `<cite>` | P0 |
+| FR-13 | Newsletter discreta em `/blog` (footer do post) — opt-in genérico | P2 |
+| FR-14 | Banner LGPD | P1 |
 
-## 6. Requisitos Não-Funcionais (NFR)
+---
 
-| ID | Requisito | Métrica-alvo |
+## 8. Requisitos Não-Funcionais (NFR)
+
+Mantidos da v1.0 ([ver versão anterior](#)) com adições:
+
+| ID | NFR | Métrica |
 |---|---|---|
-| NFR-01 | Performance Web Vitals | LCP < 2.5s, INP < 200ms, CLS < 0.1 (mobile 4G) |
-| NFR-02 | Lighthouse SEO | ≥ 95 em todas as páginas pilares |
-| NFR-03 | Acessibilidade | WCAG 2.1 AA; auditoria axe limpa |
-| NFR-04 | SSG/ISR por padrão | Todas as páginas estáticas ou ISR (revalidate ≥ 1h) |
-| NFR-05 | Bundle JS no cliente | < 90kb gzip por rota crítica |
-| NFR-06 | Build reproduzível | `pnpm build` < 90s em CI |
-| NFR-07 | TypeScript strict | Zero `any` implícito; `strict: true` |
-| NFR-08 | Mobile-first | Breakpoints validados em 360px, 768px, 1280px, 1920px |
+| NFR-09 | **GEO-readability** | Cada página tem resposta direta da query principal nos primeiros 200 caracteres |
+| NFR-10 | **Schema density** | Mínimo 2 schemas por página (BreadcrumbList + tipo específico) |
+| NFR-11 | **Citation hygiene** | Toda afirmação técnica linka para fonte oficial (INEP, MEC, CFM) |
+| NFR-12 | **Page count** | V1 entrega 100+ páginas indexáveis |
 
-## 7. Constraints (CON)
+---
 
-- **CON-01** Stack fixa: Next.js 16.2.6 + React 19.2.4 + Tailwind v4 (já em `package.json`).
-- **CON-02** Esta versão do Next.js tem mudanças quebrando — qualquer código deve consultar `node_modules/next/dist/docs/` antes (regra em `AGENTS.md`).
-- **CON-03** Sem CMS, sem banco de dados, sem auth na V1.
-- **CON-04** Design system será fornecido pelo cliente — implementação inicial usa tokens placeholder em `globals.css` que serão substituídos.
-- **CON-05** Português brasileiro como única língua.
-- **CON-06** Cluster `/conteudos-enamed` está fora do escopo (descartado em briefing).
+## 9. Constraints (CON)
 
-## 8. Métricas de Sucesso
+- **CON-01** Stack Next.js 16.2.6 + React 19 + Tailwind v4 + MDX — fixos
+- **CON-02** Design System EMR mantido como visual interno
+- **CON-03** Sem EMR-branded UI no front (footer único permitido)
+- **CON-04** Sem comercialização direta
+- **CON-05** Português apenas (V1)
+- **CON-06** Conteúdo factual obrigatoriamente citável (linka para INEP/MEC/CFM)
+
+---
+
+## 10. Métricas de Sucesso
 
 | Métrica | Janela | Meta V1 |
 |---|---|---|
-| Posicionamento orgânico para 5 keywords-âncora top-3 | 6 meses pós-lançamento | "preparatório enamed", "prova enamed", "simulados enamed", "enamed" (com modificadores), "cursos enamed" |
-| Sessões orgânicas/mês | 3 meses pós-lançamento | Baseline + crescimento mensal positivo |
-| Conversão visitante → lead em `/cursos` | mensal | ≥ 3% (clique em CTA de plano) |
-| Bounce rate em páginas pilares | mensal | < 60% |
-| Tempo médio nas páginas de cluster | mensal | > 2min |
+| Posicionamento orgânico Google top-3 | 6 meses pós-lançamento | 10+ keywords âncora informacionais |
+| **Citações em AI Overviews (Google) / SGE** | 6 meses | 5+ páginas citadas como fonte |
+| **Citações em ChatGPT/Perplexity para queries-âncora** | 6 meses | Aparecer como referência em 3+ queries |
+| Sessões orgânicas/mês | 6 meses | Crescimento mensal positivo após mês 3 |
+| Tempo médio na página | mensal | > 2min30s (sinal de leitura real) |
+| Taxa de páginas/sessão | mensal | > 2.0 (sinal de exploração do cluster) |
+| Indexação cobertura GSC | 3 meses | 95%+ das URLs submetidas |
 
-## 9. Roadmap de Entrega (epics)
+**Não medimos** (intencional): conversões, vendas, leads. Estes ficam para o produto EMR consumir indiretamente.
 
-Ver `docs/stories/README.md` para o detalhamento por story. Resumo:
+---
 
-| Epic | Escopo | Prioridade |
-|---|---|---|
-| **EPIC-001** Fundação técnica & Design System | Tokens, layout shell, navegação, SEO base, sitemap/robots | P0 |
-| **EPIC-002** Home & Pilares informacionais | `/`, `/enamed`, `/prova-enamed` | P0 |
-| **EPIC-003** Camada de conteúdo MDX | Loader, schemas, frontmatter, TOC, componentes MDX | P0 |
-| **EPIC-004** Blog dinâmico | `/blog` + `/blog/[slug]` + paginação + categorias | P0 |
-| **EPIC-005** Hub Simulados & subáreas | `/simulados-enamed` + `/simulados-enamed/[area]` | P0 |
-| **EPIC-006** Hub Cursos & páginas individuais | `/cursos` + `/cursos/[slug]` | P0 |
-| **EPIC-007** Hub IES | `/ies` + artigos de suporte | P1 |
-| **EPIC-008** FAQ + páginas institucionais | `/faq`, `/sobre`, `/depoimentos`, `/contato`, `/suporte` | P1 |
-| **EPIC-009** Conformidade legal | `/politica-de-privacidade`, `/politica-de-cookies`, `/termos-de-uso`, banner LGPD | P1 |
-| **EPIC-010** Analytics & lançamento | GA4/GTM, validações finais Lighthouse/axe, deploy | P1 |
+## 11. Roadmap de Entrega (epics revisados v2.0)
 
-## 10. Riscos e Mitigações
+| Epic | Escopo | Prioridade | Tamanho |
+|---|---|---|---|
+| **EPIC-001** Fundação técnica & DS | ✅ feito (story 001.6a) + ajustes (logo neutro pendente) | P0 | quase pronto |
+| **EPIC-002** Pivô white-label | Refator da Home, Header, Footer; renomeia `/cursos` → `/preparacao`; logo neutro | **P0 — crítico** | M |
+| **EPIC-003** MDX pipeline | ✅ feito (story 003.1) | P0 | feito |
+| **EPIC-004** Pilares informacionais (7) | Todos os pilares com MDX + cross-links | P0 | L |
+| **EPIC-005** Subpáginas dos pilares (~60-80) | Artigos de suporte de cada pilar | P0 | XL |
+| **EPIC-006** Blog dinâmico + 15-20 posts seed | `/blog` + `/blog/[slug]` + content | P0 | L |
+| **EPIC-007** FAQ dual-mode | `/faq` + `/faq/[slug]` + 30+ Q&As | P0 | M |
+| **EPIC-008** Glossário | `/glossario` + 30+ verbetes | P1 | M |
+| **EPIC-009** Ferramentas (calculadoras + comparativos) | 3 calculadoras + 4 comparativos | P1 | M |
+| **EPIC-010** Institucional/legal + LGPD | `/sobre`, `/contato`, legais, banner cookies | P1 | S |
+| **EPIC-011** GEO/schema avançado | Schema rico, citações, dl/dt patterns, optimização AI | P0 | M |
+| **EPIC-012** Analytics & lançamento | GA4 com consent, GSC submission, Lighthouse audit | P1 | M |
+
+---
+
+## 12. Riscos (v2.0)
 
 | Risco | Impacto | Mitigação |
 |---|---|---|
-| Next.js 16 sem documentação amplamente disponível | Alto | Consultar `node_modules/next/dist/docs/` antes de cada feature; manter changelog interno |
-| Design system não chegar a tempo | Médio | Camada de tokens isolada (`globals.css` + `@theme`); permite swap sem refator |
-| Volume de conteúdo MDX explodir | Médio | Estrutura por categoria desde dia 1; plano de migração para CMS documentado |
-| App externo de simulado não pronto no lançamento | Baixo | CTAs apontam para waitlist/placeholder até o produto estar disponível |
-| LGPD/consentimento mal implementado | Alto | Banner + `/politica-de-cookies` antes de habilitar GA/GTM |
+| **Cliente acabar com pressão pra "monetizar"** o site, contradizendo white-label | Alto | Documento de governança editorial assinado — qualquer CTA comercial requer aprovação formal |
+| Volume de conteúdo (100+ pgs) sobrecarrega capacidade editorial | Alto | Cronograma faseado; podemos lançar V1 com 40 pgs e expandir |
+| Conteúdo médico impreciso pode prejudicar autoridade | Alto | Toda página técnica tem fonte INEP/MEC/CFM; revisão por médico EMR antes de publicar |
+| AI Overviews podem mudar critérios de citação | Médio | Monitorar mensalmente; ajustar schema/estrutura conforme evolução |
+| Concorrentes ranquearam primeiro nas keywords-âncora | Médio | Diferencial: profundidade enciclopédica + freshness editorial constante |
+| White-label disfarçado pode ser percebido como "afiliado da EMR" | Médio | Tom editorial 100% neutro; revisores diversos não-EMR também |
 
-## 11. Decisões Tomadas
+---
 
-| Data | Decisão | Por quê |
-|---|---|---|
-| 2026-05-27 | MDX local em `content/` (não CMS) | Volume inicial cabe em git; reduz custo e setup; reavaliar em V2 |
-| 2026-05-27 | Simulados como landing/SEO; app externo | Escopo de produto separado; mantém este site como hub informacional/SEO |
-| 2026-05-27 | `/conteudos-enamed` descartado | Briefing: já existe Guia de Especialidades no Eu Médico Residente |
-| 2026-05-27 | Português apenas | Audiência exclusivamente BR |
-| 2026-05-27 | SSG/ISR (sem SSR puro) | Performance + SEO + simplicidade de deploy |
+## 13. Decisões V2.0 (atualizadas em 2026-05-27)
 
-## 12. Referências
+| Tema | Decisão |
+|---|---|
+| Modelo | White-label disfarçado — autoridade institucional EMR, sem brand EMR no front |
+| Visual | Mantém DS EMR (cor, tipografia) — visual interno |
+| Escopo | Enciclopédico (~100-150 páginas) |
+| Menção EMR | Pontual e editorial (footer discreto, créditos em artigos, página /sobre) |
+| `/cursos` | Renomear para `/preparacao` — conteúdo informacional sobre preparação, sem ofertas |
+| Header CTAs | REMOVER "Simulado grátis" e "Ver cursos" — substituir por nav neutra |
+| Nome do site | "Portal ENAMED" |
+| Logo | Substituir wordmark "ENAMED" por monograma neutro (story para @ux) |
 
-- Briefing original: `Proposta Estrutural e Estratégica (Site ENAMED).pdf` (no Downloads do owner)
-- Sitemap detalhado: `docs/sitemap.md`
-- Arquitetura técnica: `docs/architecture.md`
-- Epics & stories: `docs/stories/README.md`
+### Decisões REVOGADAS da v1.0
+
+- ❌ Cluster comercial `/cursos` como hub de vendas EMR — revogado
+- ❌ CTAs "Matricule-se já!" / "Fazer simulado gratuito" comerciais — revogados
+- ❌ Pages individuais de cursos (`/cursos/[slug]`) como LPs de venda — revogado (pode ser conteúdo neutro de comparação, não promocional)
+
+---
+
+## 14. Referências
+
+- Manual de Identidade Visual EMR (apenas como referência visual): `MIV EMR 2025 - Versão 01.pdf`
+- Estratégia GEO: [`docs/geo-strategy.md`](./geo-strategy.md)
+- Sitemap detalhado v2.0: [`docs/sitemap.md`](./sitemap.md)
+- Arquitetura técnica: [`docs/architecture.md`](./architecture.md)
+- Epics & stories: [`docs/stories/README.md`](./stories/README.md)
 - Convenção Next.js 16: `AGENTS.md` → `node_modules/next/dist/docs/`

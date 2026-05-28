@@ -1,328 +1,400 @@
-# Sitemap Detalhado — Site ENAMED
+# Sitemap Detalhado v2.0 — Portal ENAMED (white-label)
 
-Mapa página-a-página com: propósito, blocos de conteúdo, alvos de SEO, schemas estruturados e CTAs cruzados.
+**Versão:** 2.0 · **Data:** 2026-05-27 · **Substitui v1.0**
+
+Escopo enciclopédico: ~110-140 páginas para topical authority máxima em SEO/GEO. Cada rota tem propósito, query-âncora, schemas e relações de cross-link.
 
 Legenda:
-- 🟢 já scaffoldada · 🟡 scaffold existe mas vazia · 🔴 não criada
-- **KW** = keyword principal · **KW-sec** = secundárias / cauda-longa
+- 🟢 já scaffoldada · 🟡 scaffold existe · 🔴 não criada
+- 🆕 nova na v2.0 · 🔄 escopo mudou da v1.0 · ❌ removida da v1.0
 
 ---
 
-## 0. Home — `/` 🟡
+## 0. Home — `/` 🟡 🔄
 
-**Propósito:** Pilar de autoridade. Consolida entidades semânticas e distribui link equity para os 5 clusters.
+**Propósito v2.0:** Hub de descoberta puramente informacional. **SEM** CTAs comerciais.
 
-**KW:** "Enamed" · **KW-sec:** "Exame Nacional de Avaliação da Formação Médica", "Prova Enamed"
+**Mudanças vs v1.0:**
+- ❌ remover botão "Fazer simulado gratuito"
+- ❌ remover botão "Conhecer cursos"
+- ❌ remover seção "Comece pelo simulado diagnóstico" (era comercial)
+- ❌ remover bloco "Eleve o desempenho da sua IES" como CTA — vira card informacional
+- ✅ trocar nome do site no header de "ENAMED" para "Portal ENAMED" + tagline
+- ✅ adicionar bloco "Atualização recente" linkando para últimas análises do `/blog`
+- ✅ FAQ snippet expandido (5-7 perguntas com schema)
 
-**Blocos:**
-1. **Hero** — H1 com a entidade-mãe + subtítulo de proposta de valor + CTA primário (simulado/curso).
-2. **Visão Geral do ENAMED** — definição técnica curta + link para `/enamed`.
-3. **Público-Alvo** — quem precisa fazer + elegibilidade (snippet) + link para `/enamed#elegibilidade`.
-4. **Hub de Clusters** — cards para os 5 pilares (`/enamed`, `/prova-enamed`, `/simulados-enamed`, `/cursos`, `/ies`).
-5. **Prova Social** — depoimentos resumidos + link para `/depoimentos`.
-6. **CTA Comercial** — bloco de conversão → `/cursos`.
-7. **Últimos do Blog** — 3 cards recentes → `/blog`.
-8. **FAQ Snippet** — top 5 perguntas → `/faq`.
+**Blocos novos:**
+1. Hero informacional — "Tudo sobre o ENAMED em um só lugar" + CTA neutro "Explorar guia completo"
+2. Hub de clusters (7 cards, alinhados aos pilares)
+3. **Última atualização editorial** — card destacando o post/análise mais recente
+4. **Perguntas mais buscadas** — bloco FAQ com schema (5-7 questões)
+5. **Glossário em destaque** — preview de termos-chave + link `/glossario`
+6. **Recursos práticos** — links para calculadoras e comparativos
 
-**Schemas:** Organization, WebSite (SearchAction), BreadcrumbList (raiz), AggregateRating (se houver).
-
-**CTAs:** primário → `/cursos`; secundário → `/simulados-enamed`.
-
----
-
-## 1. Cluster Institucional & Informativo
-
-### 1.1 `/enamed` 🟡 — **Pilar do cluster institucional**
-
-**Propósito:** Guia enciclopédico sobre o exame. Topo de funil informativo.
-
-**KW:** "o que é Enamed" · **KW-sec:** "Enamed vs Revalida", "história do Enamed", "obrigatoriedade Enamed"
-
-**Blocos:**
-1. Hero + TOC.
-2. **Definição e Objetivos** — competências avaliadas + finalidade para o SUS.
-3. **Elegibilidade** — quem é obrigado, quem pode optar, calendário.
-4. **Contexto Histórico** — evolução da avaliação no Brasil, criação do Enamed.
-5. **Diferenciação de Exames** — tabela comparativa Enamed × Revalida × residência médica.
-6. CTA cruzado → `/prova-enamed` (próximo passo lógico) + `/simulados-enamed`.
-
-**Schemas:** Article, BreadcrumbList, FAQPage (se houver bloco de perguntas).
-
-**Conteúdo:** MDX em `content/pilares/enamed.mdx`.
+**Schema:** `WebSite (SearchAction)`, `Organization (Portal ENAMED)`, `FAQPage` (snippet)
 
 ---
 
-## 2. Cluster Técnico da Avaliação
+## 1. Pilar Institucional — `/enamed` 🟡 ✅ MDX feito
 
-### 2.1 `/prova-enamed` 🟡 — **Pilar do cluster técnico**
+**Pilar do cluster institucional.** Conteúdo enciclopédico sobre o exame.
 
-**Propósito:** Logística, metodologia e desempenho.
+**Subpáginas (artigos de suporte):** 🆕
 
-**KW:** "prova Enamed" · **KW-sec:** "TRI Enamed", "método Angoff Enamed", "nota de corte Enamed", "quantas questões Enamed"
-
-**Blocos:**
-1. Hero + TOC.
-2. **Metodologia de Avaliação** — Teoria de Resposta ao Item (TRI), método Angoff, pontuação bruta.
-3. **Estrutura do Exame** — número de questões, divisão por área, tempo total.
-4. **Análise de Desempenho** — notas de corte, cálculo da nota final, impacto na carreira.
-5. CTA cruzado → `/simulados-enamed` + `/cursos`.
-
-**Schemas:** Article, BreadcrumbList, HowTo (para "como funciona a TRI" se aplicável).
-
-**Conteúdo:** MDX em `content/pilares/prova-enamed.mdx`.
-
----
-
-## 3. Cluster de Performance e Prática
-
-### 3.1 `/simulados-enamed` 🟡 — **Pilar do cluster de performance**
-
-**Propósito:** Hub de diagnóstico (não só treino). Landing/SEO; produto funcional vive em app externo.
-
-**KW:** "simulados Enamed" · **KW-sec:** "questões comentadas Enamed", "simulado diagnóstico medicina", "banco de questões Enamed"
-
-**Blocos:**
-1. Hero + TOC.
-2. **O que é um simulado Enamed** — definição + diferencial diagnóstico.
-3. **Questões Comentadas** — explicação metodológica + link para amostra.
-4. **Simulados Temporizados** — descrição da experiência + CTA para app externo.
-5. **Dashboard de Desempenho** — descritivo do produto externo + screenshots.
-6. **Simulados por Área** — grid linkando para `/simulados-enamed/[area]`.
-7. **Integração B2B (IES)** — bloco curto + link para `/ies`.
-8. CTA cruzado → `/cursos` + waitlist do app.
-
-**Schemas:** Article, BreadcrumbList, ItemList (lista de subáreas).
-
-**Conteúdo:** MDX em `content/pilares/simulados-enamed.mdx`.
-
-### 3.2 `/simulados-enamed/[area]` 🔴 — **Landing por especialidade**
-
-**Áreas (slugs):**
-- `clinica-medica` — Cardiologia, Pneumo, Gastro, Nefro, Endócrino, Infecto
-- `cirurgia` — Cirurgia Geral, Trauma, Pré/Pós-op, Ética Cirúrgica
-- `pediatria` — Neonatologia, Crescimento, Urgências
-- `ginecologia-obstetricia` — Pré-natal, Mecanismo de parto, Puerpério, Ginecologia geral
-- `saude-coletiva` — SUS, Epidemiologia, Bioestatística, Políticas Públicas
-- `etica-legislacao` — Código de Ética, Resoluções CFM
-
-**KW:** "simulado enamed [área]" · **KW-sec:** subtemas listados acima
-
-**Blocos por página:**
-1. Hero específico da área.
-2. **Tópicos cobertos** — lista expandida dos subtemas.
-3. **Questões comentadas (amostra)** — 3-5 exemplos com explicação.
-4. **Erros comuns** — bloco didático.
-5. CTA → app externo + curso correspondente.
-6. Links cruzados para `/blog` (artigos da mesma área).
-
-**Schemas:** Article, BreadcrumbList, ItemList.
-
-**Conteúdo:** MDX em `content/simulados/[area].mdx` (1 por área).
-
----
-
-## 4. Cluster Comercial
-
-### 4.1 `/cursos` 🟡 — **Pilar comercial (plural)**
-
-**Propósito:** Ranqueia buscas plurais ("cursos enamed", "preparatórios enamed"). NÃO substitui páginas individuais (singular).
-
-**KW:** "cursos Enamed" · **KW-sec:** "preparatórios Enamed", "melhor curso Enamed"
-
-**Blocos:**
-1. Hero + TOC.
-2. **Por que se preparar com curso** — argumentação.
-3. **Catálogo de Programas** — cards para `/cursos/[slug]`.
-4. **Mentoria Especializada** — bloco descritivo (`#mentoria` anchor).
-5. **Prova Social** — depoimentos curtos + estatísticas de aprovação → `/depoimentos`.
-6. **Transparência Comercial** — planos, preços, garantias.
-7. **FAQ comercial** — top 5 dúvidas (com schema FAQPage).
-8. CTA primário → contato/inscrição.
-
-**Schemas:** Article, BreadcrumbList, ItemList (catálogo), FAQPage.
-
-**Conteúdo:** MDX em `content/pilares/cursos.mdx`.
-
-### 4.2 `/cursos/[slug]` 🔴 — **LP individual de curso**
-
-**Propósito:** Ranqueia buscas singulares ("preparatório para Enamed", "curso intensivo Enamed").
-
-**Slugs (a definir com cliente):** `intensivo`, `completo`, `mentoria`, `revisao-final` (placeholders).
-
-**Blocos por LP:**
-1. Hero com nome do curso + USP + CTA.
-2. **Para quem é** — persona-alvo.
-3. **O que está incluso** — bullets de entregáveis.
-4. **Cronograma/Grade** — módulos/semanas.
-5. **Professores/Mentores** — bios curtas + foto.
-6. **Depoimentos específicos** — relacionados ao curso.
-7. **Investimento** — planos + condições.
-8. **FAQ específica** do curso.
-9. CTA fixo (sticky) → checkout/contato.
-
-**Schemas:** Course, Offer (preço), BreadcrumbList, FAQPage.
-
-**Conteúdo:** MDX em `content/cursos/[slug].mdx`.
-
----
-
-## 5. Cluster IES (B2B)
-
-### 5.1 `/ies` 🟡 — **Pilar B2B**
-
-**Propósito:** Capturar coordenadores e diretores de IES.
-
-**KW:** "Enamed IES" · **KW-sec:** "nota do enamed impacta a faculdade", "enamed e sanções do mec", "consultoria enamed para ies", "programa de preparação enamed para faculdades"
-
-**Blocos:**
-1. Hero institucional.
-2. **Desempenho Institucional no ENAMED** — como as IES são avaliadas pelo MEC.
-3. **Impactos e Riscos** — credenciamento, sanções.
-4. **Estratégias de Melhoria** — frameworks.
-5. **Solução proposta** — programa/consultoria/integração de simulados → CTA contato comercial.
-6. Cases (se houver).
-7. Links cruzados para `/blog` (artigos IES) e `/depoimentos` (institucionais).
-
-**Schemas:** Article, BreadcrumbList, Service (oferta B2B), Organization.
-
-**Conteúdo:** MDX em `content/pilares/ies.mdx`.
-
----
-
-## 6. Conteúdo Dinâmico
-
-### 6.1 `/blog` 🟡 — **Listagem**
-
-**Propósito:** Fresh content — notícias, editais, análises de provas.
-
-**KW:** "blog Enamed" · **KW-sec:** "novidades Enamed", "edital Enamed [ano]"
-
-**Blocos:**
-1. Hero curto.
-2. **Filtro por categoria** — chips: Notícias, Edital, Análise de Prova, Carreira, IES.
-3. **Lista paginada** — 12 posts/página, cards com cover, título, excerpt, data, categoria.
-4. **Sidebar** (desktop): posts populares, newsletter (opcional V1.1).
-
-**Schemas:** Blog, BreadcrumbList, ItemList.
-
-### 6.2 `/blog/[slug]` 🔴 — **Detalhe de post**
-
-**Blocos:**
-1. Hero do post (título, autor, data, tempo de leitura, categoria).
-2. **TOC** lateral (desktop) / superior (mobile).
-3. **Corpo MDX** — H2/H3 estruturados, imagens otimizadas, citações.
-4. **Author bio** ao final.
-5. **Posts relacionados** — 3 da mesma categoria.
-6. **CTA contextual** — curso/simulado relacionado.
-7. Compartilhar social.
-
-**Schemas:** Article (NewsArticle quando aplicável), BreadcrumbList, Person (autor).
-
-**Conteúdo:** MDX em `content/blog/[slug].mdx` com frontmatter (title, date, author, category, cover, excerpt).
-
-### 6.3 `/faq` 🟡 — **Single page por categorias**
-
-**Propósito:** Featured snippets + long-tail.
-
-**KW:** "perguntas frequentes Enamed" · **KW-sec:** cauda-longa de cada pergunta
-
-**Blocos:**
-1. Hero + busca interna (filtro client-side).
-2. **Categorias** com anchors (`#sobre-o-exame`, `#prova`, `#preparacao`, `#ies`, `#comercial`).
-3. **Accordion de Q&A** por categoria.
-4. CTA → `/suporte` ou `/contato`.
-
-**Schemas:** FAQPage (crítico para snippets).
-
-**Conteúdo:** MDX ou YAML estruturado em `content/faq/[categoria].mdx`.
-
----
-
-## 7. Páginas Institucionais
-
-### 7.1 `/sobre` 🟡
-
-Apresentação da organização, missão, equipe, autoridade temática (porque devemos ser ouvidos sobre Enamed).
-**Schemas:** AboutPage, Organization.
-
-### 7.2 `/depoimentos` 🟡
-
-Grid de depoimentos com foto, nome, instituição, ano de aprovação, citação. Inclui números agregados (aprovados, NPS).
-**Schemas:** Review, AggregateRating.
-
-### 7.3 `/contato` 🟡
-
-Formulário (server action ou serviço externo — definir) + dados (e-mail, telefone, endereço). Validação client + server.
-**Schemas:** ContactPage, ContactPoint (Organization).
-
-### 7.4 `/suporte` 🟡
-
-Central de ajuda — categorias de problemas comuns + links para FAQ + acesso ao atendimento.
-**Schemas:** WebPage.
-
----
-
-## 8. Páginas Legais
-
-### 8.1 `/politica-de-privacidade` 🟡
-
-Texto LGPD-completo. Encarregado de dados, base legal, direitos, retenção.
-
-### 8.2 `/politica-de-cookies` 🟡
-
-Categorias de cookies, finalidade, controle pelo usuário. Linka com banner de consentimento.
-
-### 8.3 `/termos-de-uso` 🟡
-
-Condições de uso do site, propriedade intelectual, foro.
-
----
-
-## 9. URLs Especiais
-
-| URL | Função | Status |
+| Slug | Tema | Query-âncora |
 |---|---|---|
-| `/sitemap.xml` | Gerado por `src/app/sitemap.ts` | 🟡 stub existe — implementar |
-| `/robots.txt` | Gerado por `src/app/robots.ts` | 🟡 stub existe — implementar |
-| `/404` (not-found) | Já em `src/app/not-found.tsx` | 🟢 |
+| `/enamed/historia` | História do ENAMED | "história do enamed" |
+| `/enamed/criacao` | Como o ENAMED foi criado | "quando foi criado o enamed" |
+| `/enamed/objetivos` | Objetivos e competências avaliadas | "para que serve o enamed" |
+| `/enamed/elegibilidade` | Quem precisa fazer | "quem é obrigado a fazer o enamed" |
+| `/enamed/legislacao` | Marco legal e regulamentação | "lei do enamed" |
+| `/enamed/inep` | Papel do INEP na aplicação | "inep enamed" |
+| `/enamed/mec-msau` | Relação MEC + Ministério da Saúde | "mec enamed" |
+| `/enamed/edital-2026` | Edital ENAMED 2026 (atualizado anualmente) | "edital enamed 2026" |
+| `/enamed/cronograma` | Datas e calendário | "quando é o enamed 2026" |
+| `/enamed/locais-aplicacao` | Onde a prova é aplicada | "locais enamed" |
+| `/enamed/inscricoes` | Inscrição (obrigatoriedade institucional) | "inscrição enamed" |
+
+**Total subpáginas pilar 1:** ~11
+
+**Schemas:** Article + BreadcrumbList em todas; MedicalEntity opcional em /enamed (entidade do exame)
 
 ---
 
-## 10. Mapa de Links Internos (anchors críticas)
+## 2. Pilar Técnico — `/prova-enamed` 🟡 🔴
 
-| De | Para | Razão |
+**Pilar do cluster técnico.** Detalhes da prova em si.
+
+**Subpáginas:** 🆕
+
+| Slug | Tema | Query-âncora |
 |---|---|---|
-| Todo artigo de área médica em `/blog` | `/simulados-enamed/[mesma-area]` | Conversão para prática |
-| Todo artigo de área médica em `/blog` | `/cursos` ou `/cursos/[slug]` | Conversão comercial |
-| `/enamed` | `/prova-enamed` | Próximo passo lógico (informacional → técnico) |
-| `/prova-enamed` | `/simulados-enamed` | Técnico → prática |
-| `/simulados-enamed` | `/cursos` | Prática → comercial |
-| `/ies` | `/contato` (B2B) | Conversão B2B |
-| Footer em todas | 4 grupos: Conteúdo, Comercial, Suporte, Institucional | Distribuição de link equity |
+| `/prova-enamed/teoria-resposta-item` | TRI — explicação detalhada | "o que é tri enamed" |
+| `/prova-enamed/metodo-angoff` | Método Angoff aplicado | "método angoff enamed" |
+| `/prova-enamed/calculo-da-nota` | Como sua nota é calculada | "como é calculada a nota do enamed" |
+| `/prova-enamed/escala-proficiencia` | Bandas de desempenho TRI | "escala de proficiência enamed" |
+| `/prova-enamed/numero-de-questoes` | Quantas questões tem | "quantas questões tem o enamed" |
+| `/prova-enamed/divisao-por-areas` | Distribuição por área médica | "áreas avaliadas no enamed" |
+| `/prova-enamed/tempo-de-prova` | Duração e divisão de tempo | "duração enamed" |
+| `/prova-enamed/formato-questoes` | Estilo das questões (caso clínico) | "formato questões enamed" |
+| `/prova-enamed/correcao-anulacao` | Critérios de correção e anulação | "anulação questão enamed" |
+| `/prova-enamed/notas-de-corte` | Existem notas de corte? | "nota de corte enamed" |
+| `/prova-enamed/desempenho-historico` | Médias históricas por edição | "média do enamed" |
+| `/prova-enamed/curriculo-lattes` | Como aparece no Lattes | "enamed no lattes" |
+| `/prova-enamed/peso-em-selecoes` | Peso em concursos/residência | "enamed conta para residência" |
+| `/prova-enamed/recursos-edital` | Recursos contra resultados | "recursos enamed" |
+
+**Total subpáginas pilar 2:** ~14
+
+**Schemas:** Article + BreadcrumbList; HowTo em `/calculo-da-nota`
 
 ---
 
-## 11. Tabela-resumo (status de implementação)
+## 3. Pilar Áreas Médicas — `/areas` 🆕 🔴 (NOVO na v2.0)
 
-| Rota | Status | Conteúdo MDX | Schemas |
+**Páginas pilar por área avaliada.** Sub-cluster grande — coração do topical authority médico.
+
+**Páginas pilar de área:**
+
+| Slug | Área | Subtemas |
+|---|---|---|
+| `/areas/clinica-medica` | Clínica Médica | 8 subtemas |
+| `/areas/cirurgia` | Cirurgia | 6 subtemas |
+| `/areas/pediatria` | Pediatria | 5 subtemas |
+| `/areas/ginecologia-obstetricia` | GO | 6 subtemas |
+| `/areas/saude-coletiva` | Saúde Coletiva | 6 subtemas |
+| `/areas/etica-medica` | Ética e Legislação | 4 subtemas |
+
+**Subtemas (artigos de aprofundamento):**
+
+`/areas/clinica-medica/` → cardiologia, pneumologia, gastroenterologia, nefrologia, endocrinologia, infectologia, hematologia, reumatologia (~8)
+`/areas/cirurgia/` → cirurgia-geral, trauma, pre-pos-operatorio, cirurgia-vascular, urgencia-cirurgica, etica-cirurgica (~6)
+`/areas/pediatria/` → neonatologia, crescimento-desenvolvimento, urgencias-pediatricas, infectologia-pediatrica, alergia-imunologia (~5)
+`/areas/ginecologia-obstetricia/` → pre-natal, mecanismo-parto, puerperio, ginecologia-geral, contracepcao, urgencia-obstetrica (~6)
+`/areas/saude-coletiva/` → sus, epidemiologia, bioestatistica, politicas-publicas, atencao-basica, vigilancia (~6)
+`/areas/etica-medica/` → codigo-etica, resolucoes-cfm, sigilo-medico, responsabilidade-civil (~4)
+
+**Total Áreas:** 6 pilares + ~35 subtemas = ~41
+
+**Schemas:** Article + BreadcrumbList em todas; MedicalCondition/MedicalProcedure quando aplicável
+
+---
+
+## 4. Pilar Simulados — `/simulados-enamed` 🟡 🔴 🔄
+
+**Pilar informacional (NÃO transacional).**
+
+**v2.0:** site não oferece simulado funcional. Apenas explica o que é, como interpretar resultados, e linka para fontes externas onde simulado é possível (sem promover marca).
+
+**Subpáginas:**
+
+| Slug | Tema |
+|---|---|
+| `/simulados-enamed/o-que-e` | Definição e propósito de simulado |
+| `/simulados-enamed/como-interpretar-resultado` | Como ler um relatório de simulado |
+| `/simulados-enamed/diagnostico-inicial` | O que é simulado diagnóstico |
+| `/simulados-enamed/temporizado-vs-livre` | Diferenças e quando usar cada um |
+| `/simulados-enamed/por-area/[area]` | Simulados por área (6 sub-páginas — clinica, cirurgia, etc.) |
+| `/simulados-enamed/questoes-comentadas` | O que é e por que serve |
+| `/simulados-enamed/erros-comuns` | Padrões de erro mais frequentes |
+| `/simulados-enamed/dashboard-desempenho` | O que medir |
+
+**Total subpáginas pilar 4:** ~13 (4 estáticas + 6 áreas + 3 técnicas)
+
+---
+
+## 5. Pilar "Como se preparar" — `/preparacao` 🆕 🔴 🔄
+
+**Renomeado de `/cursos` (v1.0).** Agora puramente informacional.
+
+**Subpáginas:**
+
+| Slug | Tema | Query-âncora |
+|---|---|---|
+| `/preparacao/cronograma-estudo` | Como montar cronograma | "cronograma de estudos enamed" |
+| `/preparacao/quanto-tempo-estudar` | Tempo médio de preparação | "quanto tempo estudar enamed" |
+| `/preparacao/tecnicas-de-estudo` | Técnicas (Pomodoro, revisão espaçada) | "como estudar para o enamed" |
+| `/preparacao/material-recomendado` | Tipos de material (sem marca específica) | "livros para o enamed" |
+| `/preparacao/preparatorios-no-mercado` | Tipos de preparatório (sem promoção) | "preparatório para enamed" |
+| `/preparacao/mentoria-individual` | Quando vale a pena mentoria | "vale a pena mentoria enamed" |
+| `/preparacao/grupos-de-estudo` | Como montar grupo de estudos | "grupo de estudo enamed" |
+| `/preparacao/saude-mental-na-preparacao` | Saúde mental durante preparação | "ansiedade enamed" |
+| `/preparacao/ultima-semana-de-prova` | Plano da última semana | "última semana antes do enamed" |
+| `/preparacao/dia-da-prova` | O que fazer no dia | "dia da prova enamed o que fazer" |
+
+**Total subpáginas pilar 5:** ~10
+
+⚠️ **Tom:** zero promoção. "Existem preparatórios no mercado X, Y, Z" sem destacar EMR.
+
+---
+
+## 6. Pilar IES — `/ies` 🟡 🔴
+
+**Pilar B2B-informacional.** Como o ENAMED impacta Instituições de Ensino Superior.
+
+**Subpáginas:**
+
+| Slug | Tema | Query-âncora |
+|---|---|---|
+| `/ies/avaliacao-mec-cpc` | CPC e como o ENAMED entra | "cpc mec enamed" |
+| `/ies/sanções-mec` | Sanções por baixo desempenho | "sanções do mec medicina" |
+| `/ies/credenciamento-medicina` | Credenciamento de novos cursos | "credenciamento curso medicina mec" |
+| `/ies/reducao-de-vagas` | Quando o MEC reduz vagas | "redução de vagas medicina mec" |
+| `/ies/supervisao-academica` | O processo de supervisão | "supervisão academica medicina" |
+| `/ies/comparativo-de-ies` | Como comparar IES pelo ENAMED | "ranking faculdades de medicina enamed" |
+| `/ies/melhoria-de-nota` | Estratégias para coordenadores | "como melhorar desempenho enamed faculdade" |
+| `/ies/consultoria-enamed` | O que é consultoria ENAMED para IES | "consultoria enamed para ies" |
+| `/ies/programa-de-preparacao-ies` | Programas estruturados para faculdades | "preparação enamed para faculdade" |
+| `/ies/casos-de-melhoria` | Cases reais (anônimos) | "case sucesso melhoria enamed" |
+
+**Total subpáginas pilar 6:** ~10
+
+---
+
+## 7. Pilar Carreira — `/carreira` 🆕 🔴 (NOVO na v2.0)
+
+**Foco SEO/GEO:** o que vem depois do ENAMED — captura buscas correlatas que ampliam topical authority no nicho médico.
+
+**Subpáginas:**
+
+| Slug | Tema | Query-âncora |
+|---|---|---|
+| `/carreira/residencia-medica` | O que é residência médica | "o que é residência médica" |
+| `/carreira/r1-vs-r-plus` | Diferença R1 e R+ | "diferença r1 e r+" |
+| `/carreira/processo-seletivo-residencia` | Como funcionam as seleções | "como entrar na residência" |
+| `/carreira/principais-instituicoes` | USP, UNIFESP, AMRIGS, etc. (informacional) | "melhores residências medicina" |
+| `/carreira/enamed-vs-residencia` | Comparação direta | "enamed conta para residência" |
+| `/carreira/medico-recem-formado` | Trajetória possível | "o que fazer depois de formar em medicina" |
+| `/carreira/especialidades-medicas` | Mapa das especialidades | "especialidades médicas no brasil" |
+| `/carreira/mercado-medico-brasil` | Panorama do mercado | "mercado de trabalho medicina brasil" |
+| `/carreira/medicina-no-exterior` | Atuar fora do Brasil | "validar diploma medicina exterior" |
+| `/carreira/revalida` | Sobre o Revalida | "o que é revalida" |
+
+**Total subpáginas pilar 7:** ~10
+
+---
+
+## 8. Blog — `/blog` + `/blog/[slug]` 🟡 🔴
+
+**Fresh content** — notícias, análises, releituras editoriais.
+
+**Estrutura:**
+- `/blog` — listagem paginada + filtro por categoria
+- `/blog/[slug]` — artigo individual
+
+**Categorias V1:**
+- Edital e calendário
+- Análise de prova (post-aplicação anual)
+- Carreira médica
+- IES e MEC
+- Saúde mental e preparação
+- Notícias setoriais
+
+**Seed inicial (15-20 posts):** lista detalhada no índice de epics.
+
+**Total Blog V1:** 1 listing + ~20 artigos seed
+
+---
+
+## 9. FAQ Dual-mode 🟡 🆕
+
+### 9.1 `/faq` — single page agregadora
+
+Acordeão por categoria com schema FAQPage. Boa para featured snippets clássicos.
+
+### 9.2 `/faq/[slug]` — cada Q como artigo próprio 🆕
+
+Para queries GEO específicas. Cada artigo:
+- H1 = pergunta exata
+- Resposta direta nos primeiros 200 chars
+- Aprofundamento
+- Schema QAPage
+
+**Categorias de FAQ:**
+1. Sobre o exame (~8 Qs)
+2. Estrutura da prova (~8 Qs)
+3. Cálculo de nota (~6 Qs)
+4. Preparação (~6 Qs)
+5. IES (~5 Qs)
+6. Carreira (~5 Qs)
+
+**Total FAQ artigos:** ~38
+
+---
+
+## 10. Glossário — `/glossario` 🆕 🔴
+
+`/glossario` — lista alfabética A-Z
+`/glossario/[termo]` — verbete individual
+
+**Verbetes seed (~30):**
+
+A: Aprovação, Avaliação institucional
+B: Bandas de desempenho, Bioestatística básica
+C: Caso clínico (formato), CPC, Conselho Federal de Medicina
+D: Diretrizes Curriculares Nacionais
+E: ENADE, ENARE, Epidemiologia, Edital
+F: Formação médica
+I: INEP, Item (estatística)
+L: Lattes
+M: Método Angoff, MEC, Medicina baseada em evidências
+N: Nota TRI
+P: Padrão de resposta, Programa de residência
+Q: Questão objetiva
+R: Residência médica, Revalida
+S: SUS, Supervisão acadêmica, Sanção (MEC)
+T: TRI (Teoria de Resposta ao Item)
+U: USP (referência)
+
+**Total Glossário:** ~30 verbetes
+
+---
+
+## 11. Comparativos — `/comparativos/*` 🆕 🔴
+
+Páginas estruturadas em tabela + análise. Excelentes para GEO.
+
+| Slug | Comparativo |
+|---|---|
+| `/comparativos/enamed-vs-revalida` | ENAMED × Revalida |
+| `/comparativos/enamed-vs-enade` | ENAMED × ENADE |
+| `/comparativos/enamed-vs-residencia` | ENAMED × Provas de residência |
+| `/comparativos/enamed-vs-r-plus` | ENAMED × R+ |
+| `/comparativos/tri-vs-classica` | TRI × Pontuação clássica |
+
+**Total:** 5
+
+---
+
+## 12. Calculadoras — `/calculadoras/*` 🆕 🔴
+
+Microferramentas client-side. Excelentes para engajamento + sinal de utilidade pra IA.
+
+| Slug | Ferramenta |
+|---|---|
+| `/calculadoras/estimador-nota-tri` | Estimador rough de nota a partir de acertos brutos |
+| `/calculadoras/distribuicao-tempo` | Distribuidor de tempo na prova |
+| `/calculadoras/calendario-estudo` | Gerador de plano de estudo até a prova |
+
+**Total:** 3
+
+---
+
+## 13. Institucional & Legal (minimalista)
+
+| Slug | Conteúdo |
+|---|---|
+| `/sobre` 🟡 | Sobre o portal + **única menção visível EMR** ("Conteúdo desenvolvido em parceria com Eu Médico Residente") |
+| `/contato` 🟡 | Formulário neutro de contato |
+| `/politica-de-privacidade` 🟡 | LGPD |
+| `/politica-de-cookies` 🟡 | LGPD cookies |
+| `/termos-de-uso` 🟡 | Termos de uso |
+
+**Removidos da v1.0:**
+- ❌ `/cursos` como hub comercial (renomeado para `/preparacao`)
+- ❌ `/cursos/[slug]` como LPs de venda
+- ❌ `/depoimentos` (não faz sentido em portal informacional)
+- ❌ `/suporte` (não há produto a suportar — substituído por `/contato`)
+
+---
+
+## 14. URLs Especiais
+
+| URL | Função |
+|---|---|
+| `/sitemap.xml` | Gerado por `src/app/sitemap.ts` — listar todas as ~110 rotas |
+| `/robots.txt` | Allow everything exceto `/design-system` (interno) |
+| `/404` | not-found.tsx — manter |
+| `/design-system` | Galeria interna de componentes (noindex) ✅ feito |
+
+---
+
+## 15. Mapa de Cross-Links Internos (regras)
+
+Toda página deve ter:
+
+| Tipo de página | Cross-links mínimos |
+|---|---|
+| Pilar | 3+ para subpáginas próprias + 2+ para outros pilares |
+| Subpágina pilar | 1 para o pilar-mãe + 2+ para subpáginas irmãs + 1 para pilar relacionado |
+| Artigo de blog | 1 para pilar relacionado + 2+ para outros artigos de blog |
+| FAQ artigo | 1 para `/faq` + 1 para pilar relacionado + 2+ para outros FAQ |
+| Glossário verbete | 2+ para termos relacionados + 1 para pilar onde o termo aparece |
+| Comparativo | 1 para cada entidade comparada (se houver pilar próprio) |
+
+---
+
+## 16. Resumo numérico
+
+| Cluster | Páginas |
+|---|---|
+| Home | 1 |
+| Pilar Institucional `/enamed` + sub | 12 |
+| Pilar Técnico `/prova-enamed` + sub | 15 |
+| Pilar Áreas `/areas` + sub | 41 |
+| Pilar Simulados + sub | 13 |
+| Pilar Preparação + sub | 11 |
+| Pilar IES + sub | 11 |
+| Pilar Carreira + sub | 11 |
+| Blog (listing + posts) | 1 + 20 |
+| FAQ (listing + artigos) | 1 + 38 |
+| Glossário (listing + verbetes) | 1 + 30 |
+| Comparativos | 5 |
+| Calculadoras | 3 |
+| Institucional/legal | 5 |
+| Especiais (sitemap, robots, 404, ds) | 4 |
+| **Total V1** | **~223 rotas / ~219 indexáveis** |
+
+> Inicial estava em 100-130 — mas mapeando subáreas das `/areas` o número subiu pra ~220. Pode ser **lançado em ondas**: V1.0 com os 7 pilares + 30% das subpáginas + blog inicial + FAQ + glossário core = ~80 páginas; ondas seguintes preenchem.
+
+---
+
+## 17. Ondas de lançamento sugeridas
+
+| Onda | Escopo | Páginas | Janela |
 |---|---|---|---|
-| `/` | 🟡 página existe (10kb) | — | Organization, WebSite |
-| `/enamed` | 🟡 (1.7kb) | `content/pilares/enamed.mdx` | Article, FAQPage |
-| `/prova-enamed` | 🟡 (1.5kb) | `content/pilares/prova-enamed.mdx` | Article |
-| `/simulados-enamed` | 🟡 (2kb) | `content/pilares/simulados-enamed.mdx` | Article, ItemList |
-| `/simulados-enamed/[area]` | 🔴 | 6 arquivos em `content/simulados/` | Article |
-| `/cursos` | 🟡 (1.7kb) | `content/pilares/cursos.mdx` | Article, FAQPage |
-| `/cursos/[slug]` | 🔴 | N arquivos em `content/cursos/` | Course, FAQPage |
-| `/ies` | 🟡 (2kb) | `content/pilares/ies.mdx` | Article, Service |
-| `/blog` | 🟡 (1.5kb) | — | Blog, ItemList |
-| `/blog/[slug]` | 🔴 | N arquivos em `content/blog/` | Article |
-| `/faq` | 🟡 (2kb) | `content/faq/*.mdx` | FAQPage |
-| `/sobre` | 🟡 (1.4kb) | `content/institucional/sobre.mdx` | AboutPage |
-| `/depoimentos` | 🟡 (2kb) | `content/institucional/depoimentos.json` | Review |
-| `/contato` | 🟡 (3kb) | — | ContactPage |
-| `/suporte` | 🟡 (2kb) | `content/institucional/suporte.mdx` | WebPage |
-| `/politica-de-privacidade` | 🟡 (1.4kb) | `content/legal/privacidade.mdx` | — |
-| `/politica-de-cookies` | 🟡 (1.4kb) | `content/legal/cookies.mdx` | — |
-| `/termos-de-uso` | 🟡 (1.3kb) | `content/legal/termos.mdx` | — |
-| `/sitemap.xml` | 🟡 stub | — | — |
-| `/robots.txt` | 🟡 stub | — | — |
+| **V1.0 — MVP** | Home pivotada + 7 pilares com MDX + 10 FAQ artigos + 10 verbetes + 5 blog posts + sobre/legais | ~35 | 4-6 semanas |
+| **V1.1 — Pilares completos** | Todas as subpáginas dos pilares principais | +60 | +4 semanas |
+| **V1.2 — Áreas médicas** | `/areas` completo (41 páginas) | +41 | +6 semanas |
+| **V1.3 — Ferramentas + comparativos** | Calculadoras + comparativos + glossário completo | +28 | +3 semanas |
+| **V1.4 — Editorial cadence** | Blog cresce continuamente + FAQ amplia | contínuo | em diante |
