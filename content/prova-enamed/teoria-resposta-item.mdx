@@ -1,0 +1,128 @@
+---
+title: "Teoria de Resposta ao Item (TRI) no ENAMED — como funciona"
+description: "TRI é o modelo estatístico que calcula a nota do ENAMED com três parâmetros (dificuldade, discriminação, acerto ao acaso). Veja por que dois candidatos com mesmos acertos têm notas diferentes."
+eyebrow: "Cluster Técnico · Metodologia"
+updatedAt: "2026-05-28"
+heroTitle: "TRI no ENAMED — Teoria de Resposta ao Item"
+heroDescription: "A TRI calcula sua nota considerando quais itens você acertou, não só quantos. Três parâmetros por questão, uma função logística, escala comparável entre edições."
+---
+
+A **Teoria de Resposta ao Item (TRI)** é o modelo estatístico que o ENAMED usa para calcular a sua nota. Em vez de somar acertos como uma prova clássica de escola, a TRI considera **três parâmetros de cada item** — dificuldade, discriminação e acerto ao acaso — e estima qual o **nível de proficiência (θ, teta)** mais compatível com o seu padrão de respostas.
+
+<AnswerBox label="Por que isso importa">
+Dois candidatos com **60 acertos** podem ter notas muito diferentes no ENAMED. A TRI considera *quais* itens foram acertados, não só *quantos*. Acertar itens difíceis pesa mais que acertar fáceis.
+</AnswerBox>
+
+## O que a TRI resolve
+
+A TRI foi criada para responder a um problema clássico da psicometria: **provas com dificuldade diferente não são diretamente comparáveis**. Se uma prova de 100 questões é fácil e outra é difícil, "70 acertos" significa coisas diferentes em cada uma.
+
+A TRI resolve isso modelando cada item independentemente:
+
+| Parâmetro | O que mede | Notação |
+|---|---|---|
+| Dificuldade | Quão difícil é o item | **b** |
+| Discriminação | Quão bem o item separa proficiências diferentes | **a** |
+| Acerto ao acaso | Probabilidade de chute correto | **c** |
+
+Com esses três parâmetros calibrados via pré-teste em grupos amostrais, o INEP pode comparar resultados de candidatos que fizeram provas diferentes, em anos diferentes, em escala equivalente.
+
+## Os três parâmetros explicados
+
+### Parâmetro **b** — Dificuldade
+
+Mede o nível de proficiência (θ) necessário para ter ~50% de chance de acertar o item.
+
+- **b = 0** — item de dificuldade média
+- **b = +1** — item difícil (precisa proficiência alta)
+- **b = -1** — item fácil (proficiência baixa já acerta)
+
+No ENAMED, o b de cada item vem de **calibração prévia** em pré-testes — questões não calibradas não entram na nota.
+
+### Parâmetro **a** — Discriminação
+
+Mede o quão sensível o item é à diferença de proficiência. Itens de discriminação alta separam bem os candidatos; itens de discriminação baixa são "ruidosos".
+
+- **a alto (>1,0)** — item discrimina bem
+- **a próximo de 0** — item não distingue proficiência (é descartado)
+- **a negativo** — item com problema grave (também descartado)
+
+### Parâmetro **c** — Acerto ao acaso
+
+Modela a probabilidade de acertar por chute. Em itens de múltipla escolha com 5 alternativas, c é tipicamente ~0,20.
+
+Se você **chutar todos os itens**, sua proficiência estimada será **baixa**, porque o modelo "desconta" o ganho esperado pelo chute. Não há vantagem estatística em chutar sistematicamente — é uma propriedade central do método.
+
+## A função logística 3PL
+
+Combinando os três parâmetros, a TRI usa a equação logística de 3 parâmetros (3PL):
+
+```
+P(acerto | θ) = c + (1 - c) × 1 / (1 + e^(-a(θ - b)))
+```
+
+Onde:
+
+- **P(acerto | θ)** — probabilidade de acerto dado proficiência θ
+- **θ** (theta) — proficiência do candidato
+- **a, b, c** — parâmetros do item
+- **e** — base do log natural (≈ 2,718)
+
+Para cada item, essa curva tem uma forma específica. O algoritmo do INEP estima o **θ que melhor explica** o seu padrão completo de respostas, considerando todas as curvas simultaneamente.
+
+## Por que dois candidatos com mesmos acertos têm notas diferentes
+
+Considere dois candidatos hipotéticos:
+
+| Candidato | Acertou itens | Padrão estatístico |
+|---|---|---|
+| **A** | 60 itens difíceis, errou 40 fáceis | Improvável — sugere proficiência altíssima em tópicos específicos |
+| **B** | 60 itens fáceis, errou 40 difíceis | Padrão esperado de quem tem proficiência mediana |
+
+Ambos têm **60% de acertos**. Mas o cálculo TRI produz:
+
+- **θ de A** → alto (próximo do topo da escala)
+- **θ de B** → médio
+
+Por quê? Porque acertar difíceis sem acertar fáceis é estatisticamente improvável de acontecer por acaso — só por proficiência genuína. Já errar difíceis e acertar fáceis é o padrão típico de proficiência mediana.
+
+Para um aprofundamento técnico, ver [Como a TRI calcula sua nota no ENAMED](/blog/como-tri-calcula-nota-enamed).
+
+## Vantagens da TRI no ENAMED
+
+1. **Comparabilidade entre edições** — sua nota de 2026 pode ser comparada à de 2027 mesmo com provas diferentes
+2. **Resistência a chute massivo** — chutar tudo leva a θ baixo
+3. **Calibração contínua** — itens com comportamento ruim são removidos
+4. **Detecção de padrões anômalos** — perfis estatisticamente improváveis podem indicar fraude ou problema com o item
+
+## Limitações da TRI
+
+Não é modelo perfeito:
+
+- **Complexidade pedagógica** — estudantes não conseguem calcular a própria nota, o que reduz transparência
+- **Dependência de calibração** — itens mal calibrados produzem erros sistemáticos
+- **Custo** — manter banco de itens calibrados é caro
+- **Captura parcial** — competência clínica plena exige avaliações práticas (OSCE)
+
+## O que isso significa para você quando estudar
+
+- **Não tente "varrer" só o básico** — você ganha mais consolidando profundidade em temas difíceis
+- **Não chute em massa** — penaliza estatisticamente
+- **Treine com simulados que usem TRI** — simulados de pontuação clássica dão sinal enganoso sobre o resultado real
+- **Foque em raciocínio clínico** — não em decoreba
+
+Para o lado complementar do método (o piso de competência), ver [Método Angoff no ENAMED](/prova-enamed/metodo-angoff). Para a estrutura geral da prova, ver [A Prova do ENAMED](/prova-enamed).
+
+## Termos relacionados
+
+- [TRI](/glossario/tri) — verbete completo do glossário
+- [Bandas de desempenho](/glossario/bandas-desempenho) — interpretação qualitativa do θ
+- [Método Angoff](/glossario/metodo-angoff) — complementa a TRI definindo o piso
+- [ENADE](/glossario/enade) — também usa modelo derivado de TRI
+
+## Fontes
+
+- Reckase, M. D. (2009). *Multidimensional Item Response Theory*. Springer.
+- Lord, F. M. (1980). *Applications of Item Response Theory to Practical Testing Problems*. Routledge.
+- INEP — *Nota Técnica sobre cálculo de proficiência no ENADE/ENAMED* (verificar versão vigente)
+- van der Linden, W. J. (Ed.). (2016). *Handbook of Item Response Theory*. CRC Press.
