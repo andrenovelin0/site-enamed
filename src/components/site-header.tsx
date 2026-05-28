@@ -4,38 +4,31 @@ import Link from "next/link";
 import { useState } from "react";
 import { primaryNav } from "@/lib/navigation";
 import { BrandMark } from "@/components/brand-mark";
-import { Button } from "@/components/ui";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-neutral-200 bg-background/90 backdrop-blur">
-      <div className="container-page flex h-16 items-center justify-between gap-4">
-        <Link href="/" aria-label="ENAMED — Página inicial">
+      <div className="container-page flex h-16 items-center justify-between gap-6">
+        <Link href="/" aria-label="Portal ENAMED — Página inicial" className="shrink-0">
           <BrandMark />
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-1" aria-label="Navegação principal">
+        <nav
+          className="hidden lg:flex items-center gap-0.5 flex-1 justify-end"
+          aria-label="Navegação principal"
+        >
           {primaryNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 hover:bg-brand-50 hover:text-brand-800 transition-colors"
+              className="rounded-lg px-2.5 py-2 text-sm font-medium text-neutral-700 hover:bg-brand-50 hover:text-brand-800 transition-colors whitespace-nowrap"
             >
               {item.label}
             </Link>
           ))}
         </nav>
-
-        <div className="hidden lg:flex items-center gap-2">
-          <Button asChild variant="secondary" size="sm">
-            <Link href="/simulados-enamed">Simulado grátis</Link>
-          </Button>
-          <Button asChild variant="primary" size="sm">
-            <Link href="/cursos">Ver cursos</Link>
-          </Button>
-        </div>
 
         <button
           type="button"
@@ -62,7 +55,7 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 hover:bg-brand-50"
+                className="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-brand-50"
               >
                 {item.label}
                 {item.description && (
@@ -72,18 +65,6 @@ export function SiteHeader() {
                 )}
               </Link>
             ))}
-            <div className="mt-3 flex flex-col gap-2 pt-3 border-t border-neutral-200">
-              <Button asChild variant="secondary" size="sm">
-                <Link href="/simulados-enamed" onClick={() => setOpen(false)}>
-                  Simulado grátis
-                </Link>
-              </Button>
-              <Button asChild variant="primary" size="sm">
-                <Link href="/cursos" onClick={() => setOpen(false)}>
-                  Ver cursos
-                </Link>
-              </Button>
-            </div>
           </nav>
         </div>
       )}

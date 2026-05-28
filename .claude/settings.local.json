@@ -28,7 +28,8 @@
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
       "Bash(npm install *)",
-      "Bash(npx --no-install eslint src/components/ui/ src/lib/cn.ts src/app/page.tsx src/components/site-header.tsx src/app/design-system/ src/app/robots.ts)"
+      "Bash(npx --no-install eslint src/components/ui/ src/lib/cn.ts src/app/page.tsx src/components/site-header.tsx src/app/design-system/ src/app/robots.ts)",
+      "Bash(git rm *)"
     ]
   }
 }

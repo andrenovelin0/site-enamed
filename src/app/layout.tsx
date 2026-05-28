@@ -23,17 +23,17 @@ const raleway = Raleway({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "ENAMED — Portal do Exame Nacional de Avaliação da Formação Médica",
-    template: "%s | ENAMED",
+    default: "Portal ENAMED — Portal do Exame Nacional de Avaliação da Formação Médica",
+    template: "%s | Portal ENAMED",
   },
   description:
     "Portal completo sobre o Exame Nacional de Avaliação da Formação Médica (Enamed): guias, simulados, cursos preparatórios e conteúdo para estudantes e instituições.",
   keywords: [
-    "ENAMED",
+    "Portal ENAMED",
     "Exame Nacional de Avaliação da Formação Médica",
-    "Prova ENAMED",
-    "Simulado ENAMED",
-    "Preparatório ENAMED",
+    "Prova Portal ENAMED",
+    "Simulado Portal ENAMED",
+    "Preparatório Portal ENAMED",
     "TRI",
     "Residência Médica",
   ],
@@ -41,16 +41,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     url: siteConfig.url,
-    siteName: "ENAMED",
-    title: "ENAMED — Portal do Exame Nacional de Avaliação da Formação Médica",
+    siteName: "Portal ENAMED",
+    title: "Portal ENAMED — Portal do Exame Nacional de Avaliação da Formação Médica",
     description:
-      "Tudo sobre o ENAMED em um só lugar: estrutura da prova, simulados, cursos e estratégia para estudantes e IES.",
+      "Tudo sobre o Portal ENAMED em um só lugar: estrutura da prova, simulados, cursos e estratégia para estudantes e IES.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ENAMED — Portal do Exame Nacional de Avaliação da Formação Médica",
+    title: "Portal ENAMED — Portal do Exame Nacional de Avaliação da Formação Médica",
     description:
-      "Tudo sobre o ENAMED em um só lugar: estrutura da prova, simulados, cursos e estratégia.",
+      "Tudo sobre o Portal ENAMED em um só lugar: estrutura da prova, simulados, cursos e estratégia.",
   },
   robots: {
     index: true,

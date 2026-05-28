@@ -35,8 +35,9 @@ export function BrandMark({ size = "md", inverted = false }: BrandMarkProps) {
           <path d="M5 19V5l7 7 7-7v14" />
         </svg>
       </span>
-      <span className={`font-display font-bold tracking-tight ${s.text} ${labelClasses}`}>
-        ENAMED
+      <span className={`font-display tracking-tight ${s.text} ${labelClasses}`}>
+        <span className="font-light opacity-80">Portal</span>{" "}
+        <span className="font-bold">ENAMED</span>
       </span>
     </span>
   );
