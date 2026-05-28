@@ -1,7 +1,7 @@
 import type { MDXComponents } from "mdx/types";
 import Link from "next/link";
 import type { ComponentPropsWithoutRef } from "react";
-import { Callout, CTA } from "@/components/mdx";
+import { Callout, CTA, AnswerBox, Definition, Citation } from "@/components/mdx";
 
 function isInternalHref(href: string | undefined): href is string {
   return typeof href === "string" && href.startsWith("/");
@@ -117,6 +117,9 @@ export function useMDXComponents(components?: MDXComponents): MDXComponents {
     ),
     Callout,
     CTA,
+    AnswerBox,
+    Definition,
+    Citation,
     ...components,
   };
 }

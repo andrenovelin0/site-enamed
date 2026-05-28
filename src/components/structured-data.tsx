@@ -72,6 +72,103 @@ export function BreadcrumbJsonLd({ trail }: { trail: { label: string; href?: str
   );
 }
 
+export function FAQPageJsonLd({
+  items,
+}: {
+  items: { question: string; answer: string }[];
+}) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
+export function QAPageJsonLd({
+  question,
+  answer,
+  path,
+  datePublished,
+  dateModified,
+}: {
+  question: string;
+  answer: string;
+  path: string;
+  datePublished?: string;
+  dateModified?: string;
+}) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "QAPage",
+    mainEntity: {
+      "@type": "Question",
+      name: question,
+      url: `${siteConfig.url}${path}`,
+      ...(datePublished && { datePublished }),
+      ...(dateModified && { dateModified }),
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: answer,
+        ...(datePublished && { datePublished }),
+        author: { "@type": "Organization", name: siteConfig.name },
+      },
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
+export function DefinedTermJsonLd({
+  name,
+  description,
+  path,
+  inDefinedTermSet,
+}: {
+  name: string;
+  description: string;
+  path: string;
+  inDefinedTermSet?: string;
+}) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    name,
+    description,
+    url: `${siteConfig.url}${path}`,
+    inLanguage: siteConfig.locale,
+    ...(inDefinedTermSet && {
+      inDefinedTermSet: {
+        "@type": "DefinedTermSet",
+        name: inDefinedTermSet,
+        url: `${siteConfig.url}/glossario`,
+      },
+    }),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
 export function WebsiteJsonLd() {
   const data = {
     "@context": "https://schema.org",
