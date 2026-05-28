@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "ENAMED — Portal do Exame Nacional de Avaliação da Formação Médica",
+  title: "Portal ENAMED — Tudo sobre o Exame Nacional de Avaliação da Formação Médica",
   description:
-    "Tudo sobre o Exame Nacional de Avaliação da Formação Médica (Enamed): estrutura da prova, simulados, cursos preparatórios e estratégia para estudantes e IES.",
+    "Definições, estrutura da prova, áreas avaliadas, impacto institucional e preparação — conteúdo factual, citável e atualizado sobre o ENAMED para estudantes, médicos, IES e pesquisadores.",
   alternates: { canonical: "/" },
 };
 
@@ -18,33 +18,39 @@ const clusters = [
   },
   {
     title: "A Prova",
-    description: "Metodologia TRI, Método Angoff, estrutura por áreas e análise de desempenho.",
+    description: "Metodologia TRI, Método Angoff, estrutura por áreas e cálculo da nota.",
     href: "/prova-enamed",
     eyebrow: "Técnico",
   },
   {
-    title: "Simulados",
-    description: "Questões comentadas, simulados temporizados e dashboard de performance.",
+    title: "Conteúdos por área",
+    description: "Clínica Médica, Cirurgia, Pediatria, GO, Saúde Coletiva e Ética.",
+    href: "/areas",
+    eyebrow: "Áreas médicas",
+  },
+  {
+    title: "Simulados (informacional)",
+    description: "O que são simulados ENAMED, como interpretar resultados, padrões de erros.",
     href: "/simulados-enamed",
     eyebrow: "Prática",
   },
   {
-    title: "Cursos preparatórios",
-    description: "Programas de estudo, mentoria especializada e cronogramas personalizados.",
-    href: "/cursos",
-    eyebrow: "Conversão",
+    title: "Como se preparar",
+    description: "Cronogramas, técnicas, materiais, saúde mental e plano da última semana.",
+    href: "/preparacao",
+    eyebrow: "Preparação",
   },
   {
     title: "Para Instituições",
-    description: "Desempenho institucional, avaliação MEC e estratégias de melhoria para IES.",
+    description: "Avaliação MEC, CPC, sanções, credenciamento e estratégias de melhoria.",
     href: "/ies",
-    eyebrow: "B2B",
+    eyebrow: "IES",
   },
   {
-    title: "Blog & FAQ",
-    description: "Notícias, editais, análises de provas recentes e respostas para dúvidas frequentes.",
-    href: "/blog",
-    eyebrow: "Conteúdo",
+    title: "Carreira médica",
+    description: "Residência, R+, ENARE, especialidades e mercado pós-formação.",
+    href: "/carreira",
+    eyebrow: "Carreira",
   },
 ];
 
@@ -67,18 +73,22 @@ export default function HomePage() {
               Exame Nacional de Avaliação da Formação Médica
             </p>
             <h1 className="mt-5 font-display text-4xl md:text-6xl font-bold tracking-tight text-white">
-              Domine o ENAMED com o portal mais completo do Brasil.
+              Tudo sobre o ENAMED — em um só lugar
             </h1>
             <p className="mt-5 text-lg text-brand-100/80 max-w-2xl leading-relaxed">
-              Guias técnicos, simulados temporizados, análise de desempenho e cursos preparatórios
-              — tudo organizado para você performar na avaliação que define sua formação médica.
+              Definições, estrutura da prova, áreas avaliadas, impacto institucional e preparação —
+              conteúdo factual, citável e atualizado para estudantes, médicos, IES e pesquisadores.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild variant="accent">
-                <Link href="/simulados-enamed">Fazer simulado gratuito</Link>
+                <Link href="/enamed">Explorar o guia completo</Link>
               </Button>
-              <Button asChild variant="outline" className="border-white/30 text-white hover:bg-white/10 hover:border-white">
-                <Link href="/cursos">Conhecer cursos</Link>
+              <Button
+                asChild
+                variant="outline"
+                className="border-white/30 text-white hover:bg-white/10 hover:border-white"
+              >
+                <Link href="/faq">Ver perguntas frequentes</Link>
               </Button>
             </div>
             <dl className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl">
@@ -92,7 +102,7 @@ export default function HomePage() {
               </div>
               <div>
                 <dt className="text-xs uppercase tracking-wider text-brand-300/80">Clusters</dt>
-                <dd className="font-display text-3xl font-bold text-white mt-1">6+</dd>
+                <dd className="font-display text-3xl font-bold text-white mt-1">7</dd>
               </div>
               <div>
                 <dt className="text-xs uppercase tracking-wider text-brand-300/80">Foco</dt>
@@ -109,14 +119,15 @@ export default function HomePage() {
             Hub de Conteúdo
           </p>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-neutral-900">
-            Encontre o que precisa para cada etapa da preparação
+            Encontre o que precisa para cada dimensão do exame
           </h2>
           <p className="mt-4 text-neutral-600 leading-relaxed">
-            Do entendimento institucional do exame ao treinamento prático e à conversão em
-            aprovação. Cada cluster aprofunda uma dimensão da jornada.
+            Do entendimento institucional ao detalhamento técnico, das áreas médicas avaliadas à
+            preparação e à carreira médica. Sete clusters de conteúdo organizados para aprofundar
+            cada dimensão.
           </p>
         </div>
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {clusters.map((cluster) => (
             <Link
               key={cluster.href}
@@ -156,60 +167,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-brand-50 border-y border-brand-100">
-        <div className="container-page py-20">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-brand-700 mb-3">
-                Início do funil
-              </p>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-neutral-900">
-                Comece pelo simulado diagnóstico
-              </h2>
-              <p className="mt-4 text-neutral-700 leading-relaxed">
-                Descubra suas lacunas por área (Clínica, Cirurgia, Pediatria, GO, Saúde Coletiva,
-                Ética). Em seguida receba um plano de estudos sugerido para fechar gaps com
-                eficiência.
-              </p>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Button asChild variant="primary">
-                  <Link href="/simulados-enamed">Iniciar diagnóstico</Link>
-                </Button>
-                <Button asChild variant="secondary">
-                  <Link href="/prova-enamed">Entender a prova primeiro</Link>
-                </Button>
-              </div>
-            </div>
-            <ul className="grid gap-3">
-              {[
-                "Simulados por área médica",
-                "Questões comentadas por especialistas",
-                "Dashboard de desempenho personalizado",
-                "Cronogramas dirigidos por nível",
-                "Integração B2B para IES",
-              ].map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-3 rounded-xl bg-white border border-brand-100 p-4 hover:border-brand-300 transition-colors"
-                >
-                  <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-500 text-brand-950">
-                    <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
-                      <path
-                        fillRule="evenodd"
-                        d="M16.704 5.29a1 1 0 010 1.42l-7.5 7.5a1 1 0 01-1.42 0l-3.5-3.5a1 1 0 011.42-1.42l2.79 2.79 6.79-6.79a1 1 0 011.42 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </span>
-                  <span className="text-sm text-neutral-800 font-medium">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section className="container-page py-20">
+      <section className="container-page pb-20">
         <div className="relative overflow-hidden rounded-3xl gradient-brand text-white p-10 md:p-14">
           <div
             aria-hidden
@@ -217,19 +175,20 @@ export default function HomePage() {
           />
           <div className="relative flex flex-col md:flex-row md:items-center gap-6 justify-between">
             <div className="max-w-xl">
-              <p className="text-xs font-semibold uppercase tracking-wider text-brand-300 mb-3">
-                Para Instituições de Ensino
-              </p>
-              <h2 className="font-display text-2xl md:text-3xl font-bold">
-                Eleve o desempenho da sua IES no ENAMED
+              <h2 className="font-display text-2xl md:text-3xl font-bold mt-0">
+                Como o ENAMED afeta as Instituições de Ensino
               </h2>
               <p className="mt-3 text-brand-100/85 leading-relaxed">
-                Avaliações institucionais, simulados para alunos e consultoria estratégica para
-                melhoria da nota no MEC.
+                Conheça o impacto do ENAMED na avaliação MEC, o cálculo do CPC, as sanções
+                regulatórias e os caminhos de melhoria institucional.
               </p>
             </div>
-            <Button asChild variant="accent" className="shrink-0">
-              <Link href="/ies">Soluções para IES</Link>
+            <Button
+              asChild
+              variant="outline"
+              className="border-white/30 text-white hover:bg-white/10 hover:border-white shrink-0"
+            >
+              <Link href="/ies">Ler sobre o impacto institucional</Link>
             </Button>
           </div>
         </div>

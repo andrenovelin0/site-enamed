@@ -13,22 +13,32 @@ export const primaryNav: NavItem[] = [
   {
     label: "A Prova",
     href: "/prova-enamed",
-    description: "Estrutura, metodologia (TRI) e desempenho",
+    description: "Estrutura, metodologia (TRI) e cálculo da nota",
+  },
+  {
+    label: "Áreas",
+    href: "/areas",
+    description: "Conteúdos por área médica avaliada",
   },
   {
     label: "Simulados",
     href: "/simulados-enamed",
-    description: "Questões comentadas e dashboard de performance",
+    description: "O que são simulados ENAMED e como interpretá-los",
   },
   {
-    label: "Cursos",
-    href: "/cursos",
-    description: "Preparatórios e mentorias",
+    label: "Preparação",
+    href: "/preparacao",
+    description: "Como se preparar — cronograma, técnicas, materiais",
+  },
+  {
+    label: "Carreira",
+    href: "/carreira",
+    description: "Residência, R+, ENARE e mercado médico",
   },
   {
     label: "Para IES",
     href: "/ies",
-    description: "Desempenho institucional e MEC",
+    description: "Impacto MEC, CPC, sanções e melhoria institucional",
   },
   {
     label: "Blog",
@@ -38,6 +48,10 @@ export const primaryNav: NavItem[] = [
     label: "FAQ",
     href: "/faq",
   },
+  {
+    label: "Glossário",
+    href: "/glossario",
+  },
 ];
 
 export const footerSections: { title: string; items: NavItem[] }[] = [
@@ -46,31 +60,31 @@ export const footerSections: { title: string; items: NavItem[] }[] = [
     items: [
       { label: "O ENAMED", href: "/enamed" },
       { label: "A Prova", href: "/prova-enamed" },
+      { label: "Áreas médicas", href: "/areas" },
       { label: "Simulados", href: "/simulados-enamed" },
       { label: "Para IES", href: "/ies" },
     ],
   },
   {
-    title: "Comercial",
+    title: "Preparação e carreira",
     items: [
-      { label: "Cursos preparatórios", href: "/cursos" },
-      { label: "Depoimentos e resultados", href: "/depoimentos" },
-      { label: "Mentorias", href: "/cursos#mentoria" },
+      { label: "Como se preparar", href: "/preparacao" },
+      { label: "Carreira médica", href: "/carreira" },
+      { label: "Glossário", href: "/glossario" },
     ],
   },
   {
-    title: "Suporte",
+    title: "Editorial",
     items: [
+      { label: "Blog", href: "/blog" },
       { label: "FAQ", href: "/faq" },
       { label: "Contato", href: "/contato" },
-      { label: "Central de Suporte", href: "/suporte" },
     ],
   },
   {
     title: "Institucional",
     items: [
-      { label: "Sobre", href: "/sobre" },
-      { label: "Blog", href: "/blog" },
+      { label: "Sobre o Portal", href: "/sobre" },
       { label: "Política de Privacidade", href: "/politica-de-privacidade" },
       { label: "Termos de Uso", href: "/termos-de-uso" },
       { label: "Política de Cookies", href: "/politica-de-cookies" },
