@@ -2,86 +2,60 @@
 
 import { useState, useMemo, useId } from "react";
 
-type Band = {
-  id: "insuficiente" | "basico" | "adequado" | "avancado" | "excelente";
+type Level = {
+  id: "proficiente" | "nao-proficiente";
   label: string;
-  range: string;
   description: string;
-  /** percent ceiling (inclusive) */
-  ceiling: number;
-  /** Tailwind class for the band chip */
   chipClass: string;
 };
 
-/**
- * Bandas didáticas para estimativa educacional.
- * NÃO refletem cortes oficiais do INEP — a banda real depende dos
- * parâmetros TRI calibrados de cada item, que não são públicos antes
- * do resultado. Cortes mostrados aqui assumem distribuição razoavelmente
- * uniforme de dificuldade entre itens.
- */
-const BANDS: Band[] = [
-  {
-    id: "insuficiente",
-    label: "Insuficiente",
-    range: "Abaixo de 30% de acerto",
+const LEVELS: Record<Level["id"], Level> = {
+  proficiente: {
+    id: "proficiente",
+    label: "Proficiente",
     description:
-      "Indica lacunas amplas em uma ou mais áreas avaliadas. Plano de estudo precisa de revisão estrutural.",
-    ceiling: 30,
-    chipClass: "bg-red-100 text-red-900 border-red-300",
-  },
-  {
-    id: "basico",
-    label: "Básico",
-    range: "30% a 49% de acerto",
-    description:
-      "Conhecimento mínimo, mas com lacunas relevantes em áreas de peso. Foco em fundamentos das três maiores áreas.",
-    ceiling: 50,
-    chipClass: "bg-amber-100 text-amber-900 border-amber-300",
-  },
-  {
-    id: "adequado",
-    label: "Adequado",
-    range: "50% a 64% de acerto",
-    description:
-      "Patamar mínimo esperado de um egresso de Medicina. Espaço de melhora em áreas específicas.",
-    ceiling: 65,
+      "Nível mínimo de habilitação no ENAMED, conforme item 14.1.4 do Edital nº 71/2026 (INEP). O resultado Proficiente também habilita o candidato a usar a nota no ENARE 2026/2027 para residência médica de acesso direto.",
     chipClass: "bg-brand-100 text-brand-900 border-brand-300",
   },
-  {
-    id: "avancado",
-    label: "Avançado",
-    range: "65% a 79% de acerto",
+  "nao-proficiente": {
+    id: "nao-proficiente",
+    label: "Não Proficiente",
     description:
-      "Desempenho acima da mediana esperada. Próximo passo é consolidação em áreas mais frágeis.",
-    ceiling: 80,
-    chipClass: "bg-emerald-100 text-emerald-900 border-emerald-300",
+      "Nota abaixo do piso oficial de 60,0 pontos. Não habilita o aproveitamento da nota no ENARE — o candidato pode tentar novamente em edição posterior ou usar nota válida de edição anterior em que tenha atingido o nível Proficiente.",
+    chipClass: "bg-amber-100 text-amber-900 border-amber-300",
   },
-  {
-    id: "excelente",
-    label: "Excelente",
-    range: "80% ou mais de acerto",
-    description:
-      "Domínio consistente das seis áreas. Manutenção via simulados temporizados e revisão espaçada.",
-    ceiling: 101,
-    chipClass: "bg-violet-100 text-violet-900 border-violet-300",
-  },
-];
+};
 
-function bandFor(percent: number): Band {
-  return BANDS.find((b) => percent < b.ceiling) ?? BANDS[BANDS.length - 1]!;
+const TOTAL_QUESTOES_OFICIAL = 100;
+const PISO_PROFICIENTE = 60;
+
+/**
+ * IMPORTANTE — limitações desta calculadora:
+ *
+ * A nota oficial do ENAMED é calculada por Teoria de Resposta ao Item (TRI),
+ * que considera dificuldade, discriminação e probabilidade de acerto ao acaso
+ * de cada item. Esses parâmetros são calibrados pelo INEP após a aplicação
+ * e NÃO são públicos antes do resultado.
+ *
+ * Esta calculadora usa apenas o percentual de acertos como referência
+ * didática para projetar o nível de desempenho. Dois candidatos com mesmo
+ * número de acertos podem ter notas TRI diferentes — depende de quais itens
+ * cada um acertou. Use como orientação de plano de estudo, não como previsão.
+ */
+function projectarNivel(percent: number): Level {
+  return percent >= PISO_PROFICIENTE ? LEVELS.proficiente : LEVELS["nao-proficiente"];
 }
 
 export function CalculadoraTri() {
-  const [acertos, setAcertos] = useState(70);
-  const [total, setTotal] = useState(110);
+  const [acertos, setAcertos] = useState(60);
+  const [total, setTotal] = useState(TOTAL_QUESTOES_OFICIAL);
 
   const acertosClamped = Math.min(Math.max(0, acertos), total);
   const percent = useMemo(
     () => (total > 0 ? (acertosClamped / total) * 100 : 0),
     [acertosClamped, total],
   );
-  const band = useMemo(() => bandFor(percent), [percent]);
+  const level = useMemo(() => projectarNivel(percent), [percent]);
 
   const acertosId = useId();
   const totalId = useId();
@@ -110,8 +84,8 @@ export function CalculadoraTri() {
             id={`${acertosId}-help`}
             className="mt-2 text-xs text-neutral-500"
           >
-            Entre 0 e {total}. Use sua estimativa após simulado, autoavaliação
-            ou prova anterior.
+            Entre 0 e {total}. Use sua estimativa após simulado calibrado ou
+            autoavaliação.
           </p>
         </div>
 
@@ -136,8 +110,8 @@ export function CalculadoraTri() {
             id={`${totalId}-help`}
             className="mt-2 text-xs text-neutral-500"
           >
-            ENAMED costuma ter cerca de 110 questões. Confirme no edital
-            vigente.
+            O ENAMED 2026 tem 100 questões objetivas, conforme item 3.1.1.1 do
+            Edital nº 71/2026 (INEP).
           </p>
         </div>
       </div>
@@ -159,14 +133,19 @@ export function CalculadoraTri() {
         </div>
 
         <div
-          className={`inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-semibold ${band.chipClass}`}
+          className={`inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-semibold ${level.chipClass}`}
         >
           <span className="block h-2 w-2 rounded-full bg-current opacity-70" />
-          Banda estimada: {band.label}
+          Projeção: nível {level.label}
         </div>
 
         <p className="mt-4 text-sm text-neutral-700 leading-relaxed">
-          {band.description}
+          {level.description}
+        </p>
+
+        <p className="mt-3 text-xs text-neutral-500 leading-relaxed">
+          Piso de habilitação oficial: <strong>60,0 pontos</strong> na escala
+          de proficiência TRI (item 14.1.4 do Edital INEP nº 71/2026).
         </p>
       </div>
 
@@ -177,8 +156,18 @@ export function CalculadoraTri() {
           percentual de acertos. A nota oficial do ENAMED é calculada por{" "}
           <strong>Teoria de Resposta ao Item (TRI)</strong>, que considera
           dificuldade, discriminação e probabilidade de acerto ao acaso de
-          cada item — parâmetros não públicos antes do resultado. Sua banda
-          real pode diferir desta estimativa.
+          cada item — parâmetros calibrados pelo INEP após a aplicação e não
+          públicos antes do resultado. Sua nota oficial pode diferir desta
+          projeção. Fonte:{" "}
+          <a
+            href="https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enamed"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="underline underline-offset-2 hover:text-amber-700"
+          >
+            Portal oficial do ENAMED — INEP
+          </a>
+          .
         </p>
       </div>
     </div>
