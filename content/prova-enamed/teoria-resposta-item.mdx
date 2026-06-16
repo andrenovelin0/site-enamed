@@ -7,7 +7,7 @@ heroTitle: "TRI no ENAMED — Teoria de Resposta ao Item"
 heroDescription: "A TRI calcula sua nota considerando quais itens você acertou, não só quantos. Três parâmetros por questão, uma função logística, escala comparável entre edições."
 ---
 
-A **Teoria de Resposta ao Item (TRI)** é o modelo estatístico que o ENAMED usa para calcular a sua nota. Em vez de somar acertos como uma prova clássica de escola, a TRI considera **três parâmetros de cada item** — dificuldade, discriminação e acerto ao acaso — e estima qual o **nível de proficiência (θ, teta)** mais compatível com o seu padrão de respostas.
+A **Teoria de Resposta ao Item (TRI)** é o modelo estatístico que o ENAMED usa para calcular a sua nota, conforme metodologia descrita nas <Citation source="INEP — Notas Técnicas nº 19/2025/CGAFM/DAES-INEP e nº 42/2025/CEI/CGGI/DAES-INEP" url="https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enamed/notas-tecnicas" date="2025">documentos técnicos oficiais publicados pelo INEP que descrevem a metodologia de cálculo da nota no ENAMED</Citation>. Em vez de somar acertos, a TRI considera **três parâmetros de cada item** — dificuldade, discriminação e acerto ao acaso — e estima qual o **nível de proficiência (θ, teta)** mais compatível com o seu padrão de respostas.
 
 <AnswerBox label="Por que isso importa">
 Dois candidatos com **60 acertos** podem ter notas muito diferentes no ENAMED. A TRI considera *quais* itens foram acertados, não só *quantos*. Acertar itens difíceis pesa mais que acertar fáceis.
@@ -49,7 +49,7 @@ Mede o quão sensível o item é à diferença de proficiência. Itens de discri
 
 ### Parâmetro **c** — Acerto ao acaso
 
-Modela a probabilidade de acertar por chute. Em itens de múltipla escolha com 5 alternativas, c é tipicamente ~0,20.
+Modela a probabilidade de acertar por chute. No ENAMED 2026, com **4 alternativas por questão** (item 3.1.1.1 do Edital INEP nº 71/2026), c é tipicamente ~0,25 (chute aleatório uniforme).
 
 Se você **chutar todos os itens**, sua proficiência estimada será **baixa**, porque o modelo "desconta" o ganho esperado pelo chute. Não há vantagem estatística em chutar sistematicamente — é uma propriedade central do método.
 
@@ -124,9 +124,11 @@ Para o lado complementar do método (o piso de competência), ver [Método Angof
 
 Para estimar sua banda a partir do número de acertos, use a [calculadora educacional de banda TRI](/calculadora-tri). Lembrando: estimativa por percentual de acerto não substitui o cálculo oficial do INEP — serve como ponto de partida para ajuste do plano de estudo.
 
-## Fontes
+## Fontes oficiais e bibliográficas
 
+- INEP — Notas Técnicas nº 19/2025/CGAFM/DAES-INEP e nº 42/2025/CEI/CGGI/DAES-INEP, conforme item 14.1.4.2 do [Edital nº 71/2026](https://www.in.gov.br/web/dou/-/edital-n-71-de-28-de-maio-de-2026-709280869): metodologia oficial de cálculo da nota TRI no ENAMED
+- INEP — Portaria nº 478/2025: Matriz de Referência Comum para a Avaliação da Formação Médica
+- INEP — Nota Técnica nº 40/2025/CEI/CGGI/DAES-INEP: cálculo do Conceito ENADE para Medicina
 - Reckase, M. D. (2009). *Multidimensional Item Response Theory*. Springer.
 - Lord, F. M. (1980). *Applications of Item Response Theory to Practical Testing Problems*. Routledge.
-- INEP — *Nota Técnica sobre cálculo de proficiência no ENADE/ENAMED* (verificar versão vigente)
 - van der Linden, W. J. (Ed.). (2016). *Handbook of Item Response Theory*. CRC Press.
